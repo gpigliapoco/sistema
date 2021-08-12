@@ -11,10 +11,13 @@
     <link rel="stylesheet" href="plugins/datatable/datatables.min.css">
     <link rel="stylesheet" href="plugins/datatable/DataTables-1.10.25/css/jquery.dataTables.min.css">
 
+    <!-- Font Awesome -->
+   <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+
     <title>Hello, world!</title>
   </head>
   <body>
-    <script type="text/javascript" src="empleados.js?rev=<?php echo time(); ?>"></script>
+    
     <header class="container-fluid bg-primary d-flex justify-content-center">
       <h3 class="text-light">Felisan</h3>
     </header>
@@ -28,56 +31,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Empleados</a>
+              <a class="nav-link active" aria-current="page" onclick="cargar_contenido('contenido_principal','vista/empleados/vista_empleados.php')"  >Empleados</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Sector</a>
+              <a class="nav-link active" onclick="cargar_contenido('contenido_principal','vista/sector/vista_sector.php')">Sector</a>
             </li>           
           </ul>          
         </div>
       </div>
     </nav>
     <br>
-    <section>
-      <div class="container">
-        <div class="card text-dark bg-light" style="width:100%">
-          <div class="card-header">
-            <h3 class="text-center">Listado empleados</h3>
-            <div class="align-content-end">
-              <button class="btn btn-success " style="width:15%" onclick="cargar_contenido('contenido_principal','empleados/registro_empleados.php')"><i class="glyphicon glyphicon-plus"></i>&nbsp;Nuevo Registro</button>
-            </div>
-        
-           
-        </div>
-        </div>
-        <br>
-        <table id="tabla_empleados" class="display" style="width:100%">
-          <thead>
-              <tr>
-                        <th>#</th>
-                        <th>Foto</th>
-                        <th>Nombre</th>
-                        <th>Documento</th>
-                        <th>Movil</th>
-                        <th>Sector</th>
-                        <th>Estado</th>
-                        <th>Acci&oacute;n</th>
-              </tr>
-          </thead>     
-          <tfoot>
-              <tr>
-                        <th>#</th>
-                        <th>Foto</th>
-                        <th>Nombre</th>
-                        <th>Documento</th>
-                        <th>Movil</th>
-                        <th>Sector</th>
-                        <th>Estado</th>
-                        <th>Acci&oacute;n</th>
-              </tr>
-          </tfoot>
-      </table>
-      </div>
+    <section id="contenido_principal">
+     
     </section>
 
 
@@ -111,6 +76,9 @@
 					"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 			}
 	 }
+   function cargar_contenido(contenido,contenedor){
+    $("#"+contenido).load(contenedor);
+  }
   </script>
     
 
@@ -124,9 +92,7 @@
      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
      <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
       <script>
-      $(document).ready(function() {
-        listar_empleados(); 
-        } );  
+       
            
   </script>
      
