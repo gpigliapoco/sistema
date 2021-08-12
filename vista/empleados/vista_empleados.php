@@ -44,7 +44,7 @@
     </div>
 </div>
 <div class="modal" tabindex="-1"  id="modal_persona" role="dialog" >
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header text-center bg-primary">
                 <h4 class="modal-title bg-primary"><b>DATOS DE EMPLEADO</b></h4>

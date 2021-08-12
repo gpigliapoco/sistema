@@ -1,29 +1,30 @@
+<div class="container">
 <script type="text/javascript" src="../js/empleados.js?rev=<?php echo time();?>"></script>
 <div class="col-md-12">
-          <div class="panel panel-primary" >
-            <div class="panel-heading" style="text-align:center" >
-              <h3 class="panel-title" ><b> EDITAR DATOS DE EMPLEADO</b></h3>
+          <div class="card card-primary" >
+            <div class="card-header" style="text-align:center" >
+              <h3 class="card-title" ><b> EDITAR DATOS DE EMPLEADO</b></h3>
 
               
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
             <form onsubmit="return false" class="needs-validation" novalidate method="POST" action="#" enctype="multipart/form-data">
-              <div class="box-body">
+              <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                      <label for="">Nombre</label>
                      <input type="text"  id="txt_idempleado"  disabled hidden>
-                     <input type="text" name="nombre" id="txt_nombreEditar" placeholder="Nombre" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_nombreEditar" placeholder="Nombre" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Direccion</label>
-                     <input type="text" name="nombre" id="txt_direccionEditar" placeholder="Direccion" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_direccionEditar" placeholder="Direccion" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Documento</label>
-                     <input type="text" name="nombre" id="txt_dniEditar" placeholder="Documento" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_dniEditar" placeholder="Documento" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                     <div class="col-md-3"></div>
@@ -31,9 +32,9 @@
                         <div class="card "  >
                           <img src="./imagenes/avatar.png" class="img-fluid" width="300" id="mostrarimagenEditar">                         
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-mb-3">
                           <label for="">Foto perfil</label><br>
-                          <input type="file" class="form-control" id="seleccionararchivoEditar">
+                          <input type="file" class="form-control form-control-sm" id="seleccionararchivoEditar">
                           <br>
                           <button class="btn btn-primary btn-md" onclick="actualizarfoto()" >actualizar foto</button>
                         </div>
@@ -45,41 +46,41 @@
                   <div class="col-md-6">
                     <div class="form-group">
                      <label for="">Apellido</label>
-                     <input type="text" name="nombre" id="txt_apellidoEditar" placeholder="Apellido" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_apellidoEditar" placeholder="Apellido" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Ciudad</label>
-                     <input type="text" name="nombre" id="txt_ciudadEditar" placeholder="Ciudad" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_ciudadEditar" placeholder="Ciudad" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Movil</label>
-                     <input type="text"  id="txt_movilEditar" placeholder="Movil" class="form-control" required>
+                     <input type="text"  id="txt_movilEditar" placeholder="Movil" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Sexo</label>
-                     <select class="js-example-basic-single" name="state" id="cbm_sexoEditar" style="width:100%;">
+                     <select class="form-select form-select-sm" name="state" id="cbm_sexoEditar" style="width:100%;">
                                 <option value="m">MASCULINO</option>
                                 <option value="f">FEMENINO</option>
                             </select>
                     </div>
                     <div class="form-group">
                      <label for="">Fecha de nacimiento</label>
-                     <input type="date" name="nombre" id="txt_fechaNEditar" class="form-control" required>
+                     <input type="date" name="nombre" id="txt_fechaNEditar" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Estado Civil</label>
-                     <select class="js-example-basic-single" name="state" id="cbm_estadoCivilEditar" style="width:100%;">
+                     <select class="form-select form-select-sm" name="state" id="cbm_estadoCivilEditar" style="width:100%;">
                                 <option value="s">SOLTERO</option>
                                 <option value="c">CASADO</option>
                             </select>
                     </div>
                     <div class="form-group">
                      <label for="">Fecha Ingreso</label>
-                     <input type="date" name="nombre" id="txt_ingresoEditar" class="form-control" required>
+                     <input type="date" name="nombre" id="txt_ingresoEditar" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Cargo</label>
-                     <select class="js-example-basic-single" name="state" id="cbm_cargoEditar" style="width:100%;">
+                     <select class="form-select form-select-sm" name="state" id="cbm_cargoEditar" style="width:100%;">
                                  </select>
                     </div>
 
@@ -90,19 +91,19 @@
                   </div> 
                     <div class="col-lg-6">
                      <label for="">Nombre</label>
-                     <input type="text" name="nombre" id="txt_nombreBenefEditar" placeholder="Nombre" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_nombreBenefEditar" placeholder="Nombre" class="form-control form-control-sm" required>
                     </div>
                     <div class="col-lg-6">
                      <label for="">Documento</label>
-                     <input type="text" name="nombre" id="txt_dniBenefEditar" placeholder="Documento" class="form-control">
+                     <input type="text" name="nombre" id="txt_dniBenefEditar" placeholder="Documento" class="form-control form-control-sm">
                     </div>
                     <div class="col-lg-6">
                      <label for="">Direccion</label>
-                     <input type="text" name="nombre" id="txt_direccionBenefEditar" placeholder="Direccion" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_direccionBenefEditar" placeholder="Direccion" class="form-control form-control-sm" required>
                     </div>
                     <div class="col-lg-6">
                      <label for="">Movil</label>
-                     <input type="text" name="nombre" id="txt_movilBenefEditar" placeholder="Movil" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_movilBenefEditar" placeholder="Movil" class="form-control form-control-sm" required>
                     </div>
                     
                     <div class="col-md-12">
@@ -121,19 +122,19 @@
                 <div class="row">
                   <div class="col-lg-6">
                      <label for="">Nombre Esposa</label>
-                     <input type="text" name="nombre" id="txt_nombreEsposaEditar" placeholder="Nombre" class="form-control">
+                     <input type="text" name="nombre" id="txt_nombreEsposaEditar" placeholder="Nombre" class="form-control form-control-sm">
                   </div>
                   <div class="col-lg-6">
                      <label for="">documento</label>
-                     <input type="text" name="nombre" id="txt_dniEsposaEditar" placeholder="Documento" class="form-control">
+                     <input type="text" name="nombre" id="txt_dniEsposaEditar" placeholder="Documento" class="form-control form-control-sm">
                   </div>
                   <div class="col-lg-8">
                      <label for="">Movil</label>
-                     <input type="text" name="nombre" id="txt_movilEsposaEditar" placeholder="Movil" class="form-control">
+                     <input type="text" name="nombre" id="txt_movilEsposaEditar" placeholder="Movil" class="form-control form-control-sm">
                   </div>
                   <div class="col-lg-4">
                      <label for="">Hijos Cantidad</label>
-                     <input type="text" name="nombre" id="txt_hijosEditar" placeholder="Cantidad" class="form-control">
+                     <input type="text" name="nombre" id="txt_hijosEditar" placeholder="Cantidad" class="form-control form-control-sm">
                   </div>
                 </div>
                
@@ -143,17 +144,17 @@
                 <div class="row">
                   <div class="col-lg-2">
                      <label for="">Reg.Moyano</label>
-                      <select class="js-example-basic-single" name="state" id="cbm_registroEditar" style="width:100%;">
+                      <select class="form-select form-select-sm" name="state" id="cbm_registroEditar" style="width:100%;">
                                 <option value="s">SI</option>
                                 <option value="n">NO</option>
                             </select>
                   </div>
                   <div class="col-lg-6">
                      <label for="">Registro Conducir</label>
-                     <input type="text" name="nombre" id="txt_registroEditar" placeholder="Numero de Registro" class="form-control">
+                     <input type="text" name="nombre" id="txt_registroEditar" placeholder="Numero de Registro " class="form-control form-control-sm">
                   </div> <div class="col-lg-4">
                      <label for="">fecha Vencimiento</label>
-                     <input type="date" name="nombre" id="txt_vencimientoEditar" class="form-control">
+                     <input type="date" name="nombre" id="txt_vencimientoEditar" class="form-control form-control-sm">
                   </div>
                 </div>
               </div>
@@ -173,8 +174,10 @@
           </div>
           <!-- nav-tabs-custom -->
         </div>
-        <div class="col-lg-12" style="text-align:center">
-       <button class="btn btn-primary btn-lg" style="width:100%" onclick="updateEmple()">Editar</button>
+        <div class="card-footer">
+          <div class="col-lg-12" style="text-align:center">
+            <button class="btn btn-primary btn-lg" style="width:100%"  onclick="updateEmple()">Registrar</button>
+          </div>
         </div>
             </div>
             <!-- /.box-body -->
@@ -184,6 +187,7 @@
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+        </div>
         </div>
         <script>
 //         function archivo(evt) {

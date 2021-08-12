@@ -15,15 +15,15 @@
                   <div class="col-md-6">
                     <div class="form-group">
                      <label for="">Nombre</label>
-                     <input type="text" name="nombre" id="txt_nombre" placeholder="Nombre" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_nombre" placeholder="Nombre" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Direccion</label>
-                     <input type="text" name="nombre" id="txt_direccion" placeholder="Direccion" class="form-control"required >
+                     <input type="text" name="nombre" id="txt_direccion" placeholder="Direccion" class="form-control form-control-sm"required >
                     </div>
                     <div class="form-group">
                      <label for="">Documento</label>
-                     <input type="text" name="nombre" id="txt_dni" placeholder="Documento" class="form-control" onkeypress="return soloNumeros(event)" required>
+                     <input type="text" name="nombre" id="txt_dni" placeholder="Documento" class="form-control form-control-sm" onkeypress="return soloNumeros(event)" required>
                     </div>
                     <div class="form-group">
                     <div class="col-md-3"></div>
@@ -31,9 +31,9 @@
                         <div class="card "  >
                           <img src="../imagenes/avatar.png" class="img-fluid" width="300" id="mostrarimagen">                         
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-mb-3">
                           <label for="">Foto perfil</label><br>
-                          <input type="file" class="form-control" id="seleccionararchivo">
+                          <input type="file" class="form-control form-control-sm" id="seleccionararchivo">
                         </div>
                      
                      
@@ -43,41 +43,41 @@
                   <div class="col-md-6">
                     <div class="form-group">
                      <label for="">Apellido</label>
-                     <input type="text" name="nombre" id="txt_apellido" placeholder="Apellido" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_apellido" placeholder="Apellido" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Ciudad</label>
-                     <input type="text" name="nombre" id="txt_ciudad" placeholder="Ciudad" class="form-control">
+                     <input type="text" name="nombre" id="txt_ciudad" placeholder="Ciudad" class="form-control form-control-sm">
                     </div>
                     <div class="form-group">
                      <label for="">Movil</label>
-                     <input type="text" name="nombre" id="txt_movil" placeholder="Movil" class="form-control" onkeypress="return soloNumeros(event)" required>
+                     <input type="text" name="nombre" id="txt_movil" placeholder="Movil" class="form-control form-control-sm" onkeypress="return soloNumeros(event)" required>
                     </div>
                     <div class="form-group">
                      <label for="">Sexo</label>
-                     <select class="js-example-basic-single" name="state" id="cbm_sexo" style="width:100%;">
+                     <select class="form-select form-select-sm" name="state" id="cbm_sexo" style="width:100%;">
                                 <option value="m">MASCULINO</option>
                                 <option value="f">FEMENINO</option>
                             </select>
                     </div>
                     <div class="form-group">
                      <label for="">Fecha de nacimiento</label>
-                     <input type="date" name="nombre" id="txt_fechaN" class="form-control" required>
+                     <input type="date" name="nombre" id="txt_fechaN" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Estado Civil</label>
-                     <select class="js-example-basic-single" name="state" id="cbm_estadoCivil" style="width:100%;">
+                     <select class="form-select form-select-sm" name="state" id="cbm_estadoCivil" style="width:100%;">
                                 <option value="s">SOLTERO</option>
                                 <option value="c">CASADO</option>
                             </select>
                     </div>
                     <div class="form-group">
                      <label for="">Fecha Ingreso</label>
-                     <input type="date" name="nombre" id="txt_ingreso" class="form-control" required>
+                     <input type="date" name="nombre" id="txt_ingreso" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                      <label for="">Cargo</label>
-                     <select class="js-example-basic-single" name="state" id="cbm_cargo" style="width:100%;">
+                     <select class="form-select form-select-sm" name="state" id="cbm_cargo" style="width:100%;">
                                  </select>
                     </div>
 
@@ -89,19 +89,19 @@
                   </div> 
                     <div class="col-lg-6">
                      <label for="">Nombre</label>
-                     <input type="text" name="nombre" id="txt_nombreBenef" placeholder="Nombre" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_nombreBenef" placeholder="Nombre" class="form-control form-control-sm" required>
                     </div>
                     <div class="col-lg-6">
                      <label for="">Documento</label>
-                     <input type="text" name="nombre" id="txt_dniBenef" placeholder="Documento" class="form-control">
+                     <input type="text" name="nombre" id="txt_dniBenef" placeholder="Documento" class="form-control form-control-sm">
                     </div>
                     <div class="col-lg-6">
                      <label for="">Direccion</label>
-                     <input type="text" name="nombre" id="txt_direccionBenef" placeholder="Direccion" class="form-control" required>
+                     <input type="text" name="nombre" id="txt_direccionBenef" placeholder="Direccion" class="form-control form-control-sm" required>
                     </div>
                     <div class="col-lg-6">
                      <label for="">Movil</label>
-                     <input type="text" name="nombre" id="txt_movilBenef" placeholder="Movil" class="form-control" onkeypress="return soloNumeros(event)"required>
+                     <input type="text" name="nombre" id="txt_movilBenef" placeholder="Movil" class="form-control form-control-sm" onkeypress="return soloNumeros(event)"required>
                     </div>
                     
                     <div class="col-md-12">
@@ -125,19 +125,19 @@
                 <div class="row">
                   <div class="col-lg-6">
                      <label for="">Nombre Esposa</label>
-                     <input type="text" name="nombre" id="txt_nombreEsposa" placeholder="Nombre" class="form-control">
+                     <input type="text" name="nombre" id="txt_nombreEsposa" placeholder="Nombre" class="form-control form-control-sm">
                   </div>
                   <div class="col-lg-6">
                      <label for="">documento</label>
-                     <input type="text" name="nombre" id="txt_dniEsposa" placeholder="Documento" class="form-control" onkeypress="return soloNumeros(event)">
+                     <input type="text" name="nombre" id="txt_dniEsposa" placeholder="Documento" class="form-control form-control-sm" onkeypress="return soloNumeros(event)">
                   </div>
                   <div class="col-lg-8">
                      <label for="">Movil</label>
-                     <input type="text" name="nombre" id="txt_movilEsposa" placeholder="Movil" class="form-control" onkeypress="return soloNumeros(event)">
+                     <input type="text" name="nombre" id="txt_movilEsposa" placeholder="Movil" class="form-control form-control-sm" onkeypress="return soloNumeros(event)">
                   </div>
                   <div class="col-lg-4">
                      <label for="">Hijos Cantidad</label>
-                     <input type="text" name="nombre" id="txt_hijos" placeholder="Cantidad" class="form-control" maxlenght="2" onkeypress="return soloNumeros(event)" >
+                     <input type="text" name="nombre" id="txt_hijos" placeholder="Cantidad" class="form-control form-control-sm" maxlenght="2" onkeypress="return soloNumeros(event)" >
                   </div>
                 </div>
                
@@ -147,17 +147,17 @@
                 <div class="row">
                   <div class="col-lg-2">
                      <label for="">Reg.Moyano</label>
-                      <select class="js-example-basic-single" name="state" id="cbm_registro" style="width:100%;">
+                      <select class="form-select form-select-sm" name="state" id="cbm_registro" style="width:100%;">
                                 <option value="s">SI</option>
                                 <option value="n">NO</option>
                             </select>
                   </div>
                   <div class="col-lg-6">
                      <label for="">Registro Conducir</label>
-                     <input type="text" name="nombre" id="txt_registro" placeholder="Numero de Registro" class="form-control">
+                     <input type="text" name="nombre" id="txt_registro" placeholder="Numero de Registro" class="form-control form-control-sm">
                   </div> <div class="col-lg-4">
                      <label for="">fecha Vencimiento</label>
-                     <input type="date" name="nombre" id="txt_vencimiento" class="form-control">
+                     <input type="date" name="nombre" id="txt_vencimiento" class="form-control form-control-sm">
                   </div>
                 </div>
               </div>
