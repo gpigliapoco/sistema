@@ -26,6 +26,7 @@
                      <label for="">Documento</label>
                      <input type="text" name="nombre" id="txt_dniEditar" placeholder="Documento" class="form-control form-control-sm" required>
                     </div>
+                    <br>
                     <div class="form-group">
                     <div class="col-md-3"></div>
                     
@@ -178,10 +179,11 @@
             <!-- /.tab-content -->
           </div>
           <!-- nav-tabs-custom -->
+          <br>
         </div>
         <div class="card-footer">
           <div class="col-lg-12" style="text-align:center">
-            <button class="btn btn-primary btn-lg" style="width:100%"  onclick="updateEmple()">Registrar</button>
+            <button class="btn btn-primary btn-lg" style="width:100%"  onclick="updateEmple()">Editar</button>
           </div>
         </div>
             </div>

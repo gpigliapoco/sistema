@@ -14,7 +14,7 @@
     <!-- Font Awesome -->
    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
 
-    <title>Hello, world!</title>
+    <title>FELISAN</title>
   </head>
   <body>
     
@@ -35,7 +35,10 @@
             </li>
             <li class="nav-item">
               <a class="nav-link active" onclick="cargar_contenido('contenido_principal','vista/sector/vista_sector.php')">Sector</a>
-            </li>           
+            </li>    
+            <li class="nav-item">
+              <a class="nav-link active" onclick="cargar_contenido('contenido_principal','vista/transporte/vista_transporte.php')">Transportes</a>
+            </li>          
           </ul>          
         </div>
       </div>
@@ -118,8 +121,9 @@
 
      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
      <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+     <script src="plugins/sweetalert2/sweetalert2.js"></script>
       <script>
-       
+    
            
   </script>
      

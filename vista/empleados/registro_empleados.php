@@ -25,6 +25,7 @@
                      <label for="">Documento</label>
                      <input type="text" name="nombre" id="txt_dni" placeholder="Documento" class="form-control form-control-sm" onkeypress="return soloNumeros(event)" required>
                     </div>
+                    <br>
                     <div class="form-group">
                     <div class="col-md-3"></div>
                     

@@ -420,7 +420,7 @@ function updateEmple(){
 				text: 'Datos de Empleado Editados'
 				
 			  });
-			  cargar_contenido('contenido_principal','/vista/empleados/vista_empleados.php');
+			  cargar_contenido('contenido_principal','./vista/empleados/vista_empleados.php');
 		}
 
 	})
