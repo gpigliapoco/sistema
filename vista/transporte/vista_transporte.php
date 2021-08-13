@@ -119,7 +119,7 @@
         </div>
       </div>
       <div class="modal-footer justify-content-center" >
-        <button type="button" class="btn btn-primary">Registrar</button>
+        <button type="button" class="btn btn-primary" onclick="Registrar()">Registrar</button>
       </div>
     </div>
   </div>
@@ -134,4 +134,41 @@
 
 
     });
+
+    (function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+document.getElementById("seleccionararchivo").addEventListener("change", () => {
+            var archivoseleccionado = document.querySelector("#seleccionararchivo");
+            var archivos = archivoseleccionado.files;
+            var imagenPrevisualizacion = document.querySelector("#mostrarimagen");
+            // Si no hay archivos salimos de la función y quitamos la imagen
+            if (!archivos || !archivos.length) {
+            imagenPrevisualizacion.src = "";
+            return;
+            }
+            // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+            var primerArchivo = archivos[0];
+            // Lo convertimos a un objeto de tipo objectURL
+            var objectURL = URL.createObjectURL(primerArchivo);
+            // Y a la fuente de la imagen le ponemos el objectURL
+            imagenPrevisualizacion.src = objectURL;
+        });
 </script>

@@ -20,7 +20,7 @@ function listar_transporte(){
 		  render:function(data,type,row){
 			 return "<img class='img-circle' src='./"+data+"' width='90px' height='90px'> ";
 		  }},
-		  {"data":"camion"},		 
+		  {"data":"marca"},		 
 		  {"data":"patente"},		 	
 		  {"data":"verificacion"},		 
           {"data":"ruta"},
@@ -103,7 +103,7 @@ function listar_transporte(){
 	formData.append('observacion',observacion);
 
 	$.ajax({
-		url:'controlador/control_registrar_empleado.php',
+		url:'controlador/transporte/control_registrar_vehiculo.php',
 		type:'post',
 		data:formData,		
 		contentType:false,
@@ -113,9 +113,43 @@ function listar_transporte(){
 		
 			if(respuesta ==1){
 				Swal.fire('Vehiculo registrado','success');
-				cargar_contenido('contenido_principal','./vista/empleados/vista_empleados.php');
+				$("#registro_transporte").modal('hide');
+				table.ajax.reload();
 			}
 		}
 	});
 	return false;
 }
+
+function modificarStatus(idtrans,status){	
+	
+	$.ajax({
+		url:"controlador/transporte/control_estado_vehiculo.php",
+		type: "POST",
+		data:{
+			idtrans:idtrans,
+			status:status
+			
+		}
+	}).done(function(resp){
+		
+	   table.ajax.reload();
+	})
+
+}
+
+$('#tabla_transporte').on('click','.activar',function(){
+	var data =table.row($(this).parents('tr')).data();
+	
+    modificarStatus(data.idtransporte,'ACTIVO');
+       
+
+})
+
+$('#tabla_transporte').on('click','.desactivar',function(){
+	var data =table.row($(this).parents('tr')).data();
+	
+	 modificarStatus(data.idtransporte,'INACTIVO');
+       
+
+})

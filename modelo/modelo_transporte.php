@@ -24,7 +24,7 @@
         }
 
         function registrar_vehiculo($tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion,$destino){
-            $consulta="CALL addVehiculo('$tipo','$marca','$patente','$vtv','$ruta','$poliza','$bramatologia','$observacion','$destino', )";
+            $consulta="CALL addVehiculo('$tipo','$marca','$patente','$vtv','$ruta','$poliza','$bramatologia','$observacion','$destino' )";
             $resultado=$this->conexion->conexion->prepare($consulta);
             if ($resultado->execute()) {                 
               return 1;                 
@@ -34,6 +34,16 @@
     
                  $this->conexion->cerrar();
         }
+
+        function modificarStatus($idtrans,$status){
+            $consulta = "CALL updateStatusTransp('$idtrans','$status')";	
+            
+            $resultado=$this->conexion->conexion->prepare($consulta);
+            if ($resultado->execute()) {                 
+              return 1;                 
+                 }
+                 $this->conexion->cerrar();
+          }	
 
   
 

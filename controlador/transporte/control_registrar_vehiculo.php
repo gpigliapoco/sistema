@@ -21,20 +21,20 @@
             if(empty($nombreFoto)){
 
                 
-                 $destino='vista/imagenes/usuario.png';
+                 $destino='vista/imagenes/camion.png';
     
                 $consulta=$mu->registrar_vehiculo($tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion,$destino); 
-                                                   echo "vacio"; 
+                                                   echo "1"; 
                 
             }else {
                 
                
-                 if(move_uploaded_file($_FILES["fo"]["tmp_name"],"../vista/imagenes/".$nombreFoto)){
+                 if(move_uploaded_file($_FILES["fo"]["tmp_name"],"../../vista/imagenes/".$nombreFoto)){
 
                     $destino='vista/imagenes/'.$nombreFoto;
     
                     $consulta=$mu->registrar_vehiculo($tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion,$destino);
-                                                   echo "movio foto";
+                                                   echo "1";
                } 
             }
             
