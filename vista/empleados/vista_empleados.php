@@ -46,8 +46,8 @@
 <div class="modal" tabindex="-1"  id="modal_persona" role="dialog" >
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header text-center bg-primary">
-                <h4 class="modal-title bg-primary"><b>DATOS DE EMPLEADO</b></h4>
+            <div class="modal-header text-center bg-primary p-1 d-inline-block">
+                <h5 class="modal-title "><b>DATOS DE EMPLEADO</b></h5>
             </div>
             <div class="row">
                 <div class="col-md-4">
@@ -59,66 +59,66 @@
                     <div class="modal-body">
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label">
-                                <h4> Nombre</h4>
+                                <p class="fs-5 fw-bold"> Nombre</p>
                             </label>
                             <div class="col-sm-8 text-left">
-                                <h4><label for="" id="label_nombre" class="form-control-plaintext "></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_nombre" class="form-control-plaintext "></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label">
-                                <h4> Apellido</h4>
+                                <p class="fs-5 fw-bold"> Apellido</p>
                             </label>
                             <div class="col-sm-8">
-                                <h4><label for="" id="label_apellido" class="form-control-plaintext"></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_apellido" class="form-control-plaintext"></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label">
-                                <h4> Direccion</h4>
+                                <p class="fs-5 fw-bold"> Direccion</p>
                             </label>
                             <div class="col-sm-8">
-                                <h4><label for="" id="label_direccion" class="form-control-plaintext"></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_direccion" class="form-control-plaintext"></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label">
-                                <h4>Ciudad</h4>
+                                <p class="fs-5 fw-bold">Ciudad</p>
                             </label>
                             <div class="col-sm-8">
-                                <h4><label for="" id="label_ciudad" class="form-control-plaintext"></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_ciudad" class="form-control-plaintext"></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label">
-                                <h4>D.N.I</h4>
+                                <p class="fs-5 fw-bold">D.N.I</p>
                             </label>
                             <div class="col-sm-8">
-                                <h4><label for="" id="label_dni" class="form-control-plaintext"></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_dni" class="form-control-plaintext"></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label">
-                                <h4>Movil</h4>
+                                <p class="fs-5 fw-bold">Movil</p>
                             </label>
                             <div class="col-sm-8">
-                                <h4><label for="" id="label_movil" class="form-control-plaintext"></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_movil" class="form-control-plaintext"></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label">
-                                <h4>Fecha nacimiento</h4>
+                                <p class="fs-5 fw-bold">Fecha nacimiento</p>
                             </label>
                             <div class="col-sm-8">
-                                <h4><label for="" id="label_nacimiento" class="form-control-plaintext"></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_nacimiento" class="form-control-plaintext"></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label">
-                                <h4>Fecha Ingreso</h4>
+                                <p class="fs-5 fw-bold">Fecha Ingreso</p>
                             </label>
                             <div class="col-sm-8">
-                                <h4><label for="" id="label_ingreso" class="form-control-plaintext"></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_ingreso" class="form-control-plaintext"></label></p>
                             </div>
                         </div>
 
@@ -128,67 +128,67 @@
                     <div class="modal-body">
                         <div class="row ">
                             <label for="" class="col-sm-4 col-form-label ">
-                                <h4>Estado</h4>
+                                <p class="fs-5 fw-bold">Estado</p>
                             </label>
                             <div class="col-sm-8 text-left">
-                                <h4><label for="" id="label_estado" class="form-control-plaintext "></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_estado" class="form-control-plaintext "></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label ">
-                                <h4>Esposa</h4>
+                                <p class="fs-5 fw-bold">Esposa</p>
                             </label>
                             <div class="col-sm-8 text-left">
-                                <h4><label for="" id="label_nombreE" class="form-control-plaintext "></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_nombreE" class="form-control-plaintext "></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label ">
-                                <h4>D.N.I</h4>
+                                <p class="fs-5 fw-bold">D.N.I</p>
                             </label>
                             <div class="col-sm-8 text-left">
-                                <h4><label for="" id="label_dniE" class="form-control-plaintext "></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_dniE" class="form-control-plaintext "></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label ">
-                                <h4>Movil</h4>
+                                <p class="fs-5 fw-bold">Movil</p>
                             </label>
                             <div class="col-sm-8 text-left">
-                                <h4><label for="" id="label_movilE" class="form-control-plaintext "></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_movilE" class="form-control-plaintext "></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-4 col-form-label ">
-                                <h4>Hijod</h4>
+                                <p class="fs-5 fw-bold">Hijod</p>
                             </label>
                             <div class="col-sm-8 text-left">
-                                <h4><label for="" id="label_hijos" class="form-control-plaintext "></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_hijos" class="form-control-plaintext "></label></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-header text-center bg-primary">
-                <h4 class="modal-title bg-primary"><b>DATOS DE BENEFICIARIO</b></h4>
+            <div class="modal-header text-center bg-primary p-1 d-inline-block">
+                <h5 class="modal-title bg-primary"><b>DATOS DE BENEFICIARIO</b></h5>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="modal-body">
                         <div class="row">
                             <label for="" class="col-sm-3 col-form-label">
-                                <h4> Nombre</h4>
+                                <p class="fs-5 fw-bold"> Nombre</p>
                             </label>
                             <div class="col-sm-6 text-left">
-                                <h4><label for="" id="label_nombreB" class="form-control-plaintext "></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_nombreB" class="form-control-plaintext "></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-3 col-form-label">
-                                <h4> D.N.I</h4>
+                                <p class="fs-5 fw-bold"> D.N.I</p>
                             </label>
                             <div class="col-sm-6 text-left">
-                                <h4><label for="" id="label_dniB" class="form-control-plaintext "></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_dniB" class="form-control-plaintext "></label></p>
                             </div>
                         </div>
                     </div>
@@ -197,18 +197,18 @@
                     <div class="modal-body">
                         <div class="row">
                             <label for="" class="col-sm-3 col-form-label">
-                                <h4> Direccion</h4>
+                                <p class="fs-5 fw-bold"> Direccion</p>
                             </label>
                             <div class="col-sm-6 text-left">
-                                <h4><label for="" id="label_direccionB" class="form-control-plaintext "></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_direccionB" class="form-control-plaintext "></label></p>
                             </div>
                         </div>
                         <div class="row">
                             <label for="" class="col-sm-3 col-form-label">
-                                <h4> Movil</h4>
+                                <p class="fs-5 fw-bold"> Movil</p>
                             </label>
                             <div class="col-sm-6 text-left">
-                                <h4><label for="" id="label_movilB" class="form-control-plaintext "></label></h4>
+                                <p class="fs-5 fw-bold"><label for="" id="label_movilB" class="form-control-plaintext "></label></p>
                             </div>
                         </div>
                     </div>
