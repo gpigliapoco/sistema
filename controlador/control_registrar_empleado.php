@@ -47,7 +47,7 @@
             }else {
                 
                
-                 if(move_uploaded_file($_FILES["fo"]["tmp_name"],"../vista/imagenes/".$nombreFoto)){
+                 if(move_uploaded_file($_FILES["fo"]["tmp_name"],"../vista/imagenes".$nombreFoto)){
 
                     $ruta='vista/imagenes/'.$nombreFoto;
     

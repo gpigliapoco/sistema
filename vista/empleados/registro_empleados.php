@@ -28,8 +28,8 @@
                     <div class="form-group">
                     <div class="col-md-3"></div>
                     
-                        <div class="card "  >
-                          <img src="../imagenes/avatar.png" class="img-fluid" width="300" id="mostrarimagen">                         
+                        <div class="card"  >
+                          <img src="./vista/imagenes/avatar.png" class="img-fluid" width="300" id="mostrarimagen">                         
                         </div>
                         <div class="col-mb-3">
                           <label for="">Foto perfil</label><br>

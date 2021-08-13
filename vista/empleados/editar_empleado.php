@@ -1,5 +1,5 @@
 <div class="container">
-<script type="text/javascript" src="../js/empleados.js?rev=<?php echo time();?>"></script>
+<script type="text/javascript" src="././empleados.js?rev=<?php echo time();?>"></script>
 <div class="col-md-12">
           <div class="card card-primary" >
             <div class="card-header" style="text-align:center" >
@@ -109,16 +109,21 @@
                     <div class="col-md-12">
                       <br>
           <!-- Custom Tabs -->
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_1" data-toggle="tab">Datos Conyuge</a></li>
-              <li><a href="#tab_2" data-toggle="tab">Datos adicionales</a></li>
-              <li><a href="#tab_3" data-toggle="tab">Observaciones</a></li>
-              
-              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+          <div class="">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Datos Conyuge</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Registro</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Obsevaciones</button>
+              </li>
             </ul>
+            <br>
             <div class="tab-content">
-              <div class="tab-pane active" id="tab_1">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div class="row">
                   <div class="col-lg-6">
                      <label for="">Nombre Esposa</label>
@@ -140,7 +145,7 @@
                
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_2">
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="row">
                   <div class="col-lg-2">
                      <label for="">Reg.Moyano</label>
@@ -159,7 +164,7 @@
                 </div>
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_3">
+              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 <div class="row">
                   <div class="col-lg-12">
                     <label for="">Observaciones</label>

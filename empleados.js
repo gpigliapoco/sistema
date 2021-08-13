@@ -166,7 +166,7 @@ function Registrar(){
 		
 			if(respuesta ==1){
 				Swal.fire('Empleado registrado','success');
-				cargar_contenido('contenido_principal','empleados/vista_empleados.php');
+				cargar_contenido('contenido_principal','./vista/empleados/vista_empleados.php');
 			}
 		}
 	});
@@ -269,7 +269,7 @@ function verEmple(id){
 		document.getElementById('label_movil').innerText = data[0].emp_movil;
 		document.getElementById('label_nacimiento').innerText = data[0].emp_nacimiento;
 		document.getElementById('label_ingreso').innerText = data[0].emp_ingreso;
-		$("#mostrarimagenCard").attr("src","../"+data[0].emp_foto);
+		$("#mostrarimagenCard").attr("src","./"+data[0].emp_foto);
 		document.getElementById('label_nombreB').innerText = data[0].ex_nombre;
 		document.getElementById('label_direccionB').innerText = data[0].ex_direccion;
 		document.getElementById('label_dniB').innerText = data[0].ex_dni;
@@ -329,7 +329,7 @@ function editarEmple(id){
 		$("#txt_registroEditar").val(data[0].ex_registro);
 		$("#txt_vencimientoEditar").val(data[0].ex_vrencimiento);
 		$("#txt_observacionEditar").val(data[0].ex_observacion);
-		$("#mostrarimagenEditar").attr("src","../"+data[0].emp_foto);
+		$("#mostrarimagenEditar").attr("src","./"+data[0].emp_foto);
 
 	})
 }
@@ -341,7 +341,7 @@ $('#tabla_empleados').on('click','.editar',function(){
 
 	alert(data.idempleado);
 
-	$("#contenido_principal").load("../vista/empleados/editar_empleado.php");
+	$("#contenido_principal").load("./vista/empleados/editar_empleado.php");
 
 	
 	editarEmple(data.idempleado);
@@ -420,7 +420,7 @@ function updateEmple(){
 				text: 'Datos de Empleado Editados'
 				
 			  });
-			  cargar_contenido('contenido_principal','empleados/vista_empleados.php');
+			  cargar_contenido('contenido_principal','/vista/empleados/vista_empleados.php');
 		}
 
 	})
