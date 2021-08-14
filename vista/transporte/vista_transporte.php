@@ -125,8 +125,87 @@
   </div>
 </div>
 
-</div>
 
+</div>
+<div class="modal" tabindex="-1" id="editar_transporte">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-center bg-primary text-white p-1 d-inline-block">
+        <h5 class="modal-title"  >Editar Vehiculo</h5>        
+      </div>
+      <div class="modal-body">
+          <div class="container-fluid">
+        <form onsubmit="return false" class="needs-validation" novalidate method="post" action="#" enctype="multipart/form-data">
+            <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                        <div class="card "  >
+                          <img src="./vista/imagenes/camion.png" class="img-fluid" width="200" id="mostrarimagenEditar">                         
+                        </div>
+                        <div class="col-mb-6">
+                          <label for="">Foto</label><br>
+                          <input type="file" class="form-control form-control-sm" id="seleccionararchivoEditar">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                     <label for="">Tipo</label>
+                     <input type="text" name="nombre" id="txt_tipoEditar" placeholder="Nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                     <label for="">Marca</label>
+                     <input type="text" name="nombre" id="txt_marcaEditar" placeholder="Nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                     <label for="">Patente</label>
+                     <input type="text" name="nombre" id="txt_patenteEditar" placeholder="Nombre" class="form-control" required>
+                    
+                </div>
+                
+             
+            </div>
+            <div class="col-lg-12" style="text-align:center">
+                  <br>
+                   <p class="bg-primary text-white" ><b>Detalle vehiculo</b></p>                     
+            </div> 
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                     <label for="">Fecha V.T.V</label>
+                     <input type="date" name="nombre" id="txt_vtvEditar" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="form-group">
+                     <label for="">Fecha R.U.T.A</label>
+                     <input type="date" name="nombre" id="txt_rutaEditar" class="form-control form-control-sm" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                     <label for="">Fecha Poliza Seguro</label>
+                     <input type="date" name="nombre" id="txt_polizaEditar" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="form-group">
+                     <label for="">Fecha Bramatologia</label>
+                     <input type="date" name="nombre" id="txt_bramatologiaEditar" class="form-control form-control-sm" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                  <div class="col-lg-12">
+                    <label for="">Observaciones</label>
+                    <textarea name="" id="txt_observacionEditar" cols="50" rows="3" class="form-control"></textarea>
+                  </div>
+                </div>
+        </form>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center" >
+        <button type="button" class="btn btn-primary" onclick="Editar()">Registrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
     $(document).ready(function() {
@@ -171,4 +250,21 @@ document.getElementById("seleccionararchivo").addEventListener("change", () => {
             // Y a la fuente de la imagen le ponemos el objectURL
             imagenPrevisualizacion.src = objectURL;
         });
+
+        document.getElementById("seleccionararchivoEditar").addEventListener("change", () => {
+            var archivoseleccionado = document.querySelector("#seleccionararchivoEditar");
+            var archivos = archivoseleccionado.files;
+            var imagenPrevisualizacion = document.querySelector("#mostrarimagenEditar");
+            // Si no hay archivos salimos de la función y quitamos la imagen
+            if (!archivos || !archivos.length) {
+            imagenPrevisualizacion.src = "";
+            return;
+            }
+            // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+            var primerArchivo = archivos[0];
+            // Lo convertimos a un objeto de tipo objectURL
+            var objectURL = URL.createObjectURL(primerArchivo);
+            // Y a la fuente de la imagen le ponemos el objectURL
+            imagenPrevisualizacion.src = objectURL;
+        });        
 </script>

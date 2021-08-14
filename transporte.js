@@ -36,9 +36,9 @@ function listar_transporte(){
 			{"data":"estado",
 			render:function(data,type,row){
 				if(data=='activo'){
-					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success' disabled><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_persona'><i class='fa fa-eye'></i></button>";
+					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success' disabled><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary' data-bs-toggle='modal' data-bs-target='#editar_transporte'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_transporte'><i class='fa fa-eye'></i></button>";
 				}else{
-					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger' disabled><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_persona'><i class='fa fa-eye'></i></button>";
+					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger' disabled><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary data-bs-toggle='modal' data-bs-target='#editar_transporte''><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_persona'><i class='fa fa-eye'></i></button>";
 				}
 			}},	
 		  
@@ -153,3 +153,24 @@ $('#tabla_transporte').on('click','.desactivar',function(){
        
 
 })
+
+$('#tabla_transporte').on('click','.editar',function(){
+	var data =table.row($(this).parents('tr')).data();
+	alert(data.idtransporte);
+
+	$("#txt_tipoEditar").val(data.tipo);
+	$("#txt_marcaEditar").val(data.marca);
+	$("#txt_patenteEditar").val(data.patente);
+	$("#txt_vtvEditar").val(data.vereficacion);
+	$("#txt_rutaEditar").val(data.ruta);
+	$("#txt_polizaEditar").val(data.poliza);
+	$("#txt_bramatologiaEditar").val(data.bramatologia);
+	$("#txt_observacionEditar").val(data.observacion);
+	$("#mostrarimagenEditar").attr("src","./"+data.foto);
+    
+       
+
+})
+function modalEdit(){
+	$("#registro_transporte").modal('show');
+}
