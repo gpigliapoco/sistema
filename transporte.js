@@ -38,7 +38,7 @@ function listar_transporte(){
 				if(data=='activo'){
 					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success' disabled><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary' data-bs-toggle='modal' data-bs-target='#editar_transporte'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_transporte'><i class='fa fa-eye'></i></button>";
 				}else{
-					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger' disabled><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary data-bs-toggle='modal' data-bs-target='#editar_transporte''><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_persona'><i class='fa fa-eye'></i></button>";
+					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger' disabled><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary' data-bs-toggle='modal' data-bs-target='#editar_transporte''><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_persona'><i class='fa fa-eye'></i></button>";
 				}
 			}},	
 		  
@@ -158,6 +158,7 @@ $('#tabla_transporte').on('click','.editar',function(){
 	var data =table.row($(this).parents('tr')).data();
 	alert(data.idtransporte);
 
+	$("#txt_idTransporte").val(data.idtransporte);
 	$("#txt_tipoEditar").val(data.tipo);
 	$("#txt_marcaEditar").val(data.marca);
 	$("#txt_patenteEditar").val(data.patente);
@@ -173,4 +174,53 @@ $('#tabla_transporte').on('click','.editar',function(){
 })
 function modalEdit(){
 	$("#registro_transporte").modal('show');
+}
+
+function Editar(){
+	var id=$("#txt_idTransporte").val();
+	var tipo=$("#txt_tipoEditar").val();
+	var marca=$("#txt_marcaeditar").val();
+	var patente=$("#txt_patenteEditar").val();
+	var vtv=$("#txt_vtvEditar").val();	
+    var ruta=$("#txt_rutaEditar").val();	
+    var poliza=$("#txt_polizaEditar").val();	
+    var bramatologia=$("#txt_bramatologiaEditar").val();	
+	var observacion=$("#txt_observacionEditar").val();
+
+
+	if(tipo.length==0 || marca.length == 0 || patente.length ==0 ){
+			return;
+		//	return Swal.fire("llenar campos vacios","warning");
+	}
+	
+	$.ajax({
+		url:"controlador/transporte/control_editar_vehiculo.php",
+		type:"POST",
+		data:{
+			id:id,
+			tipo:tipo,
+			marca:marca,
+			patente:patente,
+			vtv:vtv,
+			ruta:ruta,
+			poliza:poliza,
+			bramatologia:bramatologia,
+			observacion:observacion
+
+			
+		}
+	}).done(function(resp){
+
+		if(resp>0){
+			Swal.fire({
+				icon: 'success',
+				title: 'Editado',
+				text: 'Datos de Empleado Editados'
+				
+			  });
+			  table.ajax.reload();
+		}
+
+	})
+
 }

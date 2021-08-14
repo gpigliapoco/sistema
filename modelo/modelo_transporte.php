@@ -35,6 +35,19 @@
                  $this->conexion->cerrar();
         }
 
+        function editar_vehiculo($id,$tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion){
+            $consulta="CALL updateVehiculo('$id','$tipo','$marca','$patente','$vtv','$ruta','$poliza','$bramatologia','$observacion' )";
+            $resultado=$this->conexion->conexion->prepare($consulta);
+            if ($resultado->execute()) {                 
+              return 1;                 
+                 }else {
+                    return 0;
+                 }
+    
+                 $this->conexion->cerrar();
+        }
+
+
         function modificarStatus($idtrans,$status){
             $consulta = "CALL updateStatusTransp('$idtrans','$status')";	
             
