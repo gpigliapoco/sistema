@@ -202,7 +202,7 @@
         </div>
       </div>
       <div class="modal-footer justify-content-center" >
-        <button type="button" class="btn btn-primary" onclick="Editar()">Registrar</button>
+        <button type="button" class="btn btn-primary" onclick="Editar()">Editar</button>
       </div>
     </div>
   </div>

@@ -179,7 +179,7 @@ function modalEdit(){
 function Editar(){
 	var id=$("#txt_idTransporte").val();
 	var tipo=$("#txt_tipoEditar").val();
-	var marca=$("#txt_marcaeditar").val();
+	var marca=$("#txt_marcaEditar").val();
 	var patente=$("#txt_patenteEditar").val();
 	var vtv=$("#txt_vtvEditar").val();	
     var ruta=$("#txt_rutaEditar").val();	
@@ -187,11 +187,9 @@ function Editar(){
     var bramatologia=$("#txt_bramatologiaEditar").val();	
 	var observacion=$("#txt_observacionEditar").val();
 
+	
 
-	if(tipo.length==0 || marca.length == 0 || patente.length ==0 ){
-			return;
-		//	return Swal.fire("llenar campos vacios","warning");
-	}
+	
 	
 	$.ajax({
 		url:"controlador/transporte/control_editar_vehiculo.php",
@@ -210,15 +208,17 @@ function Editar(){
 			
 		}
 	}).done(function(resp){
-
+		
 		if(resp>0){
 			Swal.fire({
 				icon: 'success',
 				title: 'Editado',
-				text: 'Datos de Empleado Editados'
+				text: 'Datos de Transporte Editados'
 				
 			  });
+			  $("#editar_transporte").modal('hide');
 			  table.ajax.reload();
+
 		}
 
 	})

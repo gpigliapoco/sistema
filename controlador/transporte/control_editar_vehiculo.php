@@ -13,7 +13,7 @@
         $poliza = (isset($_POST['poliza'])) ? $_POST['poliza'] : '';
         $bramatologia = (isset($_POST['bramatologia'])) ? $_POST['bramatologia'] : '';
         $observacion = (isset($_POST['observacion'])) ? $_POST['observacion'] : '';
-        $nombreFoto = (isset($_POST['nombreFoto'])) ? $_POST['nombreFoto'] : '';
+        
 
         $consulta=$mu->editar_vehiculo($id,$tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion); 
                                                    echo $consulta; 

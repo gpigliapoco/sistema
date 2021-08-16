@@ -36,7 +36,7 @@
         }
 
         function editar_vehiculo($id,$tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion){
-            $consulta="CALL updateVehiculo('$id','$tipo','$marca','$patente','$vtv','$ruta','$poliza','$bramatologia','$observacion' )";
+            $consulta="CALL updateTranpsorte('$id','$tipo','$marca','$patente','$vtv','$ruta','$poliza','$bramatologia','$observacion' )";
             $resultado=$this->conexion->conexion->prepare($consulta);
             if ($resultado->execute()) {                 
               return 1;                 
