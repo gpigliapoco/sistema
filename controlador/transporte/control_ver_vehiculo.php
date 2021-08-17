@@ -8,7 +8,7 @@
             
 
         $consulta=$mu->ver_vehiculo($id); 
-                                                   echo $consulta; 
+        echo json_encode($consulta); 
         
 
             

@@ -81,8 +81,8 @@ function listar_transporte(){
 	     } 
 
 	if(tipo.length==0 || marca.length == 0 || patente.length ==0 ){
-			return;
-		//	return Swal.fire("llenar campos vacios","warning");
+			
+			return Swal.fire("Llenar campos vacios","Tipo , Patente , Marca");
 	}
 	
 	
@@ -188,7 +188,10 @@ function Editar(){
 	var observacion=$("#txt_observacionEditar").val();
 
 	
-
+	if(tipo.length==0 || marca.length == 0 || patente.length ==0 ){
+			
+		return Swal.fire("Llenar campos vacios","Tipo , Patente , Marca");
+}
 	
 	
 	$.ajax({
@@ -244,7 +247,7 @@ function verTransp(id){
 	}).done(function(resp){
 	//	alert(resp);  // para ver que datos trae
 		var data=JSON.parse(resp);
-		alert(data[0].tipo);
+		
 		
 		
 		document.getElementById('label_tipo').innerText = data[0].tipo;
@@ -255,7 +258,7 @@ function verTransp(id){
 		document.getElementById('label_ruta').innerText = data[0].rut;
 		document.getElementById('label_poliza').innerText = data[0].poli;
 		document.getElementById('label_brama').innerText = data[0].brama;
-		$("#mostrarimagenCardV").attr("src","./"+data[0].emp_foto);
+		$("#mostrarimagenCard").attr("src","./"+data[0].foto);
 		
 		
 		

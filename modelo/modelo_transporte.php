@@ -59,17 +59,18 @@
           }	
 
   
-          function ver_vehiculo($id){
-            $consulta="CALL verVehiculo('$id')";
-            $resultado=$this->conexion->conexion->prepare($consulta);
-            if ($resultado->execute()) {                 
-              return 1;                 
-                 }else {
-                    return 0;
-                 }
-    
-                 $this->conexion->cerrar();
-        }
+        function ver_vehiculo($id){
+            $consulta = "CALL verVehiculo('$id')";
+            $arreglo = array();
+		    if ($resultado = $this->conexion->conexion->query($consulta)) {
+			    while ($consulta_VU = mysqli_fetch_array($resultado)) {
+				    $arreglo[]=$consulta_VU;
+
+		    	}
+		    	return $arreglo;
+			    $this->conexion->cerrar();
+	    	}
+        }  
 
     }
 

@@ -51,13 +51,13 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header text-center bg-primary p-1 d-inline-block">
-        <h5 class="modal-title">DATOS TRANPORTE</h5>       
+        <h5 class="modal-title">DATOS TRANSPORTE</h5>       
       </div>
       <div class="modal-body">
        <div class="row">
            <div class="col-md-4">
                 <div class="card ">
-                    <img src="./vista/imagenes/avatar.png" class="img-fluid" width="300" id="mostrarimagenCardV">
+                    <img src="vista/imagenes/camion.png" class="img-fluid" width="300" id="mostrarimagenCard">
                 </div>
            </div>
            <div class="col-md-8">
@@ -99,7 +99,7 @@
        
        <div class="row">
             <div class="modal-header text-center bg-primary p-1 d-inline-block">
-                <h5 class="modal-title bg-primary"><b>DATOS DE BENEFICIARIO</b></h5>
+                <h5 class="modal-title bg-primary"><b>VENCIMIENTOS</b></h5>
             </div>
        </div>
        <div class="row">
@@ -132,7 +132,7 @@
                </div>
                <div class="row justify-content-start " style="height: 40px;">
                     <div class="col-sm-3 h-auto d-inline-block text-end ">
-                        <p class="fs-6 fw-bold"><label for=" " class="form-control-plaintext ">Bramatologia</label></p>
+                        <p class="fs-6 fw-bold"><label for=" " class="form-control-plaintext ">Bramato.</label></p>
                     </div>
                     <div class="col-sm-9 h-auto d-inline-block   text-left">
                         <p class="fs-6"><label for="" id="label_brama" class="form-control-plaintext "></label></p>
@@ -224,7 +224,7 @@
     <!-- <script src="plugins/datatable/datatables.min.js"></script>   
     <script src="plugins/datatable/jquery.dataTables.min.js"></script>    
      <script src="plugins/datatable/jQuery-3.3.1/jquery-3.3.1.min.js"></script>  -->
-      <script src="transporte.js"></script>
+      
      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
      <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
      <script src="plugins/sweetalert2/sweetalert2.js"></script>

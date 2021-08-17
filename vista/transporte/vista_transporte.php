@@ -210,13 +210,7 @@
 
 
 <script>
-    $(document).ready(function() {
-        listar_transporte();
-
-
-    });
-
-    (function () {
+ (function () {
   'use strict'
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -236,6 +230,15 @@
     })
 })()
 
+
+
+    $(document).ready(function() {
+        listar_transporte();
+
+
+    });
+
+   
 document.getElementById("seleccionararchivo").addEventListener("change", () => {
             var archivoseleccionado = document.querySelector("#seleccionararchivo");
             var archivos = archivoseleccionado.files;
