@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-08-2021 a las 06:06:00
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.8
+-- Tiempo de generación: 17-08-2021 a las 20:49:03
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,16 +50,94 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addVehiculo` (IN `tipo` VARCHAR(250
                        transporte.ruta,transporte.poliza,transporte.bramatologia,transporte.estado,
                        transporte.observacion,transporte.foto) VALUES (tipo,marca,patente,vtv,ruta,poliza,brama,'activo',obs,foto)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `listarEmpleado` ()  SELECT empleado.*,empleadoextras.*,empleado.emp_movil,sector.sector,CONCAT(empleado.emp_nombre," ",empleado.emp_apellido)as nombre FROM empleado INNER JOIN sector on empleado.sector_idsector=sector.idsector 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarEmpleado` ()  SELECT empleado.idempleado,
+empleado.emp_nombre,
+empleado.emp_apellido,
+empleado.emp_direccion,
+empleado.emp_ciudad,
+empleado.emp_dni,
+empleado.emp_movil,
+empleado.emp_sexo,
+empleado.emp_estado,
+empleado.emp_status,
+empleado.emp_foto,
+empleado.emp_foto,
+empleado.emp_esposa,
+empleado.sector_idsector,
+empleado.emp_esposaDni,
+empleado.emp_esposaMovil,
+empleado.emp_esposaMovil,
+empleado.emp_hijos,
+empleadoextras.idempleadoExtras,
+empleadoextras.ex_nombre,
+empleadoextras.ex_dni,
+empleadoextras.ex_movil,
+empleadoextras.ex_direccion,
+empleadoextras.ex_registroM,
+empleadoextras.ex_registro,
+empleadoextras.ex_observacion,
+empleadoextras.empleado_idempleado,
+sector.sector,
+CONCAT(empleado.emp_nombre," ",empleado.emp_apellido)as nombre,
+DATE_FORMAT(empleado.emp_nacimiento, '%d-%m-%Y') AS nacimiento,
+DATE_FORMAT(empleado.emp_ingreso, '%d-%m-%Y') AS ingreso, 
+DATE_FORMAT(empleadoextras.ex_vrencimiento, '%d-%m-%Y') AS vencimiento 
+FROM empleado INNER JOIN sector on empleado.sector_idsector=sector.idsector 
  INNER JOIN empleadoextras ON empleadoextras.empleado_idempleado=empleado.idempleado$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `listarEmpleados` (IN `id` INT)  SELECT empleado.idempleado,empleado.emp_nombre,empleado.emp_apellido,empleado.emp_direccion,empleado.emp_ciudad,empleado.emp_dni,empleado.emp_movil,empleado.emp_sexo,empleado.emp_nacimiento,empleado.emp_ingreso,
-empleado.emp_estado,empleado.emp_status,empleado.emp_foto,empleado.sector_idsector,empleado.emp_esposa,empleado.emp_esposaDni,empleado.emp_esposaMovil,empleado.emp_hijos,sector.sector,empleadoextras.ex_nombre,
-empleadoextras.ex_dni,empleadoextras.ex_movil,empleadoextras.ex_direccion,empleadoextras.ex_registroM,empleadoextras.ex_registro,empleadoextras.ex_vrencimiento,empleadoextras.ex_observacion,CONCAT(empleado.emp_nombre," ",empleado.emp_apellido)as nombre FROM empleado INNER JOIN sector on sector.idsector=empleado.sector_idsector INNER JOIN empleadoextras on empleadoextras.empleado_idempleado=empleado.idempleado WHERE empleado.idempleado=id$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarEmpleados` (IN `id` INT)  SELECT empleado.idempleado,
+empleado.emp_nombre,
+empleado.emp_apellido,
+empleado.emp_direccion,
+empleado.emp_ciudad,
+empleado.emp_dni,
+empleado.emp_movil,
+empleado.emp_sexo,
+empleado.emp_estado,
+empleado.emp_status,
+empleado.emp_foto,
+empleado.sector_idsector,
+empleado.emp_esposa,
+empleado.emp_esposaDni,
+empleado.emp_esposaMovil,
+empleado.emp_hijos,
+empleado.emp_ingreso,
+empleado.emp_nacimiento,
+sector.sector,
+empleadoextras.ex_nombre,
+empleadoextras.ex_dni,
+empleadoextras.ex_movil,
+empleadoextras.ex_direccion,
+empleadoextras.ex_registroM,
+empleadoextras.ex_registro,
+empleadoextras.ex_vrencimiento,
+empleadoextras.ex_observacion,
+CONCAT(empleado.emp_nombre," ",empleado.emp_apellido)as nombre,
+DATE_FORMAT(empleado.emp_nacimiento, '%d-%m-%Y') AS nacimiento,
+DATE_FORMAT(empleado.emp_ingreso, '%d-%m-%Y') AS ingreso,
+DATE_FORMAT(empleadoextras.ex_vrencimiento, '%d-%m-%Y') AS vencimiento
+FROM empleado INNER JOIN sector on sector.idsector=empleado.sector_idsector INNER JOIN empleadoextras on empleadoextras.empleado_idempleado=empleado.idempleado WHERE empleado.idempleado=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarSector` ()  SELECT * FROM sector$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `listarTransporte` ()  SELECT * FROM transporte$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarTransporte` ()  SELECT transporte.idtransporte,
+transporte.tipo,
+transporte.marca,
+transporte.patente,
+DATE_FORMAT(transporte.verificacion, '%d-%m-%Y') AS vtv,
+DATE_FORMAT(transporte.ruta, '%d-%m-%Y') AS rut,
+DATE_FORMAT(transporte.poliza, '%d-%m-%Y') AS poli,
+DATE_FORMAT(transporte.bramatologia, '%d-%m-%Y') AS brama,
+transporte.verificacion,
+transporte.ruta,
+transporte.poliza,
+transporte.bramatologia,
+transporte.estado,
+transporte.observacion,
+transporte.foto
+
+
+FROM transporte$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEmpleado` (IN `id` INT, IN `nombre` VARCHAR(250), IN `apellido` VARCHAR(250), IN `cargo` INT, IN `direccion` VARCHAR(250), IN `ciudad` VARCHAR(250), IN `dni` INT, IN `movil` INT, IN `nacimiento` DATE, IN `sexo` CHAR(1), IN `estado` VARCHAR(250), IN `ingreso` DATE, IN `nomE` VARCHAR(250), IN `dniE` INT, IN `movilE` INT, IN `hijos` INT, IN `nomB` VARCHAR(250), IN `dniB` INT, IN `movilB` INT, IN `direccionB` VARCHAR(250), IN `moyano` ENUM('s','n'), IN `registro` VARCHAR(250), IN `vencimiento` DATE, IN `observ` VARCHAR(250))  BEGIN
 UPDATE empleado set empleado.emp_nombre=nombre,empleado.emp_apellido=apellido,empleado.emp_direccion=direccion,empleado.emp_ciudad=ciudad,empleado.emp_dni=dni,empleado.emp_movil=movil,empleado.emp_sexo=sexo,empleado.emp_nacimiento=nacimiento,empleado.emp_ingreso=ingreso,empleado.emp_estado=estado,empleado.sector_idsector=cargo,empleado.emp_esposa=nomE,empleado.emp_esposaDni=dniE,empleado.emp_esposaMovil=movilE,empleado.emp_hijos=hijos where empleado.idempleado=id;
@@ -79,6 +157,26 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatusTransp` (IN `id` INT(50
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateTranpsorte` (IN `id` INT(50), IN `tipo` VARCHAR(250), IN `marca` VARCHAR(250), IN `pate` VARCHAR(250), IN `veri` DATE, IN `ruta` DATE, IN `poliza` DATE, IN `brama` DATE, IN `observ` VARCHAR(250))  UPDATE transporte SET transporte.tipo=tipo,transporte.marca=marca,transporte.patente=pate,
 transporte.verificacion=veri,transporte.ruta=ruta,transporte.poliza=poliza,
 transporte.bramatologia=brama,transporte.observacion=observ WHERE transporte.idtransporte=id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verVehiculo` (IN `id` INT(50))  SELECT transporte.idtransporte,
+transporte.tipo,
+transporte.marca,
+transporte.patente,
+DATE_FORMAT(transporte.verificacion, '%d-%m-%Y') AS vtv,
+DATE_FORMAT(transporte.ruta, '%d-%m-%Y') AS rut,
+DATE_FORMAT(transporte.poliza, '%d-%m-%Y') AS poli,
+DATE_FORMAT(transporte.bramatologia, '%d-%m-%Y') AS brama,
+transporte.verificacion,
+transporte.ruta,
+transporte.poliza,
+transporte.bramatologia,
+transporte.estado,
+transporte.observacion,
+transporte.foto
+
+
+FROM transporte
+WHERE transporte.idtransporte=id$$
 
 DELIMITER ;
 
@@ -115,9 +213,9 @@ CREATE TABLE `empleado` (
 
 INSERT INTO `empleado` (`idempleado`, `emp_nombre`, `emp_apellido`, `emp_direccion`, `emp_ciudad`, `emp_dni`, `emp_movil`, `emp_sexo`, `emp_nacimiento`, `emp_ingreso`, `emp_estado`, `emp_status`, `emp_foto`, `sector_idsector`, `emp_esposa`, `emp_esposaDni`, `emp_esposaMovil`, `emp_hijos`) VALUES
 (1, 'gerardo', 'piglia', 'quesada 3209', 'vicente lopez', 29985934, 1513213, 'm', '2021-07-15', '2021-07-05', 'soltero', 'activo', 'vista/imagenes/usuario.png', 1, NULL, NULL, NULL, NULL),
-(2, 'asda', 'asda', 'jfjhvgjhb', 'asdasda', 321321, 13213, 'm', '2021-07-15', '2021-07-09', 'solt', 'activo', 'vista/imagenes/usuario.png', 1, NULL, NULL, NULL, NULL),
-(3, 'leo', 'piglia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'inactivo', 'vista/imagenes/usuario.png', 1, NULL, NULL, NULL, NULL),
-(4, 'pao', 'asdasd', 'asdasa', 'asdasd', 0, 416513, 'm', '2021-08-17', '2021-08-18', 's', 'activo', 'vista/imagenes/IMG297202119965.png', 1, '', 0, 0, 0),
+(2, 'asda', 'asda', 'jfjhvgjhb', 'asdasda', 321321, 13213, 'm', '0000-00-00', '2021-07-09', 'solt', 'activo', 'vista/imagenes/usuario.png', 1, NULL, NULL, NULL, NULL),
+(3, 'leo', 'piglia', NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, 'inactivo', 'vista/imagenes/usuario.png', 1, NULL, NULL, NULL, NULL),
+(4, 'pao', 'PEFASRSDF', 'CIUDAD DE LA PAZ 2352', 'SAN MIGUEL', 1245314214, 1566617424, 'f', '2021-08-17', '2021-08-18', 's', 'activo', 'vista/imagenes/IMG297202119965.png', 2, 'LEO', 1321651, 2147483647, 1),
 (5, 'pao', 'sadas', 'assdasd', 'asda', 0, 0, 'm', '0000-00-00', '0000-00-00', 's', 'activo', 'vista/imagenes/usuario.png', 1, '', 0, 0, 0),
 (6, 'pedro', 'lopez', 'moldes 5251', 'vicente lopez', 29985934, 2147483647, 'm', '2021-07-13', '2021-07-15', 's', 'activo', 'vista/imagenes/IMG58202119229.jpg', 2, 'PAOLA ', 313147321, 315646513, 3),
 (7, 'ernesto', 'lopez', 'JOSE MOLDES 5253', 'VICENTE LOPEZ', 29985934, 0, '', '1982-12-05', '1982-12-05', 's', 'activo', 'vista/imagenes/usuario.png', 1, 'pepe', 13123, 12321, 1),
@@ -152,7 +250,7 @@ CREATE TABLE `empleadoextras` (
 
 INSERT INTO `empleadoextras` (`idempleadoExtras`, `ex_nombre`, `ex_dni`, `ex_movil`, `ex_direccion`, `ex_registroM`, `ex_registro`, `ex_vrencimiento`, `empleado_idempleado`, `ex_observacion`) VALUES
 (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, ''),
-(2, 'asdfas', 213123, 12313, 'asdfas', '', '', '0000-00-00', 4, ''),
+(2, 'LEO', 5131513, 131561, 'MOLDES 5251 VILLA MARTELLI', '', '', '0000-00-00', 4, ''),
 (3, '', 0, 0, '', 's', '', '0000-00-00', 5, ''),
 (4, 'pepe', 47517322, 215413, 'quesada 3215', 's', '56877135713', '2021-07-05', 6, 'nada'),
 (5, 'pepe', 111, 222, 'JOSE MOLDES 5253', '', '13213', '1982-12-05', 7, 'nada'),

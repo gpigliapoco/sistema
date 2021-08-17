@@ -18,11 +18,11 @@
   </head>
   <body>
     
-    <header class="container-fluid bg-primary d-flex justify-content-center">
+    <header class="container-fluid bg-primary d-flex justify-content-center sticky-top">
       <h3 class="text-light">Felisan</h3>
     </header>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Secciones</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,109 @@
     <section id="contenido_principal">
      
     </section>
+    <div class="modal fade" tabindex="-1" id="modal_transporte" data-backdrop="false" >
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-center bg-primary p-1 d-inline-block">
+        <h5 class="modal-title">DATOS TRANPORTE</h5>       
+      </div>
+      <div class="modal-body">
+       <div class="row">
+           <div class="col-md-4">
+                <div class="card ">
+                    <img src="./vista/imagenes/avatar.png" class="img-fluid" width="300" id="mostrarimagenCardV">
+                </div>
+           </div>
+           <div class="col-md-8">
+               <div class="row justify-content-start  " style="height: 40px;">
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                        <p class="fs-6 fw-bold text-right" ><label for=" " class="form-control-plaintext ">Tipo </label></p>
+                    </div>
+                    <div class="col-auto  h-auto d-inline-block  text-left">
+                        <p class="fs-6 "><label for="" id="label_tipo" class="form-control-plaintext "></label></p>
+                    </div>
+               </div>
+               <div class="row justify-content-start" style="height: 40px;">
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                        <p class="fs-6 fw-bold"><label for=" " class="form-control-plaintext ">Marca</label></p>
+                    </div>
+                    <div class="col-auto h-auto d-inline-block  text-left">
+                        <p class="fs-6"><label for="" id="label_marca" class="form-control-plaintext "></label></p>
+                    </div>
+               </div>
+               <div class="row justify-content-start" style="height: 40px;">
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                        <p class="fs-6 fw-bold"><label for=" " class="form-control-plaintext ">Patente</label></p>
+                    </div>
+                    <div class="col-auto h-auto d-inline-block  text-left">
+                        <p class="fs-6"><label for="" id="label_patente" class="form-control-plaintext "></label></p>
+                    </div>
+               </div>
+               <div class="row justify-content-start" style="height: 40px;">
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                        <p class="fs-6 fw-bold"><label for=" " class="form-control-plaintext ">Estado</label></p>
+                    </div>
+                    <div class="col-auto h-auto d-inline-block  text-left">
+                        <p class="fs-6"><label for="" id="label_estado" class="form-control-plaintext "></label></p>
+                    </div>
+               </div>
+               
+           </div>
+       </div>
+       
+       <div class="row">
+            <div class="modal-header text-center bg-primary p-1 d-inline-block">
+                <h5 class="modal-title bg-primary"><b>DATOS DE BENEFICIARIO</b></h5>
+            </div>
+       </div>
+       <div class="row">
+           <div class="col-md-6">
+                <div class="row justify-content-start " style="height: 40px;">
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                        <p class="fs-6 fw-bold"><label for=" " class="form-control-plaintext ">Verificacion</label></p>
+                    </div>
+                    <div class="col-sm-9 h-auto d-inline-block   text-left">
+                        <p class="fs-6"><label for="" id="label_vtv" class="form-control-plaintext "></label></p>
+                    </div>
+               </div>
+               <div class="row justify-content-start " style="height: 40px;">
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                        <p class="fs-6 fw-bold"><label for=" " class="form-control-plaintext ">Ruta</label></p>
+                    </div>
+                    <div class="col-sm-9 h-auto d-inline-block   text-left">
+                        <p class="fs-6"><label for="" id="label_ruta" class="form-control-plaintext "></label></p>
+                    </div>
+               </div>
+           </div>
+           <div class="col-md-6">
+                <div class="row justify-content-start " style="height: 40px;">
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                        <p class="fs-6 fw-bold"><label for=" " class="form-control-plaintext ">Poliza</label></p>
+                    </div>
+                    <div class="col-sm-9 h-auto d-inline-block   text-left">
+                        <p class="fs-6"><label for="" id="label_poliza" class="form-control-plaintext "></label></p>
+                    </div>
+               </div>
+               <div class="row justify-content-start " style="height: 40px;">
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                        <p class="fs-6 fw-bold"><label for=" " class="form-control-plaintext ">Bramatologia</label></p>
+                    </div>
+                    <div class="col-sm-9 h-auto d-inline-block   text-left">
+                        <p class="fs-6"><label for="" id="label_brama" class="form-control-plaintext "></label></p>
+                    </div>
+               </div>
+           </div>
+       </div>
+      
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Optional JavaScript; choose one of the two! -->
     
@@ -109,6 +211,10 @@
           return false;
       }
   } 
+
+
+
+  
   </script>
     
 
@@ -118,7 +224,7 @@
     <!-- <script src="plugins/datatable/datatables.min.js"></script>   
     <script src="plugins/datatable/jquery.dataTables.min.js"></script>    
      <script src="plugins/datatable/jQuery-3.3.1/jquery-3.3.1.min.js"></script>  -->
-
+      <script src="transporte.js"></script>
      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
      <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
      <script src="plugins/sweetalert2/sweetalert2.js"></script>

@@ -127,7 +127,7 @@
 
 
 </div>
-<div class="modal" tabindex="-1" id="editar_transporte">
+<div class="modal" tabindex="-1" id="editar_transporte" >
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header text-center bg-primary text-white p-1 d-inline-block">
@@ -207,6 +207,7 @@
     </div>
   </div>
 </div>
+
 
 <script>
     $(document).ready(function() {

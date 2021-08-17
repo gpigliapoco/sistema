@@ -22,9 +22,9 @@ function listar_transporte(){
 		  }},
 		  {"data":"marca"},		 
 		  {"data":"patente"},		 	
-		  {"data":"verificacion"},		 
-          {"data":"ruta"},
-          {"data":"poliza"},	
+		  {"data":"vtv"},		 
+          {"data":"rut"},
+          {"data":"poli"},	
 		  {"data":"estado",
 			render:function(data,type,row){
 				if(data=='activo'){
@@ -38,7 +38,7 @@ function listar_transporte(){
 				if(data=='activo'){
 					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success' disabled><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary' data-bs-toggle='modal' data-bs-target='#editar_transporte'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_transporte'><i class='fa fa-eye'></i></button>";
 				}else{
-					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger' disabled><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary' data-bs-toggle='modal' data-bs-target='#editar_transporte''><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_persona'><i class='fa fa-eye'></i></button>";
+					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger' disabled><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary' data-bs-toggle='modal' data-bs-target='#editar_transporte''><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_trasnporte'><i class='fa fa-eye'></i></button>";
 				}
 			}},	
 		  
@@ -223,4 +223,42 @@ function Editar(){
 
 	})
 
+}
+
+$('#tabla_transporte').on('click','.ver',function(){
+	var data =table.row($(this).parents('tr')).data();
+	verTransp(data.idtransporte);
+	
+	//$("#modal_persona").modal("show"); 
+
+
+})
+
+function verTransp(id){
+	$.ajax({
+		url: "controlador/transporte/control_ver_vehiculo.php",
+		type: "POST",
+		data:{
+			id
+		}
+	}).done(function(resp){
+	//	alert(resp);  // para ver que datos trae
+		var data=JSON.parse(resp);
+		alert(data[0].tipo);
+		
+		
+		document.getElementById('label_tipo').innerText = data[0].tipo;
+		document.getElementById('label_marca').innerText = data[0].marca;
+		document.getElementById('label_patente').innerText = data[0].patente;
+		document.getElementById('label_estado').innerText = data[0].estado;
+		document.getElementById('label_vtv').innerText = data[0].vtv;
+		document.getElementById('label_ruta').innerText = data[0].rut;
+		document.getElementById('label_poliza').innerText = data[0].poli;
+		document.getElementById('label_brama').innerText = data[0].brama;
+		$("#mostrarimagenCardV").attr("src","./"+data[0].emp_foto);
+		
+		
+		
+
+	})
 }

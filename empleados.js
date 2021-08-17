@@ -268,8 +268,8 @@ function verEmple(id){
 		document.getElementById('label_ciudad').innerText = data[0].emp_ciudad;
 		document.getElementById('label_dni').innerText = data[0].emp_dni;
 		document.getElementById('label_movil').innerText = data[0].emp_movil;
-		document.getElementById('label_nacimiento').innerText = data[0].emp_nacimiento;
-		document.getElementById('label_ingreso').innerText = data[0].emp_ingreso;
+		document.getElementById('label_nacimiento').innerText = data[0].nacimiento;
+		document.getElementById('label_ingreso').innerText = data[0].ingreso;
 		$("#mostrarimagenCard").attr("src","./"+data[0].emp_foto);
 		document.getElementById('label_nombreB').innerText = data[0].ex_nombre;
 		document.getElementById('label_direccionB').innerText = data[0].ex_direccion;
@@ -283,7 +283,7 @@ function verEmple(id){
 		document.getElementById('label_sector').innerText = data[0].sector;
 		document.getElementById('label_moyano').innerText = data[0].ex_moyano;
 		document.getElementById('label_registro').innerText = data[0].ex_registro;
-		document.getElementById('label_vencimiento').innerText = data[0].ex_vrencimiento;
+		document.getElementById('label_vencimiento').innerText = data[0].vencimiento;
 		document.getElementById('label_observacion').innerText = data[0].ex_observacion;
 		if(data[0].emp_estado=="s"){
 			document.getElementById('label_estado').innerText = 'soltero';
