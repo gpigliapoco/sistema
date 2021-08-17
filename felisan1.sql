@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-08-2021 a las 20:40:03
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.6
+-- Tiempo de generación: 17-08-2021 a las 06:06:00
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -75,6 +75,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFotoEmpleado` (IN `id` INT, I
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatus` (IN `id` INT, IN `estado` VARCHAR(45))  UPDATE empleado SET empleado.emp_status = estado WHERE empleado.idempleado=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatusTransp` (IN `id` INT(50), IN `estado` VARCHAR(50))  UPDATE transporte SET transporte.estado = estado WHERE transporte.idtransporte=id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateTranpsorte` (IN `id` INT(50), IN `tipo` VARCHAR(250), IN `marca` VARCHAR(250), IN `pate` VARCHAR(250), IN `veri` DATE, IN `ruta` DATE, IN `poliza` DATE, IN `brama` DATE, IN `observ` VARCHAR(250))  UPDATE transporte SET transporte.tipo=tipo,transporte.marca=marca,transporte.patente=pate,
+transporte.verificacion=veri,transporte.ruta=ruta,transporte.poliza=poliza,
+transporte.bramatologia=brama,transporte.observacion=observ WHERE transporte.idtransporte=id$$
 
 DELIMITER ;
 
@@ -205,9 +209,9 @@ INSERT INTO `transporte` (`idtransporte`, `tipo`, `marca`, `patente`, `verificac
 (1, 'acoplado', 'patti', 'asd451', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '', ''),
 (2, 'asda', 'PAOLA ', 'PAOLA ', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'inactivo', 'asda', 'vista/imagenes/camion.png'),
 (3, 'gerardo', 'sadf', 'asdf', '2021-08-10', '2021-08-24', '2021-08-10', '2021-08-04', 'activo', 'nada', 'vista/imagenes/camion.png'),
-(4, 'asda', 'adsf', 'adsfa', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
-(5, 'gerardo', 'asdas', 'adfa', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '', 'vista/imagenes/IMG138202115873.jpg'),
-(6, 'asda', 'asda', 'asda', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png');
+(4, 'renault', 'renault', 'frrt452', '0000-00-00', '2021-08-25', '2021-08-19', '2021-08-05', 'activo', 'nada', 'vista/imagenes/camion.png'),
+(5, 'gerardo', 'asdas', 'adfa', '2021-08-19', '2021-08-10', '2021-08-13', '2021-08-13', 'activo', 'safas', 'vista/imagenes/IMG138202115873.jpg'),
+(6, 'fiat', '', 'ddd222', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '0000-00-00', 'vista/imagenes/camion.png');
 
 --
 -- Índices para tablas volcadas

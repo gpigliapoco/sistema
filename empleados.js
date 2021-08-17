@@ -259,7 +259,8 @@ function verEmple(id){
 	}).done(function(resp){
 	//	alert(resp);  // para ver que datos trae
 		var data=JSON.parse(resp);
-		//alert(data[0].emp_nombre);
+	//	alert(data[0].sector);
+		
 		
 		document.getElementById('label_nombre').innerText = data[0].emp_nombre;
 		document.getElementById('label_apellido').innerText = data[0].emp_apellido;
@@ -278,6 +279,12 @@ function verEmple(id){
 		document.getElementById('label_dniE').innerText = data[0].emp_esposaDni;
 		document.getElementById('label_movilE').innerText = data[0].emp_esposaMovil;		
 		document.getElementById('label_hijos').innerText = data[0].emp_hijos;
+		document.getElementById('label_status').innerText = data[0].emp_status;
+		document.getElementById('label_sector').innerText = data[0].sector;
+		document.getElementById('label_moyano').innerText = data[0].ex_moyano;
+		document.getElementById('label_registro').innerText = data[0].ex_registro;
+		document.getElementById('label_vencimiento').innerText = data[0].ex_vrencimiento;
+		document.getElementById('label_observacion').innerText = data[0].ex_observacion;
 		if(data[0].emp_estado=="s"){
 			document.getElementById('label_estado').innerText = 'soltero';
 			
