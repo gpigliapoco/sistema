@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-08-2021 a las 20:49:03
+-- Tiempo de generación: 18-08-2021 a las 17:54:20
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -49,6 +49,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addVehiculo` (IN `tipo` VARCHAR(250
                        transporte.patente,transporte.verificacion,
                        transporte.ruta,transporte.poliza,transporte.bramatologia,transporte.estado,
                        transporte.observacion,transporte.foto) VALUES (tipo,marca,patente,vtv,ruta,poliza,brama,'activo',obs,foto)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `indexEmpleado` ()  SELECT COUNT(*) as emple FROM empleado$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `indexTransporte` ()  SELECT COUNT(*) as transp FROM transporte$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarEmpleado` ()  SELECT empleado.idempleado,
 empleado.emp_nombre,
