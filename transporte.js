@@ -2,7 +2,7 @@ var table; //// para poder llamar al reload en otra funcion.
 
 function listar_transporte(){
 	table = $("#tabla_transporte").DataTable({
-	  "ordering":false,   
+	  "ordering":true,   
 	  "bLengthChange":false,
 	  "searching": { "regex": true },
 	  "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
@@ -156,7 +156,7 @@ $('#tabla_transporte').on('click','.desactivar',function(){
 
 $('#tabla_transporte').on('click','.editar',function(){
 	var data =table.row($(this).parents('tr')).data();
-	alert(data.idtransporte);
+	//alert(data.idtransporte);
 
 	$("#txt_idTransporte").val(data.idtransporte);
 	$("#txt_tipoEditar").val(data.tipo);

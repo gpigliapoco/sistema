@@ -13,7 +13,7 @@
 
     <!-- Font Awesome -->
    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="style.css">
     <title>FELISAN</title>
   </head>
   <body>
@@ -24,7 +24,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light border sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Secciones</a>
+        <a class="navbar-brand" onclick="cargar_contenido('contenido_principal','vista/vista_index.php')">Secciones</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

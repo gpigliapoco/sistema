@@ -2,7 +2,7 @@ var table; //// para poder llamar al reload en otra funcion.
 
 function listar_empleados(){
 	table = $("#tabla_empleados").DataTable({
-	  "ordering":false,   
+	  "ordering":true,   
 	  "bLengthChange":false,
 	  "searching": { "regex": true },
 	  "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
@@ -308,8 +308,8 @@ function editarEmple(id){
 	//	alert(resp);  // para ver que datos trae
 		var data=JSON.parse(resp);
 		
-		alert(data[0].emp_foto);
-		alert(data[0].emp_apellido);
+		//alert(data[0].emp_foto);
+		//alert(data[0].emp_apellido);
 		
 		$("#txt_idempleado").val(data[0].idempleado);
 		
@@ -346,7 +346,7 @@ $('#tabla_empleados').on('click','.editar',function(){
 
 	var data =table.row($(this).parents('tr')).data();
 
-	alert(data.idempleado);
+	//alert(data.idempleado);
 
 	$("#contenido_principal").load("./vista/empleados/editar_empleado.php");
 
