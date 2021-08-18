@@ -109,16 +109,28 @@ function listar_transporte(){
 		contentType:false,
 		processData:false,
 		success: function(respuesta){
-			alert(respuesta);
+			//alert(respuesta);
 		
 			if(respuesta ==1){
-				Swal.fire('Vehiculo registrado','success');
+				Swal.fire('Vehiculo Registrado','');
 				$("#registro_transporte").modal('hide');
+				limpiar();
 				table.ajax.reload();
 			}
 		}
 	});
 	return false;
+}
+
+function limpiar(){
+	$("#txt_tipo").val("");
+	$("#txt_marca").val("");
+	$("#txt_patente").val("");
+	$("#txt_vtv").val("");	
+    $("#txt_ruta").val("");	
+    $("#txt_poliza").val("");	
+    $("#txt_bramatologia").val("");	
+	$("#txt_observacion").val("");
 }
 
 function modificarStatus(idtrans,status){	
