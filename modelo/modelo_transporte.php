@@ -24,15 +24,13 @@
         }
 
         function registrar_vehiculo($tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion,$destino){
-            $consulta="CALL addVehiculo('$tipo','$marca','$patente','$vtv','$ruta','$poliza','$bramatologia','$observacion','$destino' )";
-            $resultado=$this->conexion->conexion->prepare($consulta);
-            if ($resultado->execute()) {                 
-              return 1;                 
-                 }else {
-                    return 0;
-                 }
-    
-                 $this->conexion->cerrar();
+            $consulta="CALL add1Vehiculo('$tipo','$marca','$patente','$vtv','$ruta','$poliza','$bramatologia','$observacion','$destino' )";
+            if ($resultado = $this->conexion->conexion->query($consulta)) {
+                if ($row = mysqli_fetch_array($resultado)) {
+                                return $id= trim($row[0]); ////  devuelve la posicion 1 variable cuenta
+                }
+                $this->conexion->cerrar();
+              }
         }
 
         function editar_vehiculo($id,$tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion){

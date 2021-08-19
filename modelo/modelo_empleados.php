@@ -43,14 +43,12 @@
             $consulta = "CALL addEmpleado('$nombre','$apellido','$cargo','$direccion','$ciudad','$dni','$movil','$nacimiento','$sexo','$estado','$ingreso','$nombreEsposa','$dniEsposa','$movilEsposa',
                                             '$hijos','$nombreBenef','$dniBenef','$movilBenef','$direccionBenef','$registroCombo','$registro','$vencimiento','$observacion','$ruta' ) ";	
             
-            $resultado=$this->conexion->conexion->prepare($consulta);
-            if ($resultado->execute()) {                 
-              return 1;                 
-                 }else {
-                    return 0;
-                 }
-    
-                 $this->conexion->cerrar();
+                                            if ($resultado = $this->conexion->conexion->query($consulta)) {
+                                              if ($row = mysqli_fetch_array($resultado)) {
+                                                              return $id= trim($row[0]); ////  devuelve la posicion 1 variable cuenta
+                                              }
+                                              $this->conexion->cerrar();
+                                            }
         }
 
         function listar_combo(){

@@ -164,7 +164,10 @@ function Registrar(){
 		success: function(respuesta){
 			//alert(respuesta);
 		
-			if(respuesta ==1){
+			if(respuesta ==2){
+				Swal.fire('D.N.I Empleado','ya existe en base de datos');
+			}else{
+				
 				Swal.fire('Empleado registrado','success');
 				cargar_contenido('contenido_principal','./vista/empleados/vista_empleados.php');
 			}
@@ -479,7 +482,7 @@ function actualizarfoto(){
 		contentType:false,
 		processData:false,
 		success: function(respuesta){
-			alert(respuesta);
+			//alert(respuesta);
 		
 			if(respuesta ==1){
 				Swal.fire('Actualizada','Foto');

@@ -24,7 +24,7 @@
                  $destino='vista/imagenes/camion.png';
     
                 $consulta=$mu->registrar_vehiculo($tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion,$destino); 
-                                                   echo "1"; 
+                                                   echo $consulta; 
                 
             }else {
                 
@@ -34,7 +34,7 @@
                     $destino='vista/imagenes/'.$nombreFoto;
     
                     $consulta=$mu->registrar_vehiculo($tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion,$destino);
-                                                   echo "1";
+                                                   echo $consulta;
                } 
             }
             

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-08-2021 a las 17:54:20
+-- Tiempo de generación: 19-08-2021 a las 18:55:05
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -25,7 +25,25 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add1Vehiculo` (IN `tipo` VARCHAR(250), IN `marca` VARCHAR(250), IN `patente` VARCHAR(250), IN `vtv` DATE, IN `ruta` DATE, IN `poliza` DATE, IN `brama` DATE, IN `obs` VARCHAR(250), IN `foto` VARCHAR(250))  BEGIN
+DECLARE pat varchar(250);
+SET @pat:=(SELECT COUNT(*) FROM transporte WHERE transporte.patente=patente);
+if @pat=0 THEN
+INSERT INTO transporte(transporte.tipo,transporte.marca,
+                       transporte.patente,transporte.verificacion,
+                       transporte.ruta,transporte.poliza,transporte.bramatologia,transporte.estado,
+                       transporte.observacion,transporte.foto) VALUES (tipo,marca,patente,vtv,ruta,poliza,brama,'activo',obs,foto);
+SELECT 1;
+ELSE
+SELECT 2;
+
+END IF;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addEmpleado` (IN `nombre` VARCHAR(250), IN `apellido` VARCHAR(250), IN `cargo` INT, IN `direccion` VARCHAR(250), IN `ciudad` VARCHAR(250), IN `dni` INT, IN `movil` INT, IN `nacimiento` DATE, IN `sexo` CHAR(1), IN `estado` VARCHAR(250), IN `ingreso` DATE, IN `nomE` VARCHAR(250), IN `dniE` INT, IN `movilE` INT, IN `hijos` INT, IN `nomB` VARCHAR(250), IN `dniB` INT, IN `movilB` INT, IN `direccionB` VARCHAR(250), IN `moyano` ENUM('s','n'), IN `registro` VARCHAR(250), IN `vencimiento` DATE, IN `observ` VARCHAR(250), IN `foto` VARCHAR(250))  BEGIN
+DECLARE dniE int(50);
+SET @dniE:=(SELECT COUNT(*) FROM empleado WHERE empleado.emp_dni=dni);
+if @dniE=0 THEN
 INSERT INTO empleado(empleado.emp_nombre,empleado.emp_apellido,empleado.sector_idsector,empleado.emp_direccion,
                     empleado.emp_ciudad,empleado.emp_dni,empleado.emp_movil,empleado.emp_sexo,
                     empleado.emp_nacimiento,empleado.emp_ingreso,empleado.emp_estado,empleado.emp_status,
@@ -41,6 +59,10 @@ INSERT INTO empleadoextras(empleadoextras.empleado_idempleado,empleadoextras.ex_
                           empleadoextras.ex_observacion)
                           VALUES
 (LAST_INSERT_ID(),nomB,dniB,movilB,direccionB,moyano,registro,vencimiento,observ);
+SELECT 1;
+ELSE
+SELECT 2;
+END IF;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addSector` (IN `nombre` VARCHAR(45))  INSERT INTO sector(sector) VALUES (nombre)$$
@@ -49,6 +71,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addVehiculo` (IN `tipo` VARCHAR(250
                        transporte.patente,transporte.verificacion,
                        transporte.ruta,transporte.poliza,transporte.bramatologia,transporte.estado,
                        transporte.observacion,transporte.foto) VALUES (tipo,marca,patente,vtv,ruta,poliza,brama,'activo',obs,foto)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `dniVVV` (IN `dni` INT(50))  BEGIN
+DECLARE dniE int;
+SET @dniE:=(SELECT COUNT(*) FROM empleado WHERE empleado.emp_dni=dni);
+if @dniE=0 THEN
+SELECT 1;
+ELSE
+SELECT 2;
+END IF;
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `indexEmpleado` ()  SELECT COUNT(*) as emple FROM empleado$$
 
@@ -154,6 +186,8 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFotoEmpleado` (IN `id` INT, IN `ruta` VARCHAR(250))  UPDATE empleado SET empleado.emp_foto=ruta WHERE empleado.idempleado=id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFotoVehiculo` (IN `id` INT(50), IN `destino` VARCHAR(250))  UPDATE transporte SET transporte.foto=destino WHERE transporte.idtransporte=id$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatus` (IN `id` INT, IN `estado` VARCHAR(45))  UPDATE empleado SET empleado.emp_status = estado WHERE empleado.idempleado=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatusTransp` (IN `id` INT(50), IN `estado` VARCHAR(50))  UPDATE transporte SET transporte.estado = estado WHERE transporte.idtransporte=id$$
@@ -216,18 +250,12 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`idempleado`, `emp_nombre`, `emp_apellido`, `emp_direccion`, `emp_ciudad`, `emp_dni`, `emp_movil`, `emp_sexo`, `emp_nacimiento`, `emp_ingreso`, `emp_estado`, `emp_status`, `emp_foto`, `sector_idsector`, `emp_esposa`, `emp_esposaDni`, `emp_esposaMovil`, `emp_hijos`) VALUES
-(1, 'gerardo', 'piglia', 'quesada 3209', 'vicente lopez', 29985934, 1513213, 'm', '2021-07-15', '2021-07-05', 'soltero', 'activo', 'vista/imagenes/usuario.png', 1, NULL, NULL, NULL, NULL),
-(2, 'asda', 'asda', 'jfjhvgjhb', 'asdasda', 321321, 13213, 'm', '0000-00-00', '2021-07-09', 'solt', 'activo', 'vista/imagenes/usuario.png', 1, NULL, NULL, NULL, NULL),
-(3, 'leo', 'piglia', NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, 'inactivo', 'vista/imagenes/usuario.png', 1, NULL, NULL, NULL, NULL),
-(4, 'pao', 'PEFASRSDF', 'CIUDAD DE LA PAZ 2352', 'SAN MIGUEL', 1245314214, 1566617424, 'f', '2021-08-17', '2021-08-18', 's', 'activo', 'vista/imagenes/IMG297202119965.png', 2, 'LEO', 1321651, 2147483647, 1),
-(5, 'pao', 'sadas', 'assdasd', 'asda', 0, 0, 'm', '0000-00-00', '0000-00-00', 's', 'activo', 'vista/imagenes/usuario.png', 1, '', 0, 0, 0),
-(6, 'pedro', 'lopez', 'moldes 5251', 'vicente lopez', 29985934, 2147483647, 'm', '2021-07-13', '2021-07-15', 's', 'activo', 'vista/imagenes/IMG58202119229.jpg', 2, 'PAOLA ', 313147321, 315646513, 3),
-(7, 'ernesto', 'lopez', 'JOSE MOLDES 5253', 'VICENTE LOPEZ', 29985934, 0, '', '1982-12-05', '1982-12-05', 's', 'activo', 'vista/imagenes/usuario.png', 1, 'pepe', 13123, 12321, 1),
-(8, 'asdas', 'asda', 'Pasaje Quesada', 'Vicente Lopez', 13213, 0, 'm', '0000-00-00', '0000-00-00', 's', 'activo', 'vista/imagenes/usuario.png', 1, '', 0, 0, 0),
-(9, 'SSDFA', 'Agustin', 'Pasaje Quesada', 'Vicente Lopez', 1313, 2131, 'm', '2021-08-30', '2021-08-12', 's', 'activo', 'vista/imagenes/usuario.png', 1, '', 0, 0, 0),
-(10, 'MIGUEL', 'Pigliapoco', 'Pasaje Quesada 3249', 'Buenos Aires', 31313, 2313213, 'm', '2021-08-10', '2021-08-18', 's', 'activo', 'vista/imagenes/IMG138202110960.jpg', 1, '', 0, 0, 0),
-(11, 'asdf', 'Pigliapoco', 'Pasaje Quesada 3249', 'Buenos Aires', 62131, 213123, 'm', '2021-08-18', '2021-08-17', 's', 'activo', 'vista/imagenes/usuario.png', 1, '', 0, 0, 0),
-(12, 'PAOLA ', 'Pigliapoco', 'Pasaje Quesada 3249', 'Buenos Aires', 113213, 13123, 'm', '2021-08-18', '2021-08-10', 's', 'activo', 'vista/imagenes/usuario.png', 1, '', 0, 0, 0);
+(1, 'Luis Sebastian', 'castro', 'Cabildo 342', 'malvinas argentina', 31562633, 1137725028, 'm', '1984-12-27', '2015-01-01', 's', 'activo', 'vista/imagenes/IMG19820219184.png', 1, '', 0, 0, 0),
+(7, 'PATRICIO ', 'CANDIA', 'VIEYTES 552', 'VILLA MARTELLI', 40855719, 0, 'm', '2021-08-01', '2020-01-25', 's', 'activo', 'vista/imagenes/usuario.png', 1, 'GOMEZ LUDMILA', NULL, 1169821303, 1),
+(8, 'GONZALO ERNESTO', 'BARRIOS', 'CONSTITUYENTES 677', 'SAN MARTIN', 37019072, 1166506420, 'm', '2021-08-01', '2021-02-01', 'c', 'activo', 'vista/imagenes/usuario.png', 5, 'ROSA MINIO', NULL, 1159628491, 0),
+(9, 'LUCAS NICOLAS', 'LOPEZ', 'CONSTITUYENTES Y LA NUEVA', 'SAN MARTIN', 36644700, 0, 'm', '2021-08-01', '2017-07-10', 's', 'activo', 'vista/imagenes/IMG198202113176.png', 5, '', NULL, 0, 0),
+(10, 'GABRIEL', 'GONZALES', 'LAVALLE 5294', 'VILLA MARTELLI', 43302746, 1162183674, 'm', '2021-08-01', '2019-11-11', 's', 'activo', 'vista/imagenes/usuario.png', 5, 'NN', NULL, 0, 0),
+(11, 'SANTIAGO ', 'BRENDAN', 'LOYOLA Manz.11 Casa 11', 'VILLA ZAGALA', 36978084, 373165437, 'm', '2021-08-06', '2019-04-12', 's', 'activo', 'vista/imagenes/IMG19820211378.png', 5, 'NUNIES MARIELA', NULL, 1157582992, 6);
 
 -- --------------------------------------------------------
 
@@ -253,16 +281,12 @@ CREATE TABLE `empleadoextras` (
 --
 
 INSERT INTO `empleadoextras` (`idempleadoExtras`, `ex_nombre`, `ex_dni`, `ex_movil`, `ex_direccion`, `ex_registroM`, `ex_registro`, `ex_vrencimiento`, `empleado_idempleado`, `ex_observacion`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, ''),
-(2, 'LEO', 5131513, 131561, 'MOLDES 5251 VILLA MARTELLI', '', '', '0000-00-00', 4, ''),
-(3, '', 0, 0, '', 's', '', '0000-00-00', 5, ''),
-(4, 'pepe', 47517322, 215413, 'quesada 3215', 's', '56877135713', '2021-07-05', 6, 'nada'),
-(5, 'pepe', 111, 222, 'JOSE MOLDES 5253', '', '13213', '1982-12-05', 7, 'nada'),
-(6, '', 0, 0, '', 's', '', '0000-00-00', 8, ''),
-(7, 'gerardo', 136132, 36213213, 'Pasaje Quesada', 's', '', '0000-00-00', 9, ''),
-(8, 'gerardo', 32132, 13213, 'Pasaje Quesada 3249', 's', '', '0000-00-00', 10, ''),
-(9, 'gerardo', 13133, 1313, 'Pasaje Quesada 3249', 's', '', '0000-00-00', 11, ''),
-(10, 'gerardo', 1323, 131312, 'Pasaje Quesada 3249', '', '', '0000-00-00', 12, '');
+(1, 'nn', 0, 0, 'nn', 's', '', '2023-04-29', 1, ''),
+(2, 'GOMEZ LUDMILA', 39517406, 1169821303, 'VIEYTES 522 V.MARTELLI', 's', 'NN', '2022-11-19', 7, ''),
+(3, 'ROSA MINIO', 21621094, 1159628491, 'CONSTITUYENTES 677 SAN MARTIN', 's', '', '0000-00-00', 8, ''),
+(4, 'SEPULVEDA NORMA', 11417984, 0, 'NN', 's', '', '0000-00-00', 9, ''),
+(5, 'ZARZA ALICIA', 28252552, 1132569021, 'LAVALLE 5294 VILLA MARTELLI', 'n', '', '0000-00-00', 10, ''),
+(6, 'NUNIES MARIELA', 0, 1157582992, 'LOYOLA Manz.11 Casa 11 ZAGALA', 'n', '', '0000-00-00', 11, 'HOSPITAL TORNU');
 
 -- --------------------------------------------------------
 
@@ -281,7 +305,10 @@ CREATE TABLE `sector` (
 
 INSERT INTO `sector` (`idsector`, `sector`) VALUES
 (1, 'chofer'),
-(2, 'administracion');
+(2, 'administracion'),
+(3, 'changa'),
+(4, 'mantenimiento'),
+(5, 'produccion');
 
 -- --------------------------------------------------------
 
@@ -308,12 +335,16 @@ CREATE TABLE `transporte` (
 --
 
 INSERT INTO `transporte` (`idtransporte`, `tipo`, `marca`, `patente`, `verificacion`, `ruta`, `poliza`, `bramatologia`, `estado`, `observacion`, `foto`) VALUES
-(1, 'acoplado', 'patti', 'asd451', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '', ''),
-(2, 'asda', 'PAOLA ', 'PAOLA ', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'inactivo', 'asda', 'vista/imagenes/camion.png'),
-(3, 'gerardo', 'sadf', 'asdf', '2021-08-10', '2021-08-24', '2021-08-10', '2021-08-04', 'activo', 'nada', 'vista/imagenes/camion.png'),
-(4, 'renault', 'renault', 'frrt452', '0000-00-00', '2021-08-25', '2021-08-19', '2021-08-05', 'activo', 'nada', 'vista/imagenes/camion.png'),
-(5, 'gerardo', 'asdas', 'adfa', '2021-08-19', '2021-08-10', '2021-08-13', '2021-08-13', 'activo', 'safas', 'vista/imagenes/IMG138202115873.jpg'),
-(6, 'fiat', '', 'ddd222', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '0000-00-00', 'vista/imagenes/camion.png');
+(1, 'acoplado', 'pratti', 'WUG672', '2021-11-11', '0000-00-00', '2021-08-19', '2022-02-26', 'activo', '', 'vista/imagenes/camion.png'),
+(2, 'CHASIS', 'FORD CARGO', 'EQE861', '0000-00-00', '0000-00-00', '0000-00-00', '2022-01-26', 'activo', '', 'vista/imagenes/camion.png'),
+(3, 'TRACTOR', 'FIAT', 'SRV854', '2021-07-28', '2021-07-20', '2021-12-09', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
+(4, 'TRACTOR', 'CHEVROLET KODIA', 'COE407', '0000-00-00', '0000-00-00', '2021-10-19', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
+(5, 'CAMION', 'MERCEDES BENZ 710', 'AWP113', '0000-00-00', '0000-00-00', '2021-08-31', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
+(6, 'CAMION', 'MERCEDES 1215', 'VAD365', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
+(7, 'CAMIONETA', 'MERCEDES SPRINTER', 'CZC226', '2021-08-10', '0000-00-00', '2021-08-09', '2022-01-06', 'activo', '', 'vista/imagenes/camion.png'),
+(8, 'CAMIONETA', 'MERCEDES SPRINTER', 'JTH524', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
+(9, 'SEMI', 'MONTENEGRO', 'SVI900', '2021-08-12', '2021-07-20', '2021-12-09', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
+(10, 'SEMI', 'SALTO', 'UZE068', '0000-00-00', '2021-09-11', '2021-10-07', '2022-06-17', 'activo', '', 'vista/imagenes/camion.png');
 
 --
 -- Índices para tablas volcadas
@@ -353,25 +384,25 @@ ALTER TABLE `transporte`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `empleadoextras`
 --
 ALTER TABLE `empleadoextras`
-  MODIFY `idempleadoExtras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idempleadoExtras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `sector`
 --
 ALTER TABLE `sector`
-  MODIFY `idsector` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idsector` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `transporte`
 --
 ALTER TABLE `transporte`
-  MODIFY `idtransporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idtransporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

@@ -116,7 +116,10 @@ function listar_transporte(){
 				$("#registro_transporte").modal('hide');
 				limpiar();
 				table.ajax.reload();
+			}else{
+				Swal.fire('Patente ya existe','en base de datos');
 			}
+			
 		}
 	});
 	return false;
