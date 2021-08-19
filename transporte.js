@@ -28,9 +28,9 @@ function listar_transporte(){
 		  {"data":"estado",
 			render:function(data,type,row){
 				if(data=='activo'){
-					return "<span class='label label-success'>"+data+"</span>";
+					return "<span class='label text-success'>"+data+"</span>";
 				}else{
-					return "<span class='label label-danger'>"+data+"</span>";
+					return "<span class='label text-danger'>"+data+"</span>";
 				}
 			}},	
 			{"data":"estado",
@@ -112,7 +112,7 @@ function listar_transporte(){
 			//alert(respuesta);
 		
 			if(respuesta ==1){
-				Swal.fire('Vehiculo Registrado','');
+				Swal.fire('Registrado','Datos de vehiculo');
 				$("#registro_transporte").modal('hide');
 				limpiar();
 				table.ajax.reload();
@@ -174,7 +174,7 @@ $('#tabla_transporte').on('click','.editar',function(){
 	$("#txt_tipoEditar").val(data.tipo);
 	$("#txt_marcaEditar").val(data.marca);
 	$("#txt_patenteEditar").val(data.patente);
-	$("#txt_vtvEditar").val(data.vereficacion);
+	$("#txt_vtvEditar").val(data.verificacion);
 	$("#txt_rutaEditar").val(data.ruta);
 	$("#txt_polizaEditar").val(data.poliza);
 	$("#txt_bramatologiaEditar").val(data.bramatologia);
@@ -232,6 +232,7 @@ function Editar(){
 				
 			  });
 			  $("#editar_transporte").modal('hide');
+			  limpiarEditar();
 			  table.ajax.reload();
 
 		}
@@ -276,4 +277,71 @@ function verTransp(id){
 		
 
 	})
+}
+
+function actualizarfotoVehiculo(){
+
+	var id=$("#txt_idTransporte").val();
+	var foto = $("#seleccionararchivoEditar").val();
+	
+
+	var f=new Date();
+	var extension=foto.split('.').pop(); /// captura la extension
+
+	
+	 let nombreFoto="";
+	
+	if(foto.length>0){	
+		 nombreFoto="IMG"+f.getDate()+""+(f.getMonth()+1)+""+f.getFullYear()+""+f.getHours()+""+f.getMilliseconds()+"."+extension;
+	
+
+	     } 
+
+	if(foto.length==0){
+		return Swal.fire("EL campo esta vacio","warning");
+	}
+	
+	
+	
+	
+
+	var formData= new FormData();
+	var fo = $("#seleccionararchivoEditar")[0].files[0];
+	formData.append('fo',fo);
+	formData.append('nombreFoto',nombreFoto);
+	formData.append('id',id);
+
+	$.ajax({
+		url:'controlador/transporte/control_update_foto.php',
+		type:'post',
+		data:formData,		
+		contentType:false,
+		processData:false,
+		success: function(respuesta){
+			;
+		
+			if(respuesta ==1){
+				Swal.fire('Actualizada','foto');
+				$("#editar_transporte").modal('hide');
+				limpiarEditar();
+				table.ajax.reload();
+				
+			}
+		}
+	});
+	return false;
+}
+
+function limpiarEditar(){
+
+	("#txt_idTransporte").val("");
+	$("#txt_tipoEditar").val("");
+	$("#txt_marcaEditar").val("");
+	$("#txt_patenteEditar").val("");
+	$("#txt_vtvEditar").val("");	
+    $("#txt_rutaEditar").val("");	
+    $("#txt_polizaEditar").val("");	
+    $("#txt_bramatologiaEditar").val("");	
+	$("#txt_observacionEditar").val("");
+
 }

@@ -27,9 +27,9 @@ function listar_empleados(){
 		  {"data":"emp_status",
 			render:function(data,type,row){
 				if(data=='activo'){
-					return "<span class='label label-success'>"+data+"</span>";
+					return "<span class='label text-success'>"+data+"</span>";
 				}else{
-					return "<span class='label label-danger'>"+data+"</span>";
+					return "<span class='label text-danger'>"+data+"</span>";
 				}
 			}},	
 			{"data":"emp_status",
@@ -162,7 +162,7 @@ function Registrar(){
 		contentType:false,
 		processData:false,
 		success: function(respuesta){
-			alert(respuesta);
+			//alert(respuesta);
 		
 			if(respuesta ==1){
 				Swal.fire('Empleado registrado','success');
@@ -309,7 +309,7 @@ function editarEmple(id){
 		var data=JSON.parse(resp);
 		
 		//alert(data[0].emp_foto);
-		//alert(data[0].emp_apellido);
+		//alert(data[0].ex_registroM);
 		
 		$("#txt_idempleado").val(data[0].idempleado);
 		
@@ -332,7 +332,7 @@ function editarEmple(id){
 		$("#txt_dniBenefEditar").val(data[0].ex_dni);
 		$("#txt_direccionBenefEditar").val(data[0].ex_direccion);
 		$("#txt_movilBenefEditar").val(data[0].ex_movil);
-		$("#cbm_registroEditar").val(data[0].ex_moyano).trigger("change");
+		$("#cbm_registroEditar").val(data[0].ex_registroM).trigger("change");
 		$("#txt_registroEditar").val(data[0].ex_registro);
 		$("#txt_vencimientoEditar").val(data[0].ex_vrencimiento);
 		$("#txt_observacionEditar").val(data[0].ex_observacion);
@@ -453,7 +453,7 @@ function actualizarfoto(){
 	     } 
 
 	if(foto.length==0){
-		return Swal.fire("EL campo esta vacio","warning");
+		return Swal.fire("EL campo esta Foto esta vacio","warning");
 	}
 	
 	
@@ -476,7 +476,7 @@ function actualizarfoto(){
 			alert(respuesta);
 		
 			if(respuesta ==1){
-				Swal.fire('Foto actualizada','success');
+				Swal.fire('Actualizada','Foto');
 				
 			}
 		}

@@ -115,12 +115,13 @@
                     <textarea name="" id="txt_observacion" cols="50" rows="3" class="form-control"></textarea>
                   </div>
                 </div>
-        </form>
+        
         </div>
       </div>
       <div class="modal-footer justify-content-center" >
         <button type="button" class="btn btn-primary" onclick="Registrar()">Registrar</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -145,6 +146,7 @@
                         <div class="col-mb-6">
                           <label for="">Foto</label><br>
                           <input type="file" class="form-control form-control-sm" id="seleccionararchivoEditar">
+                          <button class="btn btn-primary btn-md" onclick="actualizarfotoVehiculo()" >actualizar foto</button>
                         </div>
                     </div>
                 </div>
@@ -174,21 +176,21 @@
                 <div class="col-md-6">
                     <div class="form-group">
                      <label for="">Fecha V.T.V</label>
-                     <input type="date" name="nombre" id="txt_vtvEditar" class="form-control form-control-sm" required>
+                     <input type="date" name="nombre" id="txt_vtvEditar" class="form-control form-control-sm" >
                     </div>
                     <div class="form-group">
                      <label for="">Fecha R.U.T.A</label>
-                     <input type="date" name="nombre" id="txt_rutaEditar" class="form-control form-control-sm" required>
+                     <input type="date" name="nombre" id="txt_rutaEditar" class="form-control form-control-sm" >
                     </div>
                 </div>
                 <div class="col-md-6">
                 <div class="form-group">
                      <label for="">Fecha Poliza Seguro</label>
-                     <input type="date" name="nombre" id="txt_polizaEditar" class="form-control form-control-sm" required>
+                     <input type="date" name="nombre" id="txt_polizaEditar" class="form-control form-control-sm" >
                     </div>
                     <div class="form-group">
                      <label for="">Fecha Bramatologia</label>
-                     <input type="date" name="nombre" id="txt_bramatologiaEditar" class="form-control form-control-sm" required>
+                     <input type="date" name="nombre" id="txt_bramatologiaEditar" class="form-control form-control-sm" >
                     </div>
                 </div>
             </div>

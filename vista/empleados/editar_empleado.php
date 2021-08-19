@@ -31,7 +31,7 @@
                     <div class="col-md-3"></div>
                     
                         <div class="card "  >
-                          <img src="./imagenes/avatar.png" class="img-fluid" width="300" id="mostrarimagenEditar">                         
+                          <img src="./vista/imagenes/avatar.png" class="img-fluid" width="300" id="mostrarimagenEditar">                         
                         </div>
                         <div class="col-mb-3">
                           <label for="">Foto perfil</label><br>

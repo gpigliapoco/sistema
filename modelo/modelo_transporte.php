@@ -72,6 +72,19 @@
 	    	}
         }  
 
+        function updateFoto_vehiculo($id,$destino){
+            $consulta = "CALL updateFotoVehiculo('$id','$destino') ";	
+            
+            $resultado=$this->conexion->conexion->prepare($consulta);
+            if ($resultado->execute()) {                 
+              return 1;                 
+                 }else {
+                    return 0;
+                 }
+    
+                 $this->conexion->cerrar();
+        }
+
     }
 
 
