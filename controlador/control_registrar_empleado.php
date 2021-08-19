@@ -42,7 +42,7 @@
                                                        $ingreso,$cargo,$nombreBenef,$direccionBenef,$dniBenef,$movilBenef,
                                                        $nombreEsposa,$dniEsposa,$movilEsposa,$hijos,$registroCombo,$registro,
                                                    $vencimiento,$observacion,$ruta); 
-                                                   echo "vacio"; 
+                                                   echo $consulta; 
                 
             }else {
                 
@@ -55,7 +55,7 @@
                                                        $ingreso,$cargo,$nombreBenef,$direccionBenef,$dniBenef,$movilBenef,
                                                        $nombreEsposa,$dniEsposa,$movilEsposa,$hijos,$registroCombo,$registro,
                                                    $vencimiento,$observacion,$ruta); 
-                                                   echo "movio foto";
+                                                   echo $consulta;
                } 
             }
             

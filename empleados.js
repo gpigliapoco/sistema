@@ -281,7 +281,7 @@ function verEmple(id){
 		document.getElementById('label_hijos').innerText = data[0].emp_hijos;
 		document.getElementById('label_status').innerText = data[0].emp_status;
 		document.getElementById('label_sector').innerText = data[0].sector;
-		document.getElementById('label_moyano').innerText = data[0].ex_moyano;
+		//document.getElementById('label_moyano').innerText = data[0].ex_registroM;
 		document.getElementById('label_registro').innerText = data[0].ex_registro;
 		document.getElementById('label_vencimiento').innerText = data[0].vencimiento;
 		document.getElementById('label_observacion').innerText = data[0].ex_observacion;
@@ -290,6 +290,12 @@ function verEmple(id){
 			
 		}else{
 			document.getElementById('label_estado').innerText = "casado";	
+		}
+		if(data[0].ex_registroM=="s"){
+			document.getElementById('label_moyano').innerText = 'si';
+			
+		}else{
+			document.getElementById('label_moyano').innerText = "no";	
 		}
 		
 		
