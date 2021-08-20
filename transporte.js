@@ -95,15 +95,15 @@ function listar_transporte(){
 	if(dat=="0000-00-00"){
 	  	fechaNueva="00-00-0000"
 	}else{
-		if(fecha.getDay()<10){
-			day="0"+fecha.getDay();
+		if((fecha.getDate()+1)<10){
+			day="0"+(fecha.getDate()+1);
 		}else{
-			day=fecha.getDay();
+			day=(fecha.getDate()+1);
 		}
-		if(fecha.getMonth()<10){
-			mes="0"+fecha.getMonth();
+		if((fecha.getMonth()+1)<10){
+			mes="0"+(fecha.getMonth()+1);
 		}else{
-			mes=fecha.getMonth();
+			mes=(fecha.getMonth()+1);
 		}
 		
 	 fechaNueva=day+"-"+mes+"-"+fecha.getFullYear();
