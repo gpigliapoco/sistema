@@ -38,6 +38,9 @@
             </li>    
             <li class="nav-item">
               <a class="nav-link active" onclick="cargar_contenido('contenido_principal','vista/transporte/vista_transporte.php')">Transportes</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link active" onclick="cargar_contenido('contenido_principal','vista/planPagos/vista_plan.php ')">Planes De Pago</a>
             </li>          
           </ul>          
         </div>

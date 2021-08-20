@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-08-2021 a las 18:55:05
+-- Tiempo de generación: 20-08-2021 a las 20:23:45
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -221,6 +221,20 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalleplan`
+--
+
+CREATE TABLE `detalleplan` (
+  `iddetallePlan` int(11) NOT NULL,
+  `cuota` int(50) NOT NULL,
+  `total_cuota` int(50) NOT NULL,
+  `estado` enum('Pago','Debe','','') NOT NULL,
+  `idplan_detalle` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `empleado`
 --
 
@@ -255,7 +269,14 @@ INSERT INTO `empleado` (`idempleado`, `emp_nombre`, `emp_apellido`, `emp_direcci
 (8, 'GONZALO ERNESTO', 'BARRIOS', 'CONSTITUYENTES 677', 'SAN MARTIN', 37019072, 1166506420, 'm', '2021-08-01', '2021-02-01', 'c', 'activo', 'vista/imagenes/usuario.png', 5, 'ROSA MINIO', NULL, 1159628491, 0),
 (9, 'LUCAS NICOLAS', 'LOPEZ', 'CONSTITUYENTES Y LA NUEVA', 'SAN MARTIN', 36644700, 0, 'm', '2021-08-01', '2017-07-10', 's', 'activo', 'vista/imagenes/IMG198202113176.png', 5, '', NULL, 0, 0),
 (10, 'GABRIEL', 'GONZALES', 'LAVALLE 5294', 'VILLA MARTELLI', 43302746, 1162183674, 'm', '2021-08-01', '2019-11-11', 's', 'activo', 'vista/imagenes/usuario.png', 5, 'NN', NULL, 0, 0),
-(11, 'SANTIAGO ', 'BRENDAN', 'LOYOLA Manz.11 Casa 11', 'VILLA ZAGALA', 36978084, 373165437, 'm', '2021-08-06', '2019-04-12', 's', 'activo', 'vista/imagenes/IMG19820211378.png', 5, 'NUNIES MARIELA', NULL, 1157582992, 6);
+(11, 'SANTIAGO ', 'BRENDAN', 'LOYOLA Manz.11 Casa 11', 'VILLA ZAGALA', 36978084, 373165437, 'm', '2021-08-06', '2019-04-12', 's', 'activo', 'vista/imagenes/IMG19820211378.png', 5, 'NUNIES MARIELA', NULL, 1157582992, 6),
+(12, 'RAINZ WILFREDO', 'CANDIA', 'COLOMBIA 1550', 'SAN ANDRES', 93793774, 1131113750, 'm', '2021-08-01', '2007-07-13', 's', 'activo', 'vista/imagenes/IMG198202114604.png', 5, 'NN', NULL, 0, 8),
+(13, 'NORBERTO UBALDO', 'ACOSTA', 'FRENCH 1119', 'VILLA MARTELLI', 27389296, 1168518578, 'm', '2021-08-02', '2019-10-07', 's', 'activo', 'vista/imagenes/IMG198202114352.png', 5, 'NN', NULL, 0, 2),
+(14, 'ALFREDO EZEQUIEL', 'LECLERC', 'MENDOZA 2800 (colombia y san jose Casa 37)', 'SAN MARTIN', 35681938, 1553151134, 'm', '2021-08-17', '2019-11-15', 's', 'activo', 'vista/imagenes/IMG198202114277.png', 5, '', NULL, 0, 0),
+(15, 'DAHIANA LUJAN', 'SANCHEZ ACOSTA', 'COLOMBIA 1555', 'VILLA MARTELLI', 96005301, 114945596, 'f', '2021-08-10', '2021-01-21', 's', 'activo', 'vista/imagenes/IMG198202114802.png', 5, '', NULL, 0, 2),
+(16, 'ESTEBAN GABRIEL', 'ISTRAULIN', 'GURRUCHAGA 560', 'SAN MARTIN', 32884714, 1131695633, 'm', '2021-01-01', '2017-03-05', 's', 'activo', 'vista/imagenes/IMG198202114844.png', 5, '', NULL, 0, 2),
+(17, 'RUBEN ERNESTO', 'CANDIA', 'EVA PERON 5700 CASA 31', 'SAN MARTIN', 27540395, 1158531413, 'm', '2021-01-01', '2007-11-01', 's', 'activo', 'vista/imagenes/IMG1982021147.png', 1, 'ARROYO ALEJANDRA', NULL, 1168665550, 4),
+(18, 'LIZ LAURA MARCELA', 'FLEITAS', 'MOLDES 5200', 'VILLA MARTELLI', 94078511, 1166611437, 'f', '1981-10-19', '2018-01-01', 's', 'activo', 'vista/imagenes/IMG198202115584.png', 4, 'SOSA CARLOS', NULL, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -286,7 +307,36 @@ INSERT INTO `empleadoextras` (`idempleadoExtras`, `ex_nombre`, `ex_dni`, `ex_mov
 (3, 'ROSA MINIO', 21621094, 1159628491, 'CONSTITUYENTES 677 SAN MARTIN', 's', '', '0000-00-00', 8, ''),
 (4, 'SEPULVEDA NORMA', 11417984, 0, 'NN', 's', '', '0000-00-00', 9, ''),
 (5, 'ZARZA ALICIA', 28252552, 1132569021, 'LAVALLE 5294 VILLA MARTELLI', 'n', '', '0000-00-00', 10, ''),
-(6, 'NUNIES MARIELA', 0, 1157582992, 'LOYOLA Manz.11 Casa 11 ZAGALA', 'n', '', '0000-00-00', 11, 'HOSPITAL TORNU');
+(6, 'NUNIES MARIELA', 0, 1157582992, 'LOYOLA Manz.11 Casa 11 ZAGALA', 'n', '', '0000-00-00', 11, 'HOSPITAL TORNU'),
+(7, 'TERESA RAINZ', 13557234, 1164605333, 'NN', 'n', '', '0000-00-00', 12, ''),
+(8, 'ACOSTA RAUL', 10697761, 0, 'FRENCH 1119', 'n', '', '0000-00-00', 13, 'HOSPITAL BELGRANO'),
+(9, 'TEREZA RAINZ', 13557234, 1531304288, 'NN', 'n', '', '0000-00-00', 14, ''),
+(10, 'ACOSTA VALLEJO CARMEN', 95358243, 1131711333, 'COLOMBIA 1555', 'n', '', '0000-00-00', 15, ''),
+(11, 'OLIVEIRA YOLANDA', 0, 1123845055, 'N', 'n', '', '0000-00-00', 16, ''),
+(12, 'ARROYO ALEJANDRA', 27601117, 1168665550, 'EVA PERON 5700', 's', '', '2021-05-28', 17, 'OSPIA'),
+(13, 'NN', 0, 0, 'NN', 'n', '', '0000-00-00', 18, '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `planespago`
+--
+
+CREATE TABLE `planespago` (
+  `idplanesPago` int(50) NOT NULL,
+  `plan` varchar(250) NOT NULL,
+  `detalle` varchar(250) NOT NULL,
+  `cuit` int(50) NOT NULL,
+  `total` int(50) NOT NULL,
+  `estado` enum('activo','inactivo','','') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `planespago`
+--
+
+INSERT INTO `planespago` (`idplanesPago`, `plan`, `detalle`, `cuit`, `total`, `estado`) VALUES
+(1, 'plan 07801', 'ingresos brutos', 201541, 100000, 'activo');
 
 -- --------------------------------------------------------
 
@@ -351,6 +401,13 @@ INSERT INTO `transporte` (`idtransporte`, `tipo`, `marca`, `patente`, `verificac
 --
 
 --
+-- Indices de la tabla `detalleplan`
+--
+ALTER TABLE `detalleplan`
+  ADD PRIMARY KEY (`iddetallePlan`),
+  ADD KEY `fk_detallePlan_planesPago` (`idplan_detalle`);
+
+--
 -- Indices de la tabla `empleado`
 --
 ALTER TABLE `empleado`
@@ -363,6 +420,12 @@ ALTER TABLE `empleado`
 ALTER TABLE `empleadoextras`
   ADD PRIMARY KEY (`idempleadoExtras`),
   ADD KEY `fk_empleadoExtras_empleado1_idx` (`empleado_idempleado`);
+
+--
+-- Indices de la tabla `planespago`
+--
+ALTER TABLE `planespago`
+  ADD PRIMARY KEY (`idplanesPago`);
 
 --
 -- Indices de la tabla `sector`
@@ -381,16 +444,28 @@ ALTER TABLE `transporte`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `detalleplan`
+--
+ALTER TABLE `detalleplan`
+  MODIFY `iddetallePlan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `empleadoextras`
 --
 ALTER TABLE `empleadoextras`
-  MODIFY `idempleadoExtras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idempleadoExtras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `planespago`
+--
+ALTER TABLE `planespago`
+  MODIFY `idplanesPago` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `sector`
@@ -407,6 +482,12 @@ ALTER TABLE `transporte`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `detalleplan`
+--
+ALTER TABLE `detalleplan`
+  ADD CONSTRAINT `fk_detallePlan_planesPago` FOREIGN KEY (`idplan_detalle`) REFERENCES `planespago` (`idplanesPago`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `empleado`
