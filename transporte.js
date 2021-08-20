@@ -22,9 +22,23 @@ function listar_transporte(){
 		  }},
 		  {"data":"marca"},		 
 		  {"data":"patente"},		 	
-		  {"data":"vtv"},		 
+		  {"data":"vtv",
+		  render:function(data,type,row){
+			if(tiempo(data)>0){
+				return "<span class='label text-dark'>"+data+"</span>";
+			}else{
+				return "<span class='label bg-danger text-white'>"+data+"</span>";
+			}
+			}},			 
           {"data":"rut"},
-          {"data":"poli"},	
+          {"data":"poli",
+		  	render:function(data,type,row){
+			if(tiempo(data)>0){
+				return "<span class='label text-dark'>"+data+"</span>";
+			}else{
+				return "<span class='label bg-danger text-white'>"+data+"</span>";
+			}
+			}},			
 		  {"data":"estado",
 			render:function(data,type,row){
 				if(data=='activo'){
@@ -51,6 +65,16 @@ function listar_transporte(){
 	  "language":idioma_espanol,
 	  select: true
   });
+   }
+
+   function tiempo(dat){
+	   var fecha1=new Date();
+	   var fecha2=new Date(dat);
+
+	   var diaSegundos=24*60*60*1000; 
+	   var resta=Math.abs(fecha1.getTime()-fecha2.getTime());
+	   var dif=Math.round(resta/diaSegundos)-1;
+	   return dif;
    }
 
    function Registrar(){
