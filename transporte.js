@@ -22,23 +22,27 @@ function listar_transporte(){
 		  }},
 		  {"data":"marca"},		 
 		  {"data":"patente"},		 	
-		  {"data":"vtv",
-		  render:function(data,type,row){
-			if(tiempo(data)>0){
-				return "<span class='label text-dark'>"+data+"</span>";
-			}else{
-				return "<span class='label bg-danger text-white'>"+data+"</span>";
-			}
+		  {"data":"verificacion",
+			render:function(data,type,row){
+				
+				
+				if(tiempo(data)<0){
+					return "<span class='label text-dark'>"+fecha(data)+"</span>";
+				}else{
+					return "<span class='label bg-danger text-white'>"+fecha(data)+"</span>";
+				}
 			}},			 
           {"data":"rut"},
-          {"data":"poli",
-		  	render:function(data,type,row){
-			if(tiempo(data)>0){
-				return "<span class='label text-dark'>"+data+"</span>";
-			}else{
-				return "<span class='label bg-danger text-white'>"+data+"</span>";
-			}
-			}},			
+          {"data":"poliza",
+			render:function(data,type,row){
+				
+				
+				if(tiempo(data)<0){
+					return "<span class='label text-dark'>"+fecha(data)+"</span>";
+				}else{
+					return "<span class='label bg-danger text-white'>"+fecha(data)+"</span>";
+				}
+			}},			 			
 		  {"data":"estado",
 			render:function(data,type,row){
 				if(data=='activo'){
@@ -72,10 +76,43 @@ function listar_transporte(){
 	   var fecha2=new Date(dat);
 
 	   var diaSegundos=24*60*60*1000; 
-	   var resta=Math.abs(fecha1.getTime()-fecha2.getTime());
-	   var dif=Math.round(resta/diaSegundos)-1;
+	   var resta=fecha1.getTime()-fecha2.getTime();
+	   var dif=Math.round(resta/diaSegundos);
+	//	alert("fecha1 "+fecha1);
+	  // alert("fecha 2= "+fecha2);
+	  // alert("diferencia "+dif);
 	   return dif;
    }
+
+   function fecha(dat){
+	var fecha=new Date(dat);
+	var fechaNueva="";
+	//alert(dat);
+	var day="";
+	var mes="";
+
+
+	if(dat=="0000-00-00"){
+	  	fechaNueva="00-00-0000"
+	}else{
+		if(fecha.getDay()<10){
+			day="0"+fecha.getDay();
+		}else{
+			day=fecha.getDay();
+		}
+		if(fecha.getMonth()<10){
+			mes="0"+fecha.getMonth();
+		}else{
+			mes=fecha.getMonth();
+		}
+		
+	 fechaNueva=day+"-"+mes+"-"+fecha.getFullYear();
+	}
+
+	return fechaNueva;
+
+   }
+
 
    function Registrar(){
 	var tipo=$("#txt_tipo").val();
