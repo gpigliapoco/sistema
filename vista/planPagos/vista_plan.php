@@ -87,18 +87,22 @@
           <div class="container-fluid">
         <form onsubmit="return false" class="needs-validation" novalidate method="post" action="#" enctype="multipart/form-data">
             <div class="row">
-                <div class="col-md-4 ">
+                <div class="col-md-3 ">
                     <label for="">Plan</label>
                     <input type="text"class="form-control form-control-sm" id="txt_plan">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="" >Cuit</label>
                     <input type="text"class="form-control form-control-sm" id="txt_cuit">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="" >Total</label>
                     <input type="text"class="form-control form-control-sm" id="txt_total">
-                </div>                               
+                </div>
+                <div class="col-md-3">
+                    <label for="" >Fecha</label>
+                    <input type="date"class="form-control form-control-sm" id="txt_fecha">
+                </div>                                 
             </div>
             <div class="row ">
                 <div class="col-md-12" >
