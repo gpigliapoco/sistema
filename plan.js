@@ -51,3 +51,37 @@ function listar_empleados(){
 	  select: true
   });
    }
+
+   function agregarCuota(){
+	var cuota=$("#txt_cuota").val();
+	var fecha=$("#txt_fecha").val();
+	var monto=$("#txt_monto").val();
+	
+
+	
+
+	var agregarDatos="<tr>";
+	 agregarDatos+= "<td for='id'>"+cuota+"</td>";
+	 agregarDatos+= "<td>"+fecha+"</td>";
+	 agregarDatos+= "<td>"+monto+"</td>";
+	 agregarDatos+= "<td><button class='btn btn-danger' onclick='removeCuota(this)'><i class='fa fa-trash'></i></button></td>";
+	 agregarDatos+= "</tr>";
+
+	 $("#tbody_tabla_cuota").append(agregarDatos);
+	 limpiarTabla();
+
+}
+
+function removeCuota(t){
+	var td= t.parentNode;
+	var tr= td.parentNode;
+	var table= tr.parentNode;
+	table.removeChild(tr);
+}
+
+function limpiarTabla(){
+	$("#txt_cuota").val("");
+	$("#txt_fecha").val("");
+	$("#txt_monto").val("");
+
+}

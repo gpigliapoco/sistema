@@ -12,8 +12,14 @@
                     <label for="">Cuit</label>
                 </div>
                 <div class="col-md-4">
-                    <label for="">boton</label>
-                    <button class="btn btn-success  align-content-end" style="width:15%" data-bs-toggle="modal" data-bs-target="#registro_plan"><i class="glyphicon glyphicon-plus"></i>&nbsp;Nuevo Registro</button>
+                <button class="btn btn-success  align-content-end"  data-bs-toggle="modal" data-bs-target="#registro_plan"><i class="glyphicon glyphicon-plus"></i>&nbsp;Nuevo Plan</button>
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                    
                 </div>        
             </div>
             <div class="row border">
@@ -75,29 +81,29 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header text-center bg-primary text-white p-1 d-inline-block">
-        <h5 class="modal-title"  >Registro Vehiculo</h5>        
+        <h5 class="modal-title"  >Registro Plan de Pago</h5>        
       </div>
       <div class="modal-body">
           <div class="container-fluid">
         <form onsubmit="return false" class="needs-validation" novalidate method="post" action="#" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-4 ">
-                    <label for=""class="form-control form-control-sm">plan</label>
-                    <input type="text"class="form-control">
+                    <label for="">Plan</label>
+                    <input type="text"class="form-control form-control-sm" id="txt_plan">
                 </div>
                 <div class="col-md-4">
-                    <label for="" class="form-control form-control-sm">Cuit</label>
-                    <input type="text"class="form-control">
+                    <label for="" >Cuit</label>
+                    <input type="text"class="form-control form-control-sm" id="txt_cuit">
                 </div>
                 <div class="col-md-4">
-                    <label for="" class="form-control form-control-sm">boton</label>
-                    <input type="text"class="form-control">
+                    <label for="" >Total</label>
+                    <input type="text"class="form-control form-control-sm" id="txt_total">
                 </div>                               
             </div>
-            <div class="row border">
+            <div class="row ">
                 <div class="col-md-12" >
-                    <label for="" class="form-control form-control-sm">detalle</label>
-                    <input type="text"class="form-control">
+                    <label for="" >Detalle</label>
+                    <input type="text"class="form-control" id="txt_detalle">
                 </div>
                        
             </div>
@@ -108,32 +114,32 @@
             <div class="row">
                      
                       <div class="col-md-2">
-                        <label for="" class="form-control form-control-sm">Cuota</label>
-                        <input type="text" class="form-control" id="txt_INstock">
+                        <label for="" >Cuota</label>
+                        <input type="text" class="form-control form-control-sm" id="txt_cuota">
                       </div>
                       <div class="col-md-4">
-                        <label for="" class="form-control form-control-sm">Fecha</label>
-                        <input type="text" class="form-control" id="txt_INcantidad">
+                        <label for="" >Fecha</label>
+                        <input type="date" class="form-control form-control-sm" id="txt_fecha">
                       </div>
                       <div class="col-md-4">
-                        <label for="" class="form-control form-control-sm">Monto</label>
-                        <input type="text" class="form-control" id="txt_INcantidad">
+                        <label for="">Monto</label>
+                        <input type="text" class="form-control form-control-sm" id="txt_monto">
                       </div>
 
                       <div class="col-md-2">
                         <label>&nbsp;</label>
-                        <button type="button" class="btn btn-primary"  onclick="agregarInsumos()"><i class="fa fa-plus-square"></i>&nbsp;agregar</button>
+                        <button type="button" class="btn btn-primary form-control"  onclick="agregarCuota()"><i class="fa fa-plus-square"></i>&nbsp;agregar</button>
                       </div>
                       <div class="col-md-12 table-responsive"><br>
-                        <table id="tabla_insumos" style="width:100%" class="display">
+                        <table id="tabla_cuota" style="width:100%" class="display">
                           <thead >
-                            <th>ID</th>
+                           
                             <th>CUOTA</th>
                             <th>FECHA</th>
                             <th>MONTO</th>
                             <th>ACCION</th>
                           </thead> 
-                          <tbody id="tbody_tabla_insumos">
+                          <tbody id="tbody_tabla_cuota">
                           </tbody>
                         </table>
                       </div>
