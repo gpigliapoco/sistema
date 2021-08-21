@@ -85,3 +85,62 @@ function limpiarTabla(){
 	$("#txt_monto").val("");
 
 }
+
+function registrar(){
+
+	var plan=$("#txt_plan").val();
+	var cuit=$("#txt_cuit").val();
+	var total=$("#txt_total").val();
+	var detalle=$("#txt_detalle").val();
+	var fecha=$("#txt_fecha").val();
+
+	$.ajax({
+		url:"controlador/plan/control_registrar_plan.php",
+		type:"post",
+		data:{
+			plan:plan,
+			cuit:cuit,
+			total:total,
+			detalle:detalle
+		}
+	}).done(function(resp){
+		registrar_cuotas(resp);
+	})
+
+
+}
+
+function registrar_cuotas(id){
+	var count=0;
+	var arreglo_cuotas=new Array();
+
+	$("#tabla_cuota tbody#tbody_tabla_cuota tr").each(function(){
+		arreglo_cuotas.push($(this).find('td').eq(0).text());
+		count++;
+
+	})
+	var arregloCuotas=arreglo_cuotas.toString(); /// loc onvierte en string para enviar al controlador
+
+	if(count==0){
+		return;
+	}
+
+	$.ajax({
+		url: "controlador/plan/control_registrar_cuotas.php",
+		type: "POST",
+		data: {
+			id:id,
+			arregloCuotas:arregloCuotas,
+			
+		}
+	}).done(function(resp){
+		
+		if(resp>0){
+			Swal.fire("Mensaje De Confirmacion","detalle procedimiento registrado","warning");
+
+		}
+		else{
+			Swal.fire("Mensaje De Confirmacion","no se puede registrar procedimiento","warning");
+		}
+	})
+}
