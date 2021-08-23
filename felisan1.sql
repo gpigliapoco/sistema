@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-08-2021 a las 05:32:59
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.8
+-- Tiempo de generación: 23-08-2021 a las 20:02:26
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -94,6 +94,8 @@ END IF;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `indexEmpleado` ()  SELECT COUNT(*) as emple FROM empleado$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `indexPlan` (IN `id` INT(50))  SELECT planespago.plan,planespago.total, COUNT(detalleplan.cuota)as cuotass ,(SELECT SUM(detalleplan.total_cuota) FROM detalleplan WHERE detalleplan.estado="Pago" and detalleplan.idplan_detalle=id)as pagado , (SELECT COUNT(detalleplan.cuota) FROM detalleplan WHERE detalleplan.estado="Pago" and detalleplan.idplan_detalle=id) as cuotaPaga FROM planespago INNER JOIN detalleplan ON planespago.idplanesPago=detalleplan.idplan_detalle WHERE planespago.idplanesPago=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `indexTransporte` ()  SELECT COUNT(*) as transp FROM transporte$$
 
@@ -194,7 +196,7 @@ transporte.foto
 
 FROM transporte$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `saldoPlan` (IN `id` INT(50))  SELECT SUM(detalleplan.total_cuota) FROM detalleplan WHERE detalleplan.idplan_detalle=id AND detalleplan.estado='debe'$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `saldoPlan` (IN `id` INT(50))  SELECT SUM(detalleplan.total_cuota) FROM detalleplan WHERE detalleplan.idplan_detalle=id AND detalleplan.estado='Pago'$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEmpleado` (IN `id` INT, IN `nombre` VARCHAR(250), IN `apellido` VARCHAR(250), IN `cargo` INT, IN `direccion` VARCHAR(250), IN `ciudad` VARCHAR(250), IN `dni` INT, IN `movil` INT, IN `nacimiento` DATE, IN `sexo` CHAR(1), IN `estado` VARCHAR(250), IN `ingreso` DATE, IN `nomE` VARCHAR(250), IN `dniE` INT, IN `movilE` INT, IN `hijos` INT, IN `nomB` VARCHAR(250), IN `dniB` INT, IN `movilB` INT, IN `direccionB` VARCHAR(250), IN `moyano` ENUM('s','n'), IN `registro` VARCHAR(250), IN `vencimiento` DATE, IN `observ` VARCHAR(250))  BEGIN
 UPDATE empleado set empleado.emp_nombre=nombre,empleado.emp_apellido=apellido,empleado.emp_direccion=direccion,empleado.emp_ciudad=ciudad,empleado.emp_dni=dni,empleado.emp_movil=movil,empleado.emp_sexo=sexo,empleado.emp_nacimiento=nacimiento,empleado.emp_ingreso=ingreso,empleado.emp_estado=estado,empleado.sector_idsector=cargo,empleado.emp_esposa=nomE,empleado.emp_esposaDni=dniE,empleado.emp_esposaMovil=movilE,empleado.emp_hijos=hijos where empleado.idempleado=id;
@@ -261,10 +263,154 @@ CREATE TABLE `detalleplan` (
 --
 
 INSERT INTO `detalleplan` (`iddetallePlan`, `cuota`, `total_cuota`, `estado`, `idplan_detalle`, `fechaDet`) VALUES
-(1, 1, 5000, 'Debe', 1, '2021-02-02'),
-(2, 2, 5000, 'Debe', 1, '2021-05-03'),
-(3, 1, 5000, 'Pago', 2, '2021-05-05'),
-(4, 2, 5000, 'Debe', 2, '2021-06-06');
+(1, 1, 3000, 'Pago', 1, '2020-07-16'),
+(2, 2, 3084, 'Pago', 1, '2020-08-16'),
+(3, 3, 3165, 'Pago', 1, '2020-09-16'),
+(4, 4, 3244, 'Pago', 1, '2020-10-16'),
+(5, 5, 3367, 'Pago', 1, '2020-11-16'),
+(6, 6, 3447, 'Pago', 1, '2020-12-16'),
+(7, 7, 3490, 'Pago', 1, '2021-01-16'),
+(8, 8, 3571, 'Pago', 1, '2021-02-16'),
+(9, 9, 3644, 'Pago', 1, '2021-03-16'),
+(10, 10, 3733, 'Pago', 1, '2021-04-16'),
+(11, 11, 3811, 'Pago', 1, '2021-05-16'),
+(12, 12, 3895, 'Pago', 1, '2021-06-16'),
+(13, 13, 3974, 'Pago', 1, '2021-07-16'),
+(14, 14, 4057, 'Pago', 1, '2021-08-16'),
+(15, 15, 4138, 'Debe', 1, '2021-09-16'),
+(16, 16, 4217, 'Debe', 1, '2021-10-16'),
+(17, 17, 4301, 'Debe', 1, '2021-11-16'),
+(18, 18, 4379, 'Debe', 1, '2021-12-16'),
+(19, 19, 4463, 'Debe', 1, '2022-01-16'),
+(20, 20, 4544, 'Debe', 1, '2022-02-16'),
+(21, 21, 4617, 'Debe', 1, '2022-03-16'),
+(22, 22, 4706, 'Debe', 1, '2022-04-16'),
+(23, 23, 4785, 'Debe', 1, '2022-05-16'),
+(24, 24, 4869, 'Debe', 1, '2022-06-16'),
+(25, 1, 4702, 'Pago', 2, '2020-04-16'),
+(26, 2, 4835, 'Pago', 2, '2020-05-16'),
+(27, 3, 4968, 'Pago', 2, '2020-06-16'),
+(28, 4, 5102, 'Pago', 2, '2020-07-16'),
+(29, 5, 5235, 'Pago', 2, '2020-08-16'),
+(30, 6, 5368, 'Pago', 2, '2020-09-16'),
+(31, 7, 5501, 'Pago', 2, '2020-10-16'),
+(32, 8, 5634, 'Pago', 2, '2020-11-16'),
+(33, 9, 5767, 'Pago', 2, '2020-12-16'),
+(34, 10, 5900, 'Pago', 2, '2021-01-16'),
+(35, 11, 6033, 'Pago', 2, '2021-02-16'),
+(36, 12, 6166, 'Pago', 2, '2021-03-16'),
+(37, 13, 6299, 'Pago', 2, '2021-04-16'),
+(38, 14, 6433, 'Debe', 2, '2021-05-16'),
+(39, 15, 6566, 'Debe', 2, '2021-06-16'),
+(40, 16, 6699, 'Debe', 2, '2021-07-16'),
+(41, 17, 6832, 'Debe', 2, '2021-08-16'),
+(42, 18, 6965, 'Debe', 2, '2021-09-16'),
+(43, 19, 7098, 'Debe', 2, '2021-10-16'),
+(44, 20, 7231, 'Debe', 2, '2021-11-16'),
+(45, 21, 7364, 'Debe', 2, '2021-12-16'),
+(46, 22, 7497, 'Debe', 2, '2022-01-16'),
+(47, 23, 7630, 'Debe', 2, '2022-02-16'),
+(48, 24, 7764, 'Debe', 2, '2022-03-16'),
+(49, 25, 7897, 'Debe', 2, '2022-04-16'),
+(50, 26, 8030, 'Debe', 2, '2022-05-16'),
+(51, 27, 8163, 'Debe', 2, '2022-06-16'),
+(52, 28, 8296, 'Debe', 2, '2022-07-16'),
+(53, 29, 8429, 'Debe', 2, '2022-08-16'),
+(54, 30, 8562, 'Debe', 2, '2022-09-16'),
+(55, 31, 8695, 'Debe', 2, '2022-10-16'),
+(56, 32, 8828, 'Debe', 2, '2022-11-16'),
+(57, 33, 8961, 'Debe', 2, '2022-12-16'),
+(58, 34, 9095, 'Debe', 2, '2023-01-16'),
+(59, 35, 9228, 'Debe', 2, '2023-02-16'),
+(60, 36, 9360, 'Debe', 2, '2023-03-16'),
+(61, 2, 3560, 'Debe', 3, '2020-05-16'),
+(62, 3, 3658, 'Debe', 3, '2020-06-16'),
+(63, 4, 3756, 'Debe', 3, '2020-07-16'),
+(64, 5, 3854, 'Debe', 3, '2020-08-16'),
+(65, 6, 3952, 'Debe', 3, '2020-09-16'),
+(66, 7, 4050, 'Debe', 3, '2020-10-16'),
+(67, 8, 4148, 'Debe', 3, '2020-11-16'),
+(68, 9, 4246, 'Debe', 3, '2020-12-16'),
+(69, 10, 4344, 'Debe', 3, '2021-01-16'),
+(70, 11, 4442, 'Debe', 3, '2021-02-16'),
+(71, 12, 4540, 'Debe', 3, '2021-03-16'),
+(72, 13, 4638, 'Debe', 3, '2021-04-16'),
+(73, 14, 4736, 'Debe', 3, '2021-05-16'),
+(74, 15, 4834, 'Debe', 3, '2021-06-16'),
+(75, 16, 4932, 'Debe', 3, '2021-07-16'),
+(76, 17, 5030, 'Debe', 3, '2021-08-16'),
+(77, 18, 5128, 'Debe', 3, '2021-09-16'),
+(78, 19, 5226, 'Debe', 3, '2021-10-16'),
+(79, 20, 5324, 'Debe', 3, '2021-11-16'),
+(80, 21, 5422, 'Debe', 3, '2021-12-16'),
+(81, 22, 5520, 'Debe', 3, '2022-01-16'),
+(82, 23, 5618, 'Debe', 3, '2022-02-16'),
+(83, 24, 5716, 'Debe', 3, '2022-03-16'),
+(84, 25, 5814, 'Debe', 3, '2022-04-16'),
+(85, 26, 5912, 'Debe', 3, '2022-05-16'),
+(86, 27, 6010, 'Debe', 3, '2022-06-16'),
+(87, 28, 6108, 'Debe', 3, '2022-07-16'),
+(88, 29, 6206, 'Debe', 3, '2022-08-16'),
+(89, 30, 6304, 'Debe', 3, '2022-09-16'),
+(90, 31, 6402, 'Debe', 3, '2022-10-16'),
+(91, 32, 6500, 'Debe', 3, '2022-11-16'),
+(92, 33, 6598, 'Debe', 3, '2022-12-16'),
+(93, 34, 6696, 'Debe', 3, '2023-01-16'),
+(94, 35, 6794, 'Debe', 3, '2023-02-16'),
+(95, 36, 6892, 'Debe', 3, '2023-03-16'),
+(96, 1, 16714, 'Pago', 4, '2021-03-10'),
+(97, 2, 16714, 'Pago', 4, '2021-04-12'),
+(98, 3, 16714, 'Pago', 4, '2021-05-16'),
+(99, 4, 16714, 'Pago', 4, '2021-06-16'),
+(100, 5, 16714, 'Debe', 4, '2021-07-16'),
+(101, 6, 16714, 'Debe', 4, '2021-08-10'),
+(102, 7, 16714, 'Debe', 4, '2021-09-16'),
+(103, 10, 16714, 'Debe', 4, '2021-10-10'),
+(104, 11, 16714, 'Debe', 4, '2021-11-16'),
+(105, 12, 16714, 'Debe', 4, '2021-12-16'),
+(106, 13, 16714, 'Debe', 4, '2022-01-16'),
+(107, 14, 16714, 'Debe', 4, '2022-02-16'),
+(108, 15, 16714, 'Debe', 4, '2022-03-16'),
+(109, 16, 16714, 'Debe', 4, '2022-04-16'),
+(110, 17, 16714, 'Debe', 4, '2022-05-16'),
+(111, 18, 16714, 'Debe', 4, '2022-06-16'),
+(112, 0, 20431, 'Pago', 5, '2020-11-27'),
+(113, 1, 13793, 'Pago', 5, '2020-12-16'),
+(114, 2, 14075, 'Pago', 5, '2021-01-16'),
+(115, 3, 14347, 'Pago', 5, '2021-02-16'),
+(116, 4, 14592, 'Pago', 5, '2021-03-16'),
+(117, 5, 14892, 'Pago', 5, '2021-04-16'),
+(118, 6, 15155, 'Pago', 5, '2021-05-16'),
+(119, 7, 15437, 'Pago', 5, '2021-06-16'),
+(120, 8, 15700, 'Pago', 5, '2021-07-16'),
+(121, 9, 15982, 'Pago', 5, '2021-08-16'),
+(122, 10, 16254, 'Debe', 5, '2021-09-16'),
+(123, 11, 16517, 'Debe', 5, '2021-10-16'),
+(124, 12, 16799, 'Debe', 5, '2021-11-16'),
+(125, 13, 17062, 'Debe', 5, '2021-12-16'),
+(126, 14, 17344, 'Debe', 5, '2022-01-16'),
+(127, 15, 17616, 'Debe', 5, '2022-02-16'),
+(128, 16, 17861, 'Debe', 5, '2022-03-16'),
+(129, 17, 18161, 'Debe', 5, '2022-04-16'),
+(130, 18, 18424, 'Debe', 5, '2022-05-16'),
+(131, 19, 18706, 'Debe', 5, '2022-06-16'),
+(132, 20, 18969, 'Debe', 5, '2022-07-16'),
+(133, 21, 19251, 'Debe', 5, '2022-08-16'),
+(134, 22, 19523, 'Debe', 5, '2022-09-16'),
+(135, 23, 19787, 'Debe', 5, '2022-10-16'),
+(136, 24, 20068, 'Debe', 5, '2022-11-16'),
+(137, 25, 20331, 'Debe', 5, '2022-12-16'),
+(138, 26, 20613, 'Debe', 5, '2023-01-16'),
+(139, 27, 20885, 'Debe', 5, '2023-02-16'),
+(140, 28, 20885, 'Debe', 5, '2023-03-16'),
+(141, 29, 21430, 'Debe', 5, '2023-04-16'),
+(142, 30, 21694, 'Debe', 5, '2023-05-16'),
+(143, 31, 21975, 'Debe', 5, '2023-06-16'),
+(144, 32, 22238, 'Debe', 5, '2023-07-16'),
+(145, 33, 22520, 'Debe', 5, '2023-08-16'),
+(146, 34, 22792, 'Debe', 5, '2023-09-16'),
+(147, 35, 23056, 'Debe', 5, '2023-10-16'),
+(148, 36, 23337, 'Debe', 5, '2023-11-16');
 
 -- --------------------------------------------------------
 
@@ -371,8 +517,11 @@ CREATE TABLE `planespago` (
 --
 
 INSERT INTO `planespago` (`idplanesPago`, `plan`, `detalle`, `cuit`, `total`, `estado`, `fecha`) VALUES
-(1, 'leo', 'nada', 12345, 5000, 'activo', '2021-12-05'),
-(2, 'pao', 'dasda', 3521, 50000, 'activo', '2021-03-03');
+(1, 'LEO-M791525', 'SE DEBITA DE CTA.CREDICOOP ', 2147483647, 94431, 'activo', '2020-03-26'),
+(2, 'GERA-M788184', 'SE DEBITA DE CTA.CREDICOOP GERA', 2147483647, 253151, 'activo', '2019-11-26'),
+(3, 'GERA-M788173', 'SE DEBITA DE CTA.CREDICOOP GERA 36 CUOTAS', 2147483647, 186390, 'activo', '2019-11-26'),
+(4, 'LEO-07801', 'BOLETAS QUE PAGAR 1 X MES 18 CUOTAS IIBB', 2147483647, 300852, 'activo', '2021-02-05'),
+(5, 'ORESTES-0313086', 'SE DEBITA DE CTA.CREDICOOP SOSA APORTES SUSS 36 CUOTAS', 2147483647, 688770, 'activo', '2020-11-27');
 
 -- --------------------------------------------------------
 
@@ -483,7 +632,7 @@ ALTER TABLE `transporte`
 -- AUTO_INCREMENT de la tabla `detalleplan`
 --
 ALTER TABLE `detalleplan`
-  MODIFY `iddetallePlan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `iddetallePlan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
@@ -501,7 +650,7 @@ ALTER TABLE `empleadoextras`
 -- AUTO_INCREMENT de la tabla `planespago`
 --
 ALTER TABLE `planespago`
-  MODIFY `idplanesPago` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idplanesPago` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `sector`
