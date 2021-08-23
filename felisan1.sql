@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-08-2021 a las 20:23:45
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.6
+-- Tiempo de generación: 23-08-2021 a las 05:32:59
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,6 +40,10 @@ SELECT 2;
 END IF;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addDetallePlan` (IN `id` INT(50), IN `cuota` INT(50), IN `total` INT(50), IN `estado` VARCHAR(250), IN `fecha` DATE)  INSERT INTO detalleplan(detalleplan.idplan_detalle,detalleplan.cuota,detalleplan.total_cuota,
+                        detalleplan.fechaDet,detalleplan.estado) VALUES
+                        (id,cuota,total,fecha,'debe')$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addEmpleado` (IN `nombre` VARCHAR(250), IN `apellido` VARCHAR(250), IN `cargo` INT, IN `direccion` VARCHAR(250), IN `ciudad` VARCHAR(250), IN `dni` INT, IN `movil` INT, IN `nacimiento` DATE, IN `sexo` CHAR(1), IN `estado` VARCHAR(250), IN `ingreso` DATE, IN `nomE` VARCHAR(250), IN `dniE` INT, IN `movilE` INT, IN `hijos` INT, IN `nomB` VARCHAR(250), IN `dniB` INT, IN `movilB` INT, IN `direccionB` VARCHAR(250), IN `moyano` ENUM('s','n'), IN `registro` VARCHAR(250), IN `vencimiento` DATE, IN `observ` VARCHAR(250), IN `foto` VARCHAR(250))  BEGIN
 DECLARE dniE int(50);
 SET @dniE:=(SELECT COUNT(*) FROM empleado WHERE empleado.emp_dni=dni);
@@ -65,6 +69,13 @@ SELECT 2;
 END IF;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addPlan` (IN `cuit` INT(50), IN `plan` VARCHAR(250), IN `deta` VARCHAR(250), IN `total` INT(50), IN `fecha` DATE)  BEGIN
+INSERT INTO planespago(planespago.plan,planespago.detalle,planespago.cuit,
+                       planespago.total,planespago.estado,planespago.fecha) VALUES
+                       (plan,deta,cuit,total,'activo',fecha);
+                       SELECT LAST_INSERT_ID();
+                       END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addSector` (IN `nombre` VARCHAR(45))  INSERT INTO sector(sector) VALUES (nombre)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addVehiculo` (IN `tipo` VARCHAR(250), IN `marca` VARCHAR(250), IN `patente` VARCHAR(250), IN `vtv` DATE, IN `ruta` DATE, IN `poliza` DATE, IN `brama` DATE, IN `obs` VARCHAR(250), IN `foto` VARCHAR(250))  INSERT INTO transporte(transporte.tipo,transporte.marca,
@@ -85,6 +96,11 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `indexEmpleado` ()  SELECT COUNT(*) as emple FROM empleado$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `indexTransporte` ()  SELECT COUNT(*) as transp FROM transporte$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listaplanVer` (IN `id` INT(50))  SELECT planespago.* FROM planespago 
+WHERE planespago.idplanesPago=id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarComboPlan` ()  SELECT planespago.idplanesPago,planespago.plan,CONCAT(planespago.plan," - ",planespago.cuit) as planes FROM planespago$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarEmpleado` ()  SELECT empleado.idempleado,
 empleado.emp_nombre,
@@ -154,6 +170,9 @@ DATE_FORMAT(empleado.emp_ingreso, '%d-%m-%Y') AS ingreso,
 DATE_FORMAT(empleadoextras.ex_vrencimiento, '%d-%m-%Y') AS vencimiento
 FROM empleado INNER JOIN sector on sector.idsector=empleado.sector_idsector INNER JOIN empleadoextras on empleadoextras.empleado_idempleado=empleado.idempleado WHERE empleado.idempleado=id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarPlan` (IN `id` INT(50))  SELECT planespago.*,detalleplan.* FROM planespago INNER JOIN detalleplan on detalleplan.idplan_detalle=planespago.idplanesPago
+WHERE planespago.idplanesPago=id$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarSector` ()  SELECT * FROM sector$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarTransporte` ()  SELECT transporte.idtransporte,
@@ -175,6 +194,8 @@ transporte.foto
 
 FROM transporte$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `saldoPlan` (IN `id` INT(50))  SELECT SUM(detalleplan.total_cuota) FROM detalleplan WHERE detalleplan.idplan_detalle=id AND detalleplan.estado='debe'$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEmpleado` (IN `id` INT, IN `nombre` VARCHAR(250), IN `apellido` VARCHAR(250), IN `cargo` INT, IN `direccion` VARCHAR(250), IN `ciudad` VARCHAR(250), IN `dni` INT, IN `movil` INT, IN `nacimiento` DATE, IN `sexo` CHAR(1), IN `estado` VARCHAR(250), IN `ingreso` DATE, IN `nomE` VARCHAR(250), IN `dniE` INT, IN `movilE` INT, IN `hijos` INT, IN `nomB` VARCHAR(250), IN `dniB` INT, IN `movilB` INT, IN `direccionB` VARCHAR(250), IN `moyano` ENUM('s','n'), IN `registro` VARCHAR(250), IN `vencimiento` DATE, IN `observ` VARCHAR(250))  BEGIN
 UPDATE empleado set empleado.emp_nombre=nombre,empleado.emp_apellido=apellido,empleado.emp_direccion=direccion,empleado.emp_ciudad=ciudad,empleado.emp_dni=dni,empleado.emp_movil=movil,empleado.emp_sexo=sexo,empleado.emp_nacimiento=nacimiento,empleado.emp_ingreso=ingreso,empleado.emp_estado=estado,empleado.sector_idsector=cargo,empleado.emp_esposa=nomE,empleado.emp_esposaDni=dniE,empleado.emp_esposaMovil=movilE,empleado.emp_hijos=hijos where empleado.idempleado=id;
 UPDATE empleadoextras SET empleadoextras.ex_nombre=nomB,
@@ -189,6 +210,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFotoEmpleado` (IN `id` INT, I
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFotoVehiculo` (IN `id` INT(50), IN `destino` VARCHAR(250))  UPDATE transporte SET transporte.foto=destino WHERE transporte.idtransporte=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatus` (IN `id` INT, IN `estado` VARCHAR(45))  UPDATE empleado SET empleado.emp_status = estado WHERE empleado.idempleado=id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatusPlan` (IN `id` INT, IN `estado` VARCHAR(250))  UPDATE detalleplan SET detalleplan.estado = estado WHERE detalleplan.iddetallePlan=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatusTransp` (IN `id` INT(50), IN `estado` VARCHAR(50))  UPDATE transporte SET transporte.estado = estado WHERE transporte.idtransporte=id$$
 
@@ -229,8 +252,19 @@ CREATE TABLE `detalleplan` (
   `cuota` int(50) NOT NULL,
   `total_cuota` int(50) NOT NULL,
   `estado` enum('Pago','Debe','','') NOT NULL,
-  `idplan_detalle` int(50) NOT NULL
+  `idplan_detalle` int(50) NOT NULL,
+  `fechaDet` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `detalleplan`
+--
+
+INSERT INTO `detalleplan` (`iddetallePlan`, `cuota`, `total_cuota`, `estado`, `idplan_detalle`, `fechaDet`) VALUES
+(1, 1, 5000, 'Debe', 1, '2021-02-02'),
+(2, 2, 5000, 'Debe', 1, '2021-05-03'),
+(3, 1, 5000, 'Pago', 2, '2021-05-05'),
+(4, 2, 5000, 'Debe', 2, '2021-06-06');
 
 -- --------------------------------------------------------
 
@@ -328,15 +362,17 @@ CREATE TABLE `planespago` (
   `detalle` varchar(250) NOT NULL,
   `cuit` int(50) NOT NULL,
   `total` int(50) NOT NULL,
-  `estado` enum('activo','inactivo','','') NOT NULL
+  `estado` enum('activo','inactivo','','') NOT NULL,
+  `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `planespago`
 --
 
-INSERT INTO `planespago` (`idplanesPago`, `plan`, `detalle`, `cuit`, `total`, `estado`) VALUES
-(1, 'plan 07801', 'ingresos brutos', 201541, 100000, 'activo');
+INSERT INTO `planespago` (`idplanesPago`, `plan`, `detalle`, `cuit`, `total`, `estado`, `fecha`) VALUES
+(1, 'leo', 'nada', 12345, 5000, 'activo', '2021-12-05'),
+(2, 'pao', 'dasda', 3521, 50000, 'activo', '2021-03-03');
 
 -- --------------------------------------------------------
 
@@ -447,7 +483,7 @@ ALTER TABLE `transporte`
 -- AUTO_INCREMENT de la tabla `detalleplan`
 --
 ALTER TABLE `detalleplan`
-  MODIFY `iddetallePlan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetallePlan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
@@ -465,7 +501,7 @@ ALTER TABLE `empleadoextras`
 -- AUTO_INCREMENT de la tabla `planespago`
 --
 ALTER TABLE `planespago`
-  MODIFY `idplanesPago` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idplanesPago` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `sector`
