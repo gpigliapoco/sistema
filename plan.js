@@ -22,7 +22,13 @@ function listar_plan(id){
 		  {"data":"plan"},
 		  {"data":"cuit"},		 
 		  {"data":"cuota"},		 	
-		  {"data":"fechaDet"},		 
+		  {"data":"fechaDet",
+			  render:function(data,type,row){
+								
+			
+			return "<span class='label text-dark'>"+fecha(data)+"</span>";
+		
+			}},		 
           {"data":"total_cuota",
 		  render:function(data,type,row){
 								
@@ -58,6 +64,35 @@ function listar_plan(id){
 	  "language":idioma_espanol,
 	  select: true
   });
+   }
+
+   function fecha(dat){
+	var fecha=new Date(dat);
+	var fechaNueva="";
+	//alert(dat);
+	var day="";
+	var mes="";
+
+
+	if(dat=="0000-00-00"){
+	  	fechaNueva="00-00-0000"
+	}else{
+		if((fecha.getDate()+1)<10){
+			day="0"+(fecha.getDate()+1);
+		}else{
+			day=(fecha.getDate()+1);
+		}
+		if((fecha.getMonth()+1)<10){
+			mes="0"+(fecha.getMonth()+1);
+		}else{
+			mes=(fecha.getMonth()+1);
+		}
+		
+	 fechaNueva=day+"-"+mes+"-"+fecha.getFullYear();
+	}
+
+	return fechaNueva;
+
    }
 
    function agregarCuota(){
@@ -156,11 +191,11 @@ function registrar_cuotas(id){
 	}).done(function(resp){
 		
 		if(resp>0){
-			Swal.fire("Mensaje De Confirmacion","detalle procedimiento registrado","warning");
-
+			Swal.fire("Mensaje De Confirmacion","Plan de Pagos registrado","success");
+			$("#registro_plan").show("hide");
 		}
 		else{
-			Swal.fire("Mensaje De Confirmacion","no se puede registrar procedimiento","warning");
+			Swal.fire("Mensaje De Confirmacion","no se puede registrar Plan de pagos","warning");
 		}
 	})
 }
