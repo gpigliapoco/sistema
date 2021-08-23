@@ -4,22 +4,16 @@
 
 	    $mu= new modelo_plan();
         
-        $tipo = (isset($_POST['tipo'])) ? $_POST['tipo'] : '';
-        $marca = (isset($_POST['marca'])) ? $_POST['marca'] : '';
-        $patente = (isset($_POST['patente'])) ? $_POST['patente'] : '';
-        $vtv = (isset($_POST['vtv'])) ? $_POST['vtv'] : '';
-        $ruta = (isset($_POST['ruta'])) ? $_POST['ruta'] : '';
-        $poliza = (isset($_POST['poliza'])) ? $_POST['poliza'] : '';
-        $bramatologia = (isset($_POST['bramatologia'])) ? $_POST['bramatologia'] : '';
-        $observacion = (isset($_POST['observacion'])) ? $_POST['observacion'] : '';
-        $nombreFoto = (isset($_POST['nombreFoto'])) ? $_POST['nombreFoto'] : '';
-
-         $consulta=$mu->registrar_vehiculo($tipo,$marca,$patente,$vtv,$ruta,$poliza,$bramatologia,$observacion,$destino); 
-                                                   echo $consulta; 
-                
-          
-            
-           
+        $plan = (isset($_POST['plan'])) ? $_POST['plan'] : '';
+        $cuit = (isset($_POST['cuit'])) ? $_POST['cuit'] : '';
+        $total = (isset($_POST['total'])) ? $_POST['total'] : '';
+        $detalle = (isset($_POST['detalle'])) ? $_POST['detalle'] : '';
+        $fecha = (isset($_POST['fecha'])) ? $_POST['fecha'] : '';
+        
+         $consulta=$mu->registrar_plan($cuit,$plan,$detalle,$total,$fecha); 
+                          echo $consulta; 
+                       
+                       
 
   
     

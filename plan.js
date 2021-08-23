@@ -1,43 +1,51 @@
 var table; //// para poder llamar al reload en otra funcion.
 
-function listar_empleados(){
-	table = $("#tabla_plan").DataTable({
+function listar_plan(id){
+	table = $("#tabla_planes").DataTable({
 	  "ordering":true,   
 	  "bLengthChange":false,
-	  "searching": { "regex": true },
+	  "searching": { "regex": false },
 	  "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
 	  "pageLength": 10,
 	  "destroy":true,
 	  "async": false ,
 	  "processing": true,
 	  "ajax":{
-		   url:"controlador/control_listar_empleados.php",
-		  type:'POST'
+		   url:"controlador/plan/control_listar_plan.php",
+		  type:'POST',
+		  data:{
+			  id:id
+		  }
 	  },
 	  "columns":[
-		  {"data":"idempleado"},
-		  {"data":"emp_foto",
+		  {"data":"iddetallePlan"},
+		  {"data":"plan"},
+		  {"data":"cuit"},		 
+		  {"data":"cuota"},		 	
+		  {"data":"fechaDet"},		 
+          {"data":"total_cuota",
 		  render:function(data,type,row){
-			 return "<img class='img-circle' src='./"+data+"' width='90px' height='90px'> ";
-		  }},
-		  {"data":"nombre"},		 
-		  {"data":"emp_dni"},		 	
-		  {"data":"emp_movil"},		 
-          {"data":"sector"},	
-		  {"data":"emp_status",
+								
+			
+				return "<span class='label text-dark'>$ "+data+"</span>";
+			
+		}},
+
+		  {"data":"estado",
+		  render:function(data,type,row){
+								
+			if(data=='Pago'){
+				return "<span class='label text-dark'>"+data+"</span>";
+			}else{
+				return "<span class='label bg-danger text-white'>"+data+"</span>";
+			}
+		}},	
+		  {"data":"estado",
 			render:function(data,type,row){
-				if(data=='activo'){
-					return "<span class='label text-success'>"+data+"</span>";
+				if(data=='Pago'){
+					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success' disabled><i class='fa fa-check'></i></button>&nbsp;";
 				}else{
-					return "<span class='label text-danger'>"+data+"</span>";
-				}
-			}},	
-			{"data":"emp_status",
-			render:function(data,type,row){
-				if(data=='activo'){
-					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success' disabled><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_persona'><i class='fa fa-eye'></i></button>";
-				}else{
-					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger' disabled><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='ver btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_persona'><i class='fa fa-eye'></i></button>";
+					return "<button style='font-size:13px;' type='button' class='desactivar btn btn-danger' disabled><i class='fa fa-times'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>&nbsp;";
 				}
 			}},	
 		  
@@ -92,7 +100,7 @@ function registrar(){
 	var cuit=$("#txt_cuit").val();
 	var total=$("#txt_total").val();
 	var detalle=$("#txt_detalle").val();
-	var fecha=$("#txt_fecha").val();
+	var fecha=$("#txt_fechaPlan").val();
 
 	$.ajax({
 		url:"controlador/plan/control_registrar_plan.php",
@@ -101,9 +109,11 @@ function registrar(){
 			plan:plan,
 			cuit:cuit,
 			total:total,
-			detalle:detalle
+			detalle:detalle,
+			fecha:fecha
 		}
 	}).done(function(resp){
+		alert(resp);
 		registrar_cuotas(resp);
 	})
 
@@ -113,17 +123,25 @@ function registrar(){
 function registrar_cuotas(id){
 	var count=0;
 	var arreglo_cuotas=new Array();
+	var arreglo_fecha=new Array();
+	var arreglo_monto=new Array();
 
 	$("#tabla_cuota tbody#tbody_tabla_cuota tr").each(function(){
 		arreglo_cuotas.push($(this).find('td').eq(0).text());
+		arreglo_fecha.push($(this).find('td').eq(1).text());
+		arreglo_monto.push($(this).find('td').eq(2).text());
 		count++;
 
 	})
 	var arregloCuotas=arreglo_cuotas.toString(); /// loc onvierte en string para enviar al controlador
+	var arregloFecha=arreglo_fecha.toString(); /// loc onvierte en string para enviar al controlador
+	var arregloMonto=arreglo_monto.toString(); /// loc onvierte en string para enviar al controlador
 
 	if(count==0){
 		return;
 	}
+
+	
 
 	$.ajax({
 		url: "controlador/plan/control_registrar_cuotas.php",
@@ -131,6 +149,8 @@ function registrar_cuotas(id){
 		data: {
 			id:id,
 			arregloCuotas:arregloCuotas,
+			arregloFecha:arregloFecha,
+			arregloMonto:arregloMonto
 			
 		}
 	}).done(function(resp){
@@ -141,6 +161,146 @@ function registrar_cuotas(id){
 		}
 		else{
 			Swal.fire("Mensaje De Confirmacion","no se puede registrar procedimiento","warning");
+		}
+	})
+}
+
+function comboRolplan(){
+	$.ajax({
+		url: "controlador/plan/control_comboplan.php",
+		type: "POST",
+	}).done(function(resp){
+		//alert(resp);  // para ver que datos trae
+		var data=JSON.parse(resp);
+		var cadena="";
+	/* 	 alert(data);
+		alert(data[0].rol);
+		for(var i=0;i < data.length;i++){
+			alert(data[i].rol);			// prueba de recorrido de datos.
+		}  */
+		if(data.length>0){
+			for(var i=0;i < data.length;i++){
+				cadena+="<option value='"+data[i].idplanesPago+"'>"+data[i].planes+"</option>";
+			}
+			$("#cbm_select").html(cadena);
+				var id=$("#cbm_ select").val();
+			//alert(id);
+			verPlan(id);
+		}
+	})
+}
+
+function verPlan(id){
+
+	
+	$.ajax({
+		url: "controlador/plan/control_verPlan.php",
+		type: "POST",
+		data:{
+			id:id
+		}
+	}).done(function(resp){
+		//alert(resp);  // para ver que datos trae
+		var data=JSON.parse(resp);
+	//	alert(data[0].total);
+		if(data.length>0){
+		
+		
+		document.getElementById('label_plan').innerText = data[0].plan;
+		document.getElementById('label_total').innerText ='$ '+ data[0].total;
+		document.getElementById('label_cuit').innerText = data[0].cuit;
+		document.getElementById('label_detalle').innerText = data[0].detalle;
+		
+		listar_plan(data[0].idplanesPago);
+		saldoPlan(data[0].idplanesPago);
+		}
+		
+		
+
+	})
+}
+
+function saldoPlan(id){
+
+	
+	$.ajax({
+		url: "controlador/plan/control_saldoPlan.php",
+		type: "POST",
+		data:{
+			id:id
+		}
+	}).done(function(resp){
+		//alert(resp);  // para ver que datos trae
+		//var data=JSON.parse(resp);
+	//	alert(data[0].total);
+		if(resp.length>0){
+		
+		
+		document.getElementById('label_pagado').innerText ='$ '+ resp;
+		
+		}
+		
+		
+
+	})
+}
+
+$('#tabla_planes').on('click','.activar',function(){
+	var data =table.row($(this).parents('tr')).data();
+
+	
+    modificarStatus(data.iddetallePlan,'Pago');
+       
+
+})
+
+$('#tabla_planes').on('click','.desactivar',function(){
+	var data =table.row($(this).parents('tr')).data();
+	
+	
+	 modificarStatus(data.iddetallePlan,'Debe');
+       
+
+})
+
+function modificarStatus(iddetalle,status){	
+	
+	$.ajax({
+		url:"controlador/plan/control_estadoPlan.php",
+		type: "POST",
+		data:{
+			iddetalle:iddetalle,
+			status:status
+			
+		}
+	}).done(function(resp){
+		
+	   table.ajax.reload();
+	})
+
+}
+
+function cardIndex(){
+	$.ajax({
+		url: "controlador/plan/control_comboplan.php",
+		type: "POST",
+	}).done(function(resp){
+		//alert(resp);  // para ver que datos trae
+		var data=JSON.parse(resp);
+		var cadena="";
+	/* 	 alert(data);
+		alert(data[0].rol);
+		for(var i=0;i < data.length;i++){
+			alert(data[i].rol);			// prueba de recorrido de datos.
+		}  */
+		if(data.length>0){
+			for(var i=0;i < data.length;i++){
+				cadena+="<option value='"+data[i].idplanesPago+"'>"+data[i].planes+"</option>";
+			}
+			$("#cbm_select").html(cadena);
+				var id=$("#cbm_ select").val();
+			//alert(id);
+			verPlan(id);
 		}
 	})
 }

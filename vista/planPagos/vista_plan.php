@@ -1,40 +1,56 @@
 <div class="container">
 <script type="text/javascript" src="././plan.js?rev=<?php echo time(); ?>"></script>
 <div class="col-md-12">
-        <div class="container">
-            <div class="row border">
-                <div class="col-md-4">
-                    <label for="">plan</label>
-                    <label for="">plan</label>
+        <div class="container border">
+            <div class="row">
+                <div class="col-md-4 ">
+                   <div class="col-sm-3 h-auto d-inline-block text-end ">
+                    <p class="fs-6 fw-bold text-right" ><label for="">Plan :</label></p>
+                  </div>
+                  <div class="col-sm-8 h-auto d-inline-block ">
+                    <label for="" id="label_plan"></label>
+                    </div> 
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                    <p class="fs-6 fw-bold text-right" ><label for="">Total :</label></p>
+                  </div>
+                  <div class="col-sm-8 h-auto d-inline-block ">
+                    <label for="" id="label_total"></label>
+                    </div> 
+                </div>
+                <div class="col-md-4 ">
+                   <div class="col-sm-3 h-auto d-inline-block text-end ">
+                    <p class="fs-6 fw-bold text-right" ><label for="">C.U.I.T :</label></p>
+                  </div>
+                  <div class="col-sm-8 h-auto d-inline-block ">
+                    <label for="" id="label_cuit"></label>
+                    </div> 
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                    <p class="fs-6 fw-bold text-right" ><label for="">Pagado :</label></p>
+                  </div>
+                  <div class="col-sm-8 h-auto d-inline-block ">
+                    <label for="" id="label_pagado"></label>
+                    </div> 
                 </div>
                 <div class="col-md-4">
-                    <label for="">Cuit</label>
-                    <label for="">Cuit</label>
-                </div>
-                <div class="col-md-4">
+                  <div>
                 <button class="btn btn-success  align-content-end"  data-bs-toggle="modal" data-bs-target="#registro_plan"><i class="glyphicon glyphicon-plus"></i>&nbsp;Nuevo Plan</button>
-                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
+                </div>
+                <br>
+                <div>
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="cbm_select">
                     
+                  </select>
+                  </div>
                 </div>        
             </div>
-            <div class="row border">
-                <div class="col-md-6">
-                    <label for="">detalle</label>
-                    <label for="">detalle</label>
-                </div>
-                <div class="col-md-3">
-                    <label for="">total</label>
-                    <label for="">total</label>
-                </div>
-                <div class="col-md-3">
-                    <label for="">pagado</label>
-                    <label for="">pagado</label>
-                </div>        
+            <div class="row ">
+                <div class="col-md-12">
+                  <div class="col-sm-1 h-auto d-inline-block text-end ">
+                    <p class="fs-6 fw-bold text-right" ><label for="">Detalle :</label></p>
+                  </div>
+                  <div class="col-sm-9 h-auto d-inline-block ">
+                    <label for="" id="label_detalle"></label>
+                  </div>                
             </div>
         </div>
     </div>
@@ -97,11 +113,13 @@
                 </div>
                 <div class="col-md-3">
                     <label for="" >Total</label>
-                    <input type="text"class="form-control form-control-sm" id="txt_total">
+                    <div class="input-group">
+                    <span class="input-group-text form-control-sm">$</span> <input type="text"class="form-control form-control-sm" aria-label="Amount (to the nearest dollar) "id="txt_total">
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <label for="" >Fecha</label>
-                    <input type="date"class="form-control form-control-sm" id="txt_fecha">
+                    <input type="date"class="form-control form-control-sm" id="txt_fechaPlan">
                 </div>                                 
             </div>
             <div class="row ">
@@ -152,7 +170,7 @@
         </div>
       </div>
       <div class="modal-footer justify-content-center" >
-        <button type="button" class="btn btn-primary" onclick="Registrar()">Registrar</button>
+        <button type="button" class="btn btn-primary" onclick="registrar()">Registrar</button>
       </div>
       </form>
     </div>
@@ -164,8 +182,14 @@
 
 <script>
     $(document).ready(function() {
-        listar_plan();
+      comboRolplan();
+       // listar_plan();
 
-
+               $("#cbm_select").change(function(){ ////funcion para que cambie el combobox de medico
+                var id=$("#cbm_select").val();
+                
+                verPlan(id);
+                listar_plan(id);
+            }) 
     });
 </script>
