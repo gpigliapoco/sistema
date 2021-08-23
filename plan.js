@@ -18,7 +18,7 @@ function listar_plan(id){
 		  }
 	  },
 	  "columns":[
-		  {"data":"iddetallePlan"},
+		  {"data":"cuota"},
 		  {"data":"plan"},
 		  {"data":"cuit"},		 
 		  {"data":"cuota"},		 	
@@ -148,7 +148,7 @@ function registrar(){
 			fecha:fecha
 		}
 	}).done(function(resp){
-		alert(resp);
+		//alert(resp);
 		registrar_cuotas(resp);
 	})
 
@@ -245,6 +245,13 @@ function verPlan(id){
 		document.getElementById('label_total').innerText ='$ '+ data[0].total;
 		document.getElementById('label_cuit').innerText = data[0].cuit;
 		document.getElementById('label_detalle').innerText = data[0].detalle;
+
+		$("#txt_planEditar").val(data[0].plan);
+		$("#txt_cuitEditar").val(data[0].cuit);
+		$("#txt_totalEditar").val(data[0].total);
+		$("#txt_detalleEditar").val(data[0].detalle);
+		$("#txt_fechaPlanEditar").val(data[0].fecha);
+		$("#txt_idplan").val(data[0].idplanesPago);
 		
 		listar_plan(data[0].idplanesPago);
 		saldoPlan(data[0].idplanesPago);
@@ -254,6 +261,35 @@ function verPlan(id){
 
 	})
 }
+
+function editar(){
+
+	var id=$("#txt_idplan").val();
+	var plan=$("#txt_planEditar").val();
+	var cuit=$("#txt_cuitEditar").val();
+	var total=$("#txt_totalEditar").val();
+	var detalle=$("#txt_detalleEditar").val();
+	var fecha=$("#txt_fechaPlanEditar").val();
+
+	$.ajax({
+		url:"controlador/plan/control_editarPlan.php",
+		type:"post",
+		data:{
+			id:id,
+			plan:plan,
+			cuit:cuit,
+			total:total,
+			detalle:detalle,
+			fecha:fecha
+		}
+	}).done(function(resp){
+		//alert(resp);
+		Swal.fire("Plan de Pagos Editado","success");
+	})
+
+
+}
+
 
 function saldoPlan(id){
 

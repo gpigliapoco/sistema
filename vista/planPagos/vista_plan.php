@@ -34,6 +34,7 @@
                 <div class="col-md-4">
                   <div>
                 <button class="btn btn-success  align-content-end"  data-bs-toggle="modal" data-bs-target="#registro_plan"><i class="glyphicon glyphicon-plus"></i>&nbsp;Nuevo Plan</button>
+                <button class="btn btn-success  align-content-end"  data-bs-toggle="modal" data-bs-target="#editar_plan"><i class="glyphicon glyphicon-plus"></i>&nbsp;Editar Plan</button>
                 </div>
                 <br>
                 <div>
@@ -178,7 +179,52 @@
 </div>
 
 </div>
-
+<div class="modal" tabindex="-1" id="editar_plan">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-center bg-primary text-white p-1 d-inline-block">
+        <h5 class="modal-title"  >Editar Plan de Pago</h5>        
+      </div>
+      <div class="modal-body">
+          <div class="container-fluid">
+        <form onsubmit="return false" class="needs-validation" novalidate method="post" action="#" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-3 ">
+                    <label for="">Plan</label>
+                    <input type="text" name="nombre" id="txt_idplan" class="form-control" disabled hidden>
+                    <input type="text"class="form-control form-control-sm" id="txt_planEditar">
+                </div>
+                <div class="col-md-3">
+                    <label for="" >Cuit</label>
+                    <input type="text"class="form-control form-control-sm" id="txt_cuitEditar">
+                </div>
+                <div class="col-md-3">
+                    <label for="" >Total</label>
+                    <div class="input-group">
+                    <span class="input-group-text form-control-sm">$</span> <input type="text"class="form-control form-control-sm" aria-label="Amount (to the nearest dollar) "id="txt_totalEditar">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="" >Fecha</label>
+                    <input type="date"class="form-control form-control-sm" id="txt_fechaPlanEditar">
+                </div>                                 
+            </div>
+            <div class="row ">
+                <div class="col-md-12" >
+                    <label for="" >Detalle</label>
+                    <input type="text"class="form-control" id="txt_detalleEditar">
+                </div>
+                       
+            </div>
+           
+      </div>
+      <div class="modal-footer justify-content-center" >
+        <button type="button" class="btn btn-primary" onclick="editar()">Editar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <script>
     $(document).ready(function() {
