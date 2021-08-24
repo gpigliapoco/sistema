@@ -285,6 +285,7 @@ function editar(){
 	}).done(function(resp){
 		//alert(resp);
 		Swal.fire("Plan de Pagos Editado","success");
+		$("#editar_plan").modal("hide");
 	})
 
 

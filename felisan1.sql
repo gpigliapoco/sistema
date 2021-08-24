@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-08-2021 a las 20:02:26
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.6
+-- Tiempo de generación: 24-08-2021 a las 04:50:18
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,7 +69,7 @@ SELECT 2;
 END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addPlan` (IN `cuit` INT(50), IN `plan` VARCHAR(250), IN `deta` VARCHAR(250), IN `total` INT(50), IN `fecha` DATE)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addPlan` (IN `cuit` VARCHAR(50), IN `plan` VARCHAR(250), IN `deta` VARCHAR(250), IN `total` INT(50), IN `fecha` DATE)  BEGIN
 INSERT INTO planespago(planespago.plan,planespago.detalle,planespago.cuit,
                        planespago.total,planespago.estado,planespago.fecha) VALUES
                        (plan,deta,cuit,total,'activo',fecha);
@@ -210,6 +210,9 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFotoEmpleado` (IN `id` INT, IN `ruta` VARCHAR(250))  UPDATE empleado SET empleado.emp_foto=ruta WHERE empleado.idempleado=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFotoVehiculo` (IN `id` INT(50), IN `destino` VARCHAR(250))  UPDATE transporte SET transporte.foto=destino WHERE transporte.idtransporte=id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatePlan` (IN `id` INT(50), IN `cuit` VARCHAR(50), IN `plan` VARCHAR(50), IN `deta` VARCHAR(250), IN `total` INT(50), IN `fecha` DATE)  UPDATE planespago SET planespago.cuit=cuit,planespago.plan=plan,planespago.detalle=deta,
+planespago.total=total,planespago.fecha=fecha WHERE planespago.idplanesPago=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatus` (IN `id` INT, IN `estado` VARCHAR(45))  UPDATE empleado SET empleado.emp_status = estado WHERE empleado.idempleado=id$$
 
@@ -506,8 +509,8 @@ CREATE TABLE `planespago` (
   `idplanesPago` int(50) NOT NULL,
   `plan` varchar(250) NOT NULL,
   `detalle` varchar(250) NOT NULL,
-  `cuit` int(50) NOT NULL,
-  `total` int(50) NOT NULL,
+  `cuit` varchar(50) NOT NULL,
+  `total` int(100) NOT NULL,
   `estado` enum('activo','inactivo','','') NOT NULL,
   `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -517,11 +520,11 @@ CREATE TABLE `planespago` (
 --
 
 INSERT INTO `planespago` (`idplanesPago`, `plan`, `detalle`, `cuit`, `total`, `estado`, `fecha`) VALUES
-(1, 'LEO-M791525', 'SE DEBITA DE CTA.CREDICOOP ', 2147483647, 94431, 'activo', '2020-03-26'),
-(2, 'GERA-M788184', 'SE DEBITA DE CTA.CREDICOOP GERA', 2147483647, 253151, 'activo', '2019-11-26'),
-(3, 'GERA-M788173', 'SE DEBITA DE CTA.CREDICOOP GERA 36 CUOTAS', 2147483647, 186390, 'activo', '2019-11-26'),
-(4, 'LEO-07801', 'BOLETAS QUE PAGAR 1 X MES 18 CUOTAS IIBB', 2147483647, 300852, 'activo', '2021-02-05'),
-(5, 'ORESTES-0313086', 'SE DEBITA DE CTA.CREDICOOP SOSA APORTES SUSS 36 CUOTAS', 2147483647, 688770, 'activo', '2020-11-27');
+(1, 'LEO-M791525', 'SE DEBITA DE CTA.CREDICOOP 24 cuotas', '20299859348', 94431, 'activo', '2020-03-26'),
+(2, 'GERA-M788184', 'SE DEBITA DE CTA.CREDICOOP GERA 36 cuotas', '23147724799', 253151, 'activo', '2019-11-26'),
+(3, 'GERA-M788173', 'SE DEBITA DE CTA.CREDICOOP GERA 36 CUOTAS', '23147724799', 186390, 'activo', '2019-11-26'),
+(4, 'LEO-07801', 'BOLETAS QUE PAGAR 1 X MES 18 CUOTAS IIBB', '20299859348', 300852, 'activo', '2021-02-05'),
+(5, 'ORESTES-0313086', 'SE DEBITA DE CTA.CREDICOOP SOSA APORTES SUSS 36 CUOTAS', '2147483647', 688770, 'activo', '2020-11-27');
 
 -- --------------------------------------------------------
 

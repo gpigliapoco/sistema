@@ -32,7 +32,7 @@
 </div>
 <div class="container">
   
-  <div class="row">
+  <div class="row" id="fila_card">
     <div class="card text-white bg-primary mb-3 border" style="max-width: 18rem;">
       <div class="card-header text-center">Plan</div>
       <div class="card-body">

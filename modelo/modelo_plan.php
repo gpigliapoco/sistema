@@ -59,7 +59,7 @@
           }
 
           function editar_plan($id,$cuit,$plan,$detalle,$total,$fecha){
-               $consulta="CALL addPlan ('$id','$cuit','$plan','$detalle','$total','$fecha' )";    
+               $consulta="CALL updatePlan ('$id','$cuit','$plan','$detalle','$total','$fecha' )";    
                 $resultado=$this->conexion->conexion->prepare($consulta);
                 if ($resultado->execute()) {                 
                   return 1;                 
