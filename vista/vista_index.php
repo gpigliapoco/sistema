@@ -45,7 +45,29 @@
   </div>
 </div>
 <div class="container">
-  
+  <div class="col-md-8">
+<table id="tabla_index" class="display" style="width:100%">
+            <thead>
+                <tr>
+                            <th>Plan</th>
+                            <th>Cuit</th>
+                            <th>Total</th>
+                            <th>Cuotas</th>
+                            <th>Estado</th>
+                           
+                </tr>
+            </thead>     
+            <tfoot>
+                <tr>
+                            <th>Plan</th>
+                            <th>Cuit</th>
+                            <th>Total</th>
+                            <th>Cuotas</th>
+                            <th>Estado</th>
+                </tr>
+            </tfoot>
+        </table>
+        </div>
   
 </div>
 
@@ -54,5 +76,6 @@
     indexEmple();
     indexTransporte();
     indexPlan();
+    listar_plan();
   });
 </script>

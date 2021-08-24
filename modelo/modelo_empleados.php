@@ -132,6 +132,18 @@
             }
            }
 
+           function listar_index(){
+            $consulta = "CALL listarIndex";
+            $arreglo = array();
+            if ($resultado = $this->conexion->conexion->query($consulta)) {
+                while ($consulta_VU = mysqli_fetch_assoc($resultado)) {
+                    $arreglo["data"][]=$consulta_VU;
+    
+                }
+                return $arreglo;
+                $this->conexion->cerrar();
+            }
+        }
 
 
     }

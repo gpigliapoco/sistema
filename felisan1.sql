@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-08-2021 a las 04:50:18
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.8
+-- Tiempo de generación: 24-08-2021 a las 21:00:25
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -95,7 +95,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `indexEmpleado` ()  SELECT COUNT(*) as emple FROM empleado$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `indexPlan` (IN `id` INT(50))  SELECT planespago.plan,planespago.total, COUNT(detalleplan.cuota)as cuotass ,(SELECT SUM(detalleplan.total_cuota) FROM detalleplan WHERE detalleplan.estado="Pago" and detalleplan.idplan_detalle=id)as pagado , (SELECT COUNT(detalleplan.cuota) FROM detalleplan WHERE detalleplan.estado="Pago" and detalleplan.idplan_detalle=id) as cuotaPaga FROM planespago INNER JOIN detalleplan ON planespago.idplanesPago=detalleplan.idplan_detalle WHERE planespago.idplanesPago=id$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `indexPlan` ()  SELECT COUNT(planespago.idplanesPago) as plan FROM planespago$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `indexTransporte` ()  SELECT COUNT(*) as transp FROM transporte$$
 
@@ -172,6 +172,8 @@ DATE_FORMAT(empleado.emp_ingreso, '%d-%m-%Y') AS ingreso,
 DATE_FORMAT(empleadoextras.ex_vrencimiento, '%d-%m-%Y') AS vencimiento
 FROM empleado INNER JOIN sector on sector.idsector=empleado.sector_idsector INNER JOIN empleadoextras on empleadoextras.empleado_idempleado=empleado.idempleado WHERE empleado.idempleado=id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarIndex` ()  SELECT planespago.plan,planespago.cuit,planespago.total,planespago.estado,COUNT(detalleplan.cuota) as cuotas FROM planespago INNER JOIN detalleplan ON planespago.idplanesPago=detalleplan.idplan_detalle GROUP BY planespago.idplanesPago$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarPlan` (IN `id` INT(50))  SELECT planespago.*,detalleplan.* FROM planespago INNER JOIN detalleplan on detalleplan.idplan_detalle=planespago.idplanesPago
 WHERE planespago.idplanesPago=id$$
 
@@ -196,6 +198,8 @@ transporte.foto
 
 FROM transporte$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `prueba` ()  SELECT detalleplan.idplan_detalle,planespago.plan, COUNT(detalleplan.cuota)  FROM detalleplan INNER JOIN planespago ON detalleplan.idplan_detalle=planespago.idplanesPago GROUP BY detalleplan.idplan_detalle$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `saldoPlan` (IN `id` INT(50))  SELECT SUM(detalleplan.total_cuota) FROM detalleplan WHERE detalleplan.idplan_detalle=id AND detalleplan.estado='Pago'$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEmpleado` (IN `id` INT, IN `nombre` VARCHAR(250), IN `apellido` VARCHAR(250), IN `cargo` INT, IN `direccion` VARCHAR(250), IN `ciudad` VARCHAR(250), IN `dni` INT, IN `movil` INT, IN `nacimiento` DATE, IN `sexo` CHAR(1), IN `estado` VARCHAR(250), IN `ingreso` DATE, IN `nomE` VARCHAR(250), IN `dniE` INT, IN `movilE` INT, IN `hijos` INT, IN `nomB` VARCHAR(250), IN `dniB` INT, IN `movilB` INT, IN `direccionB` VARCHAR(250), IN `moyano` ENUM('s','n'), IN `registro` VARCHAR(250), IN `vencimiento` DATE, IN `observ` VARCHAR(250))  BEGIN
@@ -211,8 +215,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFotoEmpleado` (IN `id` INT, I
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFotoVehiculo` (IN `id` INT(50), IN `destino` VARCHAR(250))  UPDATE transporte SET transporte.foto=destino WHERE transporte.idtransporte=id$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updatePlan` (IN `id` INT(50), IN `cuit` VARCHAR(50), IN `plan` VARCHAR(50), IN `deta` VARCHAR(250), IN `total` INT(50), IN `fecha` DATE)  UPDATE planespago SET planespago.cuit=cuit,planespago.plan=plan,planespago.detalle=deta,
-planespago.total=total,planespago.fecha=fecha WHERE planespago.idplanesPago=id$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatePlan` (IN `id` INT(50), IN `cuit` VARCHAR(50), IN `plan` VARCHAR(50), IN `deta` VARCHAR(250), IN `total` INT(50), IN `fecha` DATE, IN `estado` VARCHAR(250))  UPDATE planespago SET planespago.cuit=cuit,planespago.plan=plan,planespago.detalle=deta,
+planespago.total=total,planespago.fecha=fecha,planespago.estado=estado WHERE planespago.idplanesPago=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStatus` (IN `id` INT, IN `estado` VARCHAR(45))  UPDATE empleado SET empleado.emp_status = estado WHERE empleado.idempleado=id$$
 
