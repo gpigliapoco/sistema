@@ -7,7 +7,7 @@
                    <div class="col-sm-3 h-auto d-inline-block text-end ">
                     <p class="fs-6 fw-bold text-right" ><label for="">Plan :</label></p>
                   </div>
-                  <div class="col-sm-8 h-auto d-inline-block ">
+                  <div class="col-sm-8 h-auto d-inline-block  ">
                     <label for="" id="label_plan"></label>
                     </div> 
                     <div class="col-sm-3 h-auto d-inline-block text-end ">
@@ -16,8 +16,14 @@
                   <div class="col-sm-8 h-auto d-inline-block ">
                     <label for="" id="label_total"></label>
                     </div> 
+                    <div class="col-sm-3 h-auto d-inline-block text-end ">
+                    <p class="fs-6 fw-bold text-right" ><label for="">Estado :</label></p>
+                  </div>
+                  <div class="col-sm-8 h-auto d-inline-block ">
+                    <label for="" id="label_estado"></label>
+                    </div> 
                 </div>
-                <div class="col-md-4 ">
+                <div class="col-md-4  ">
                    <div class="col-sm-3 h-auto d-inline-block text-end ">
                     <p class="fs-6 fw-bold text-right" ><label for="">C.U.I.T :</label></p>
                   </div>
@@ -27,7 +33,7 @@
                     <div class="col-sm-3 h-auto d-inline-block text-end ">
                     <p class="fs-6 fw-bold text-right" ><label for="">Pagado :</label></p>
                   </div>
-                  <div class="col-sm-8 h-auto d-inline-block ">
+                  <div class="col-sm-8 h-auto d-inline-block  ">
                     <label for="" id="label_pagado"></label>
                     </div> 
                 </div>
@@ -42,8 +48,10 @@
                     
                   </select>
                   </div>
-                </div>        
+                </div>
+                     
             </div>
+            
             <div class="row ">
                 <div class="col-md-12">
                   <div class="col-sm-1 h-auto d-inline-block text-end ">
@@ -213,8 +221,19 @@
                 <div class="col-md-12" >
                     <label for="" >Detalle</label>
                     <input type="text"class="form-control" id="txt_detalleEditar">
-                </div>
-                       
+                </div>                       
+            </div>
+            <div class="row ">
+               <div class="col-md-3">
+                    <label for="" >Estado</label>
+                    <select class="form-select" aria-label="Default select example" id="cbm_estadoEditar">
+                      <option value="activo">activo</option>
+                      <option value="inactivo">inactivo</option>
+                      
+                    </select>
+                   
+                </div>           
+                            
             </div>
            
       </div>

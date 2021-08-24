@@ -122,6 +122,16 @@
             }
            }
 
+           function indexPlan(){
+            $consulta = "call indexPlan ";	
+            if ($resultado = $this->conexion->conexion->query($consulta)) {
+              if ($row = mysqli_fetch_array($resultado)) {
+                              return $id= trim($row[0]); ////  devuelve la posicion 1 variable cuenta
+              }
+              $this->conexion->cerrar();
+            }
+           }
+
 
 
     }

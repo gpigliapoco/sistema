@@ -42,14 +42,14 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nombre</th>                                       
+                                        <th>Sector</th>                                       
                                     
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nombre</th>                                              
+                                        <th>Sector</th>                                              
                                         
                                     </tr>
                                 </tfoot>

@@ -10,8 +10,9 @@
         $total = (isset($_POST['total'])) ? $_POST['total'] : '';
         $detalle = (isset($_POST['detalle'])) ? $_POST['detalle'] : '';
         $fecha = (isset($_POST['fecha'])) ? $_POST['fecha'] : '';
+        $estado = (isset($_POST['estado'])) ? $_POST['estado'] : '';
         
-         $consulta=$mu->editar_plan($id,$cuit,$plan,$detalle,$total,$fecha); 
+         $consulta=$mu->editar_plan($id,$cuit,$plan,$detalle,$total,$fecha,$estado); 
                           echo $consulta; 
                        
                        

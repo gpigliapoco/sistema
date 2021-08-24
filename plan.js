@@ -245,6 +245,7 @@ function verPlan(id){
 		document.getElementById('label_total').innerText ='$ '+ data[0].total;
 		document.getElementById('label_cuit').innerText = data[0].cuit;
 		document.getElementById('label_detalle').innerText = data[0].detalle;
+		document.getElementById('label_estado').innerText = data[0].estado;
 
 		$("#txt_planEditar").val(data[0].plan);
 		$("#txt_cuitEditar").val(data[0].cuit);
@@ -252,6 +253,7 @@ function verPlan(id){
 		$("#txt_detalleEditar").val(data[0].detalle);
 		$("#txt_fechaPlanEditar").val(data[0].fecha);
 		$("#txt_idplan").val(data[0].idplanesPago);
+		$("#cbm_estadoEditar").val(data[0].estado).trigger("change");
 		
 		listar_plan(data[0].idplanesPago);
 		saldoPlan(data[0].idplanesPago);
@@ -270,6 +272,7 @@ function editar(){
 	var total=$("#txt_totalEditar").val();
 	var detalle=$("#txt_detalleEditar").val();
 	var fecha=$("#txt_fechaPlanEditar").val();
+	var estado=$("#cbm_estadoEditar").val();
 
 	$.ajax({
 		url:"controlador/plan/control_editarPlan.php",
@@ -280,7 +283,8 @@ function editar(){
 			cuit:cuit,
 			total:total,
 			detalle:detalle,
-			fecha:fecha
+			fecha:fecha,
+			estado:estado
 		}
 	}).done(function(resp){
 		//alert(resp);
@@ -351,6 +355,8 @@ function modificarStatus(iddetalle,status){
 	})
 
 }
+
+
 
 function cardIndex(){
 	$.ajax({
