@@ -60,7 +60,13 @@ function listar_plan(){
 	  "columns":[
 		  {"data":"plan"},
 		  {"data":"cuit"},
-		  {"data":"total"},		 
+		  {"data":"total",
+		  render:function(data,type,row){
+								
+			
+			return "<span class='label text-dark'>$ "+data+"</span>";
+		
+			}},		 
 		  {"data":"cuotas"},		 	
 		  {"data":"estado",
 		  render:function(data,type,row){
