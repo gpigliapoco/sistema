@@ -30,12 +30,12 @@ function listar_plan(id){
 		
 			}},		 
           {"data":"total_cuota",
-		  render:function(data,type,row){
+		  render:$.fn.dataTable.render.number( ',', '.', 0, '$' )
 								
 			
-				return "<span class='label text-dark'>$ "+data+"</span>";
+			//	return "<span class='label text-dark'>$ "+data+"</span>";
 			
-		}},
+		},
 
 		  {"data":"estado",
 		  render:function(data,type,row){

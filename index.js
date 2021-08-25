@@ -61,12 +61,12 @@ function listar_plan(){
 		  {"data":"plan"},
 		  {"data":"cuit"},
 		  {"data":"total",
-		  render:function(data,type,row){
+		  render:$.fn.dataTable.render.number( ',', '.', 0, '$' )
 								
 			
-			return "<span class='label text-dark'>$ "+data+"</span>";
+			//return "<span class='label text-dark'>$ "+data+"</span>";
 		
-			}},		 
+			},		 
 		  {"data":"cuotas"},		 	
 		  {"data":"estado",
 		  render:function(data,type,row){
