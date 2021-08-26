@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-08-2021 a las 21:00:25
+-- Tiempo de generación: 26-08-2021 a las 20:12:55
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -172,7 +172,7 @@ DATE_FORMAT(empleado.emp_ingreso, '%d-%m-%Y') AS ingreso,
 DATE_FORMAT(empleadoextras.ex_vrencimiento, '%d-%m-%Y') AS vencimiento
 FROM empleado INNER JOIN sector on sector.idsector=empleado.sector_idsector INNER JOIN empleadoextras on empleadoextras.empleado_idempleado=empleado.idempleado WHERE empleado.idempleado=id$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `listarIndex` ()  SELECT planespago.plan,planespago.cuit,planespago.total,planespago.estado,COUNT(detalleplan.cuota) as cuotas FROM planespago INNER JOIN detalleplan ON planespago.idplanesPago=detalleplan.idplan_detalle GROUP BY planespago.idplanesPago$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarIndex` ()  SELECT planespago.plan,planespago.cuit,planespago.total,planespago.estado,COUNT(detalleplan.cuota) as cuotas,(SELECT SUM( detalleplan.total_cuota) FROM detalleplan WHERE detalleplan.estado="pago" AND detalleplan.idplan_detalle=planespago.idplanesPago ) AS pagada,(SELECT COUNT( detalleplan.cuota) FROM detalleplan WHERE detalleplan.estado="pago" AND detalleplan.idplan_detalle=planespago.idplanesPago ) AS cuotaPaga FROM planespago INNER JOIN detalleplan ON planespago.idplanesPago=detalleplan.idplan_detalle  GROUP BY planespago.idplanesPago$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarPlan` (IN `id` INT(50))  SELECT planespago.*,detalleplan.* FROM planespago INNER JOIN detalleplan on detalleplan.idplan_detalle=planespago.idplanesPago
 WHERE planespago.idplanesPago=id$$
@@ -330,22 +330,22 @@ INSERT INTO `detalleplan` (`iddetallePlan`, `cuota`, `total_cuota`, `estado`, `i
 (58, 34, 9095, 'Debe', 2, '2023-01-16'),
 (59, 35, 9228, 'Debe', 2, '2023-02-16'),
 (60, 36, 9360, 'Debe', 2, '2023-03-16'),
-(61, 2, 3560, 'Debe', 3, '2020-05-16'),
-(62, 3, 3658, 'Debe', 3, '2020-06-16'),
-(63, 4, 3756, 'Debe', 3, '2020-07-16'),
-(64, 5, 3854, 'Debe', 3, '2020-08-16'),
-(65, 6, 3952, 'Debe', 3, '2020-09-16'),
-(66, 7, 4050, 'Debe', 3, '2020-10-16'),
-(67, 8, 4148, 'Debe', 3, '2020-11-16'),
-(68, 9, 4246, 'Debe', 3, '2020-12-16'),
-(69, 10, 4344, 'Debe', 3, '2021-01-16'),
-(70, 11, 4442, 'Debe', 3, '2021-02-16'),
-(71, 12, 4540, 'Debe', 3, '2021-03-16'),
-(72, 13, 4638, 'Debe', 3, '2021-04-16'),
-(73, 14, 4736, 'Debe', 3, '2021-05-16'),
-(74, 15, 4834, 'Debe', 3, '2021-06-16'),
-(75, 16, 4932, 'Debe', 3, '2021-07-16'),
-(76, 17, 5030, 'Debe', 3, '2021-08-16'),
+(61, 2, 3560, 'Pago', 3, '2020-05-16'),
+(62, 3, 3658, 'Pago', 3, '2020-06-16'),
+(63, 4, 3756, 'Pago', 3, '2020-07-16'),
+(64, 5, 3854, 'Pago', 3, '2020-08-16'),
+(65, 6, 3952, 'Pago', 3, '2020-09-16'),
+(66, 7, 4050, 'Pago', 3, '2020-10-16'),
+(67, 8, 4148, 'Pago', 3, '2020-11-16'),
+(68, 9, 4246, 'Pago', 3, '2020-12-16'),
+(69, 10, 4344, 'Pago', 3, '2021-01-16'),
+(70, 11, 4442, 'Pago', 3, '2021-02-16'),
+(71, 12, 4540, 'Pago', 3, '2021-03-16'),
+(72, 13, 4638, 'Pago', 3, '2021-04-16'),
+(73, 14, 4736, 'Pago', 3, '2021-05-16'),
+(74, 15, 4834, 'Pago', 3, '2021-06-16'),
+(75, 16, 4932, 'Pago', 3, '2021-07-16'),
+(76, 17, 5030, 'Pago', 3, '2021-08-16'),
 (77, 18, 5128, 'Debe', 3, '2021-09-16'),
 (78, 19, 5226, 'Debe', 3, '2021-10-16'),
 (79, 20, 5324, 'Debe', 3, '2021-11-16'),
@@ -417,7 +417,104 @@ INSERT INTO `detalleplan` (`iddetallePlan`, `cuota`, `total_cuota`, `estado`, `i
 (145, 33, 22520, 'Debe', 5, '2023-08-16'),
 (146, 34, 22792, 'Debe', 5, '2023-09-16'),
 (147, 35, 23056, 'Debe', 5, '2023-10-16'),
-(148, 36, 23337, 'Debe', 5, '2023-11-16');
+(148, 36, 23337, 'Debe', 5, '2023-11-16'),
+(149, 3, 16245, 'Pago', 6, '2020-02-16'),
+(150, 4, 16046, 'Pago', 6, '2020-03-16'),
+(151, 5, 13994, 'Pago', 6, '2020-04-16'),
+(152, 6, 13854, 'Pago', 6, '2020-05-16'),
+(153, 7, 13713, 'Pago', 6, '2020-06-16'),
+(154, 8, 13600, 'Pago', 6, '2020-07-16'),
+(155, 9, 13459, 'Pago', 6, '2020-08-16'),
+(156, 10, 13317, 'Pago', 6, '2020-09-16'),
+(157, 11, 13101, 'Pago', 6, '2020-10-16'),
+(158, 12, 12963, 'Pago', 6, '2020-11-16'),
+(159, 13, 12824, 'Pago', 6, '2020-12-16'),
+(160, 14, 13232, 'Pago', 6, '2021-01-16'),
+(161, 15, 13069, 'Pago', 6, '2021-02-16'),
+(162, 16, 12907, 'Pago', 6, '2021-03-16'),
+(163, 17, 12744, 'Pago', 6, '2021-04-16'),
+(164, 18, 12582, 'Pago', 6, '2021-05-16'),
+(165, 19, 12420, 'Pago', 6, '2021-06-16'),
+(166, 20, 12257, 'Pago', 6, '2021-07-16'),
+(167, 21, 12095, 'Pago', 6, '2021-08-16'),
+(168, 22, 11932, 'Debe', 6, '2021-09-16'),
+(169, 23, 11770, 'Debe', 6, '2021-10-16'),
+(170, 24, 11608, 'Debe', 6, '2021-11-16'),
+(171, 25, 11445, 'Debe', 6, '2021-12-16'),
+(172, 26, 11283, 'Debe', 6, '2022-01-16'),
+(173, 27, 11120, 'Debe', 6, '2022-02-16'),
+(174, 28, 10958, 'Debe', 6, '2022-03-16'),
+(175, 29, 10796, 'Debe', 6, '2022-04-16'),
+(176, 30, 10633, 'Debe', 6, '2022-05-16'),
+(177, 31, 10471, 'Debe', 6, '2022-06-16'),
+(178, 32, 10308, 'Debe', 6, '2022-07-16'),
+(179, 33, 10146, 'Debe', 6, '2022-08-16'),
+(180, 34, 9984, 'Debe', 6, '2022-09-16'),
+(181, 35, 9821, 'Debe', 6, '2022-10-16'),
+(182, 36, 9659, 'Debe', 6, '2022-11-16'),
+(183, 1, 14340, 'Pago', 6, '2019-12-16'),
+(184, 2, 16443, 'Pago', 6, '2020-01-16'),
+(185, 1, 10596, 'Pago', 7, '2020-12-16'),
+(186, 2, 10812, 'Pago', 7, '2021-01-16'),
+(187, 3, 11021, 'Pago', 7, '2021-02-16'),
+(188, 4, 11209, 'Pago', 7, '2021-03-16'),
+(189, 5, 11439, 'Pago', 7, '2021-04-16'),
+(190, 6, 11641, 'Pago', 7, '2021-05-16'),
+(191, 7, 11938, 'Pago', 7, '2021-06-16'),
+(192, 8, 12235, 'Pago', 7, '2021-07-16'),
+(193, 9, 12532, 'Pago', 7, '2021-08-16'),
+(194, 10, 12829, 'Debe', 7, '2021-09-16'),
+(195, 11, 13126, 'Debe', 7, '2021-10-16'),
+(196, 12, 13423, 'Debe', 7, '2021-11-16'),
+(197, 13, 13720, 'Debe', 7, '2021-12-16'),
+(198, 14, 14017, 'Debe', 7, '2022-01-16'),
+(199, 15, 14314, 'Debe', 7, '2022-02-16'),
+(200, 16, 14611, 'Debe', 7, '2022-03-16'),
+(201, 17, 14908, 'Debe', 7, '2022-04-16'),
+(202, 18, 15205, 'Debe', 7, '2022-05-16'),
+(203, 19, 15502, 'Debe', 7, '2022-06-16'),
+(204, 20, 15799, 'Debe', 7, '2022-07-16'),
+(205, 21, 16096, 'Debe', 7, '2022-08-16'),
+(206, 22, 16393, 'Debe', 7, '2022-09-16'),
+(207, 23, 16690, 'Debe', 7, '2022-10-16'),
+(208, 24, 16987, 'Debe', 7, '2022-11-16'),
+(209, 1, 24697, 'Debe', 8, '2021-09-16'),
+(210, 2, 24697, 'Debe', 8, '2021-10-16'),
+(211, 3, 24697, 'Debe', 8, '2021-11-16'),
+(212, 4, 24697, 'Debe', 8, '2021-12-16'),
+(213, 5, 24697, 'Debe', 8, '2022-01-16'),
+(214, 6, 24697, 'Debe', 8, '2022-02-16'),
+(215, 7, 24697, 'Debe', 8, '2022-03-16'),
+(216, 8, 24697, 'Debe', 8, '2022-04-16'),
+(217, 9, 24697, 'Debe', 8, '2022-05-16'),
+(218, 10, 24697, 'Debe', 8, '2022-06-16'),
+(219, 11, 24697, 'Debe', 8, '2022-07-16'),
+(220, 12, 24697, 'Debe', 8, '2022-08-16'),
+(221, 1, 56405, 'Debe', 9, '2021-09-10'),
+(222, 2, 56405, 'Debe', 9, '2021-10-10'),
+(223, 3, 56405, 'Debe', 9, '2021-11-10'),
+(224, 3, 56405, 'Debe', 9, '2021-12-10'),
+(225, 4, 56405, 'Debe', 9, '2022-01-10'),
+(226, 5, 56405, 'Debe', 9, '2022-02-10'),
+(227, 6, 56405, 'Debe', 9, '2022-03-10'),
+(228, 7, 56405, 'Debe', 9, '2022-04-10'),
+(229, 8, 56405, 'Debe', 9, '2022-05-10'),
+(230, 9, 56405, 'Debe', 9, '2022-06-10'),
+(231, 10, 56405, 'Debe', 9, '2022-07-10'),
+(232, 11, 56405, 'Debe', 9, '2022-08-10'),
+(233, 12, 56405, 'Debe', 9, '2022-09-10'),
+(234, 13, 56405, 'Debe', 9, '2022-10-10'),
+(235, 14, 56405, 'Debe', 9, '2022-11-10'),
+(236, 15, 56405, 'Debe', 9, '2022-12-10'),
+(237, 16, 56405, 'Debe', 9, '2023-01-10'),
+(238, 17, 56405, 'Debe', 9, '2023-02-10'),
+(239, 18, 56405, 'Debe', 9, '2023-03-10'),
+(240, 19, 56405, 'Debe', 9, '2023-04-10'),
+(241, 20, 56405, 'Debe', 9, '2023-05-10'),
+(242, 21, 56405, 'Debe', 9, '2023-06-10'),
+(243, 22, 56405, 'Debe', 9, '2023-07-10'),
+(244, 23, 56405, 'Debe', 9, '2023-08-10'),
+(245, 24, 56405, 'Debe', 9, '2023-09-10');
 
 -- --------------------------------------------------------
 
@@ -455,7 +552,7 @@ INSERT INTO `empleado` (`idempleado`, `emp_nombre`, `emp_apellido`, `emp_direcci
 (7, 'PATRICIO ', 'CANDIA', 'VIEYTES 552', 'VILLA MARTELLI', 40855719, 0, 'm', '2021-08-01', '2020-01-25', 's', 'activo', 'vista/imagenes/usuario.png', 1, 'GOMEZ LUDMILA', NULL, 1169821303, 1),
 (8, 'GONZALO ERNESTO', 'BARRIOS', 'CONSTITUYENTES 677', 'SAN MARTIN', 37019072, 1166506420, 'm', '2021-08-01', '2021-02-01', 'c', 'activo', 'vista/imagenes/usuario.png', 5, 'ROSA MINIO', NULL, 1159628491, 0),
 (9, 'LUCAS NICOLAS', 'LOPEZ', 'CONSTITUYENTES Y LA NUEVA', 'SAN MARTIN', 36644700, 0, 'm', '2021-08-01', '2017-07-10', 's', 'activo', 'vista/imagenes/IMG198202113176.png', 5, '', NULL, 0, 0),
-(10, 'GABRIEL', 'GONZALES', 'LAVALLE 5294', 'VILLA MARTELLI', 43302746, 1162183674, 'm', '2021-08-01', '2019-11-11', 's', 'activo', 'vista/imagenes/usuario.png', 5, 'NN', NULL, 0, 0),
+(10, 'GABRIEL', 'GONZALES', 'LAVALLE 5294', 'VILLA MARTELLI', 43302746, 1162183674, 'm', '2021-08-01', '2019-11-11', 's', 'activo', 'vista/imagenes/IMG268202111647.png', 5, 'NN', 0, 0, 0),
 (11, 'SANTIAGO ', 'BRENDAN', 'LOYOLA Manz.11 Casa 11', 'VILLA ZAGALA', 36978084, 373165437, 'm', '2021-08-06', '2019-04-12', 's', 'activo', 'vista/imagenes/IMG19820211378.png', 5, 'NUNIES MARIELA', NULL, 1157582992, 6),
 (12, 'RAINZ WILFREDO', 'CANDIA', 'COLOMBIA 1550', 'SAN ANDRES', 93793774, 1131113750, 'm', '2021-08-01', '2007-07-13', 's', 'activo', 'vista/imagenes/IMG198202114604.png', 5, 'NN', NULL, 0, 8),
 (13, 'NORBERTO UBALDO', 'ACOSTA', 'FRENCH 1119', 'VILLA MARTELLI', 27389296, 1168518578, 'm', '2021-08-02', '2019-10-07', 's', 'activo', 'vista/imagenes/IMG198202114352.png', 5, 'NN', NULL, 0, 2),
@@ -463,7 +560,8 @@ INSERT INTO `empleado` (`idempleado`, `emp_nombre`, `emp_apellido`, `emp_direcci
 (15, 'DAHIANA LUJAN', 'SANCHEZ ACOSTA', 'COLOMBIA 1555', 'VILLA MARTELLI', 96005301, 114945596, 'f', '2021-08-10', '2021-01-21', 's', 'activo', 'vista/imagenes/IMG198202114802.png', 5, '', NULL, 0, 2),
 (16, 'ESTEBAN GABRIEL', 'ISTRAULIN', 'GURRUCHAGA 560', 'SAN MARTIN', 32884714, 1131695633, 'm', '2021-01-01', '2017-03-05', 's', 'activo', 'vista/imagenes/IMG198202114844.png', 5, '', NULL, 0, 2),
 (17, 'RUBEN ERNESTO', 'CANDIA', 'EVA PERON 5700 CASA 31', 'SAN MARTIN', 27540395, 1158531413, 'm', '2021-01-01', '2007-11-01', 's', 'activo', 'vista/imagenes/IMG1982021147.png', 1, 'ARROYO ALEJANDRA', NULL, 1168665550, 4),
-(18, 'LIZ LAURA MARCELA', 'FLEITAS', 'MOLDES 5200', 'VILLA MARTELLI', 94078511, 1166611437, 'f', '1981-10-19', '2018-01-01', 's', 'activo', 'vista/imagenes/IMG198202115584.png', 4, 'SOSA CARLOS', NULL, 0, 3);
+(18, 'LIZ LAURA MARCELA', 'FLEITAS', 'MOLDES 5200', 'VILLA MARTELLI', 94078511, 1166611437, 'f', '1981-10-19', '2018-01-01', 's', 'activo', 'vista/imagenes/IMG198202115584.png', 4, 'SOSA CARLOS', NULL, 0, 3),
+(19, 'carlos manuel', 'sosa', 'moldes 5200', 'villa martelli', 16754658, 1166611440, 'm', '1963-09-13', '1986-01-01', 'c', 'activo', 'vista/imagenes/IMG26820211139.png', 5, 'nn', NULL, 0, 6);
 
 -- --------------------------------------------------------
 
@@ -501,7 +599,8 @@ INSERT INTO `empleadoextras` (`idempleadoExtras`, `ex_nombre`, `ex_dni`, `ex_mov
 (10, 'ACOSTA VALLEJO CARMEN', 95358243, 1131711333, 'COLOMBIA 1555', 'n', '', '0000-00-00', 15, ''),
 (11, 'OLIVEIRA YOLANDA', 0, 1123845055, 'N', 'n', '', '0000-00-00', 16, ''),
 (12, 'ARROYO ALEJANDRA', 27601117, 1168665550, 'EVA PERON 5700', 's', '', '2021-05-28', 17, 'OSPIA'),
-(13, 'NN', 0, 0, 'NN', 'n', '', '0000-00-00', 18, '');
+(13, 'NN', 0, 0, 'NN', 'n', '', '0000-00-00', 18, ''),
+(14, 'marcela fleitas', 94078511, 0, 'moldes 5200', 's', '', '0000-00-00', 19, '');
 
 -- --------------------------------------------------------
 
@@ -525,10 +624,14 @@ CREATE TABLE `planespago` (
 
 INSERT INTO `planespago` (`idplanesPago`, `plan`, `detalle`, `cuit`, `total`, `estado`, `fecha`) VALUES
 (1, 'LEO-M791525', 'SE DEBITA DE CTA.CREDICOOP 24 cuotas', '20299859348', 94431, 'activo', '2020-03-26'),
-(2, 'GERA-M788184', 'SE DEBITA DE CTA.CREDICOOP GERA 36 cuotas', '23147724799', 253151, 'activo', '2019-11-26'),
+(2, 'GERA-M788184', 'SE DEBITA DE CTA.CREDICOOP GERA 36 cuotas', '23147724799', 253151, 'inactivo', '2019-11-26'),
 (3, 'GERA-M788173', 'SE DEBITA DE CTA.CREDICOOP GERA 36 CUOTAS', '23147724799', 186390, 'activo', '2019-11-26'),
-(4, 'LEO-07801', 'BOLETAS QUE PAGAR 1 X MES 18 CUOTAS IIBB', '20299859348', 300852, 'activo', '2021-02-05'),
-(5, 'ORESTES-0313086', 'SE DEBITA DE CTA.CREDICOOP SOSA APORTES SUSS 36 CUOTAS', '2147483647', 688770, 'activo', '2020-11-27');
+(4, 'LEO-07801', 'BOLETAS QUE PAGAR 1 X MES 18 CUOTAS IIBB', '20299859348', 300852, 'inactivo', '2021-02-05'),
+(5, 'ORESTES-0313086', 'SE DEBITA DE CTA.CREDICOOP SOSA APORTES SUSS 36 CUOTAS', '2147483647', 688770, 'activo', '2020-11-27'),
+(6, 'FELISAN-M396399', 'SE DEBITA DE CTA.CREDICOOP FELISAN 36 CUOTAS', '30714880981', 447157, 'activo', '2019-11-29'),
+(7, 'SOSA-O275036', 'SE DEBITA DE CTA.CREDICOOP SOSA 24 CUOTAS', '20167546588', 327052, 'activo', '2020-11-26'),
+(8, 'GERA-P166811', 'SE DEBITA DE CTA.CREDICOOP GERA 12 CUOTAS ', '23147724799', 296368, 'activo', '2021-08-23'),
+(9, 'FELISAN-07804', 'VEP CTA.FELISAN INGRESOS BRUTOS 24 CUOTAS', '30714880981', 1110546, 'activo', '2021-08-24');
 
 -- --------------------------------------------------------
 
@@ -581,11 +684,11 @@ INSERT INTO `transporte` (`idtransporte`, `tipo`, `marca`, `patente`, `verificac
 (2, 'CHASIS', 'FORD CARGO', 'EQE861', '0000-00-00', '0000-00-00', '0000-00-00', '2022-01-26', 'activo', '', 'vista/imagenes/camion.png'),
 (3, 'TRACTOR', 'FIAT', 'SRV854', '2021-07-28', '2021-07-20', '2021-12-09', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
 (4, 'TRACTOR', 'CHEVROLET KODIA', 'COE407', '0000-00-00', '0000-00-00', '2021-10-19', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
-(5, 'CAMION', 'MERCEDES BENZ 710', 'AWP113', '0000-00-00', '0000-00-00', '2021-08-31', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
-(6, 'CAMION', 'MERCEDES 1215', 'VAD365', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
-(7, 'CAMIONETA', 'MERCEDES SPRINTER', 'CZC226', '2021-08-10', '0000-00-00', '2021-08-09', '2022-01-06', 'activo', '', 'vista/imagenes/camion.png'),
+(5, 'CAMION', 'MERCEDES BENZ 710', 'AWP113', '0000-00-00', '0000-00-00', '2021-08-31', '0000-00-00', 'activo', '', 'vista/imagenes/IMG26820219538.JPG'),
+(6, 'CAMION', 'MERCEDES 1215', 'VAD365', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '', 'vista/imagenes/IMG26820219204.JPG'),
+(7, 'CAMIONETA', 'MERCEDES SPRINTER', 'CZC226', '2021-08-10', '0000-00-00', '2021-08-09', '2022-01-06', 'activo', '', 'vista/imagenes/IMG25820218318.jpeg'),
 (8, 'CAMIONETA', 'MERCEDES SPRINTER', 'JTH524', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
-(9, 'SEMI', 'MONTENEGRO', 'SVI900', '2021-08-12', '2021-07-20', '2021-12-09', '0000-00-00', 'activo', '', 'vista/imagenes/camion.png'),
+(9, 'SEMI', 'MONTENEGRO', 'SVI900', '2021-08-12', '2021-07-20', '2021-12-09', '0000-00-00', 'activo', '', 'vista/imagenes/IMG26820219539.JPG'),
 (10, 'SEMI', 'SALTO', 'UZE068', '0000-00-00', '2021-09-11', '2021-10-07', '2022-06-17', 'activo', '', 'vista/imagenes/camion.png');
 
 --
@@ -639,25 +742,25 @@ ALTER TABLE `transporte`
 -- AUTO_INCREMENT de la tabla `detalleplan`
 --
 ALTER TABLE `detalleplan`
-  MODIFY `iddetallePlan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `iddetallePlan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `empleadoextras`
 --
 ALTER TABLE `empleadoextras`
-  MODIFY `idempleadoExtras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idempleadoExtras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `planespago`
 --
 ALTER TABLE `planespago`
-  MODIFY `idplanesPago` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idplanesPago` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `sector`

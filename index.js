@@ -67,7 +67,11 @@ function listar_plan(){
 			//return "<span class='label text-dark'>$ "+data+"</span>";
 		
 			},		 
-		  {"data":"cuotas"},		 	
+		  {"data":"cuotas"},
+		  {"data":"pagada",
+		  render:$.fn.dataTable.render.number( ',', '.', 0, '$' )
+		  },
+		  {"data":"cuotaPaga"},		 	
 		  {"data":"estado",
 		  render:function(data,type,row){
 								

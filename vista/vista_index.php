@@ -45,16 +45,20 @@
   </div>
 </div>
 <div class="container">
-  <div class="col-md-8">
+  
+  <div class="col-md-12">
       <div class="col-md-12 bg-primary text-white p-1 d-inline-block border">
         <h6 class="card-title"style="text-align:center">Planes De Pago</h6>
        </div>
+        
 <table id="tabla_index" class="display" style="width:100%">
             <thead>
                 <tr>
                             <th>Plan</th>
                             <th>Cuit</th>
                             <th>Total</th>
+                            <th>Cuotas</th>
+                            <th>Pagado</th>
                             <th>Cuotas</th>
                             <th>Estado</th>
                            
@@ -66,13 +70,16 @@
                             <th>Cuit</th>
                             <th>Total</th>
                             <th>Cuotas</th>
+                            <th>Pagado</th>
+                            <th>Cuotas</th>
                             <th>Estado</th>
                 </tr>
             </tfoot>
         </table>
-        </div>
-  
+  </div>
+ 
 </div>
+
 
 <script>
   $(document).ready(function() {
