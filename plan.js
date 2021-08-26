@@ -6,7 +6,7 @@ function listar_plan(id){
 	  "bLengthChange":false,
 	  "searching": { "regex": false },
 	  "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
-	  "pageLength": 10,
+	  "pageLength": 20,
 	  "destroy":true,
 	  "async": false ,
 	  "processing": true,
@@ -41,7 +41,7 @@ function listar_plan(id){
 		  render:function(data,type,row){
 								
 			if(data=='Pago'){
-				return "<span class='label text-dark'>"+data+"</span>";
+				return "<span class='label bg-success text-white'>"+data+"</span>";
 			}else{
 				return "<span class='label bg-danger text-white'>"+data+"</span>";
 			}
@@ -137,6 +137,11 @@ function registrar(){
 	var detalle=$("#txt_detalle").val();
 	var fecha=$("#txt_fechaPlan").val();
 
+	if(plan.length==0 || cuit.length==0 || total.length==0 ){
+
+	 return	Swal.fire("Hay Campos vacios ","warning");
+	}
+
 	$.ajax({
 		url:"controlador/plan/control_registrar_plan.php",
 		type:"post",
@@ -192,7 +197,7 @@ function registrar_cuotas(id){
 		
 		if(resp>0){
 			Swal.fire("Mensaje De Confirmacion","Plan de Pagos registrado","success");
-			$("#registro_plan").show("hide");
+			$("#registro_plan").modal("hide");
 		}
 		else{
 			Swal.fire("Mensaje De Confirmacion","no se puede registrar Plan de pagos","warning");
@@ -246,6 +251,9 @@ function verPlan(id){
 		document.getElementById('label_cuit').innerText = data[0].cuit;
 		document.getElementById('label_detalle').innerText = data[0].detalle;
 		document.getElementById('label_estado').innerText = data[0].estado;
+
+		
+
 
 		$("#txt_planEditar").val(data[0].plan);
 		$("#txt_cuitEditar").val(data[0].cuit);

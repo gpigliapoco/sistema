@@ -2,11 +2,11 @@
 <script type="text/javascript" src="././transporte.js?rev=<?php echo time(); ?>"></script>
 <div class="col-md-12">
     <div class="container border">
-        <div class="card card-primary" style="width:100%">
-            <div class="card-header border" >
+        <div class="card card-primary " style="width:100%">
+            <div class="card-header border bg-primary text-white p-1 d-inline-block" >
                 <div class="row">
                     <div class="col-md-10">
-                <h4 class="card-title"style="text-align:center">Listado Transportes</h4>
+                <h4 class="card-title"style="text-align:center">TRANSPORTES</h4>
                 </div>
                 <button class="btn btn-success  align-content-end" style="width:15%" data-bs-toggle="modal" data-bs-target="#registro_transporte"><i class="glyphicon glyphicon-plus"></i>&nbsp;Nuevo Registro</button>
                 </div> 

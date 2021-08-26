@@ -1,9 +1,9 @@
 <div class="container">
 <script type="text/javascript" src="././sector.js?rev=<?php echo time();?>"></script>
 <div class="col-md-12">
-    <div class="card card-primary">
-        <div class="card-header with-border" style="text-align:center">
-              <h3 class="card-title">BIENVENIDO A SECTOR </h3>
+    <div class="card card-primary ">
+        <div class="card-header with-border bg-primary text-white p-1 d-inline-block" style="text-align:center">
+              <h5 class="card-title">BIENVENIDO A SECTOR </h5>
              
            
               <!-- /.box-tools -->

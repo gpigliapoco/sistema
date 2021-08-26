@@ -1,6 +1,9 @@
 <div class="container">
 <script type="text/javascript" src="././plan.js?rev=<?php echo time(); ?>"></script>
 <div class="col-md-12">
+<div class="col-md-12 bg-primary text-white p-1 d-inline-block border">
+        <h4 class="card-title"style="text-align:center">PLANES DE PAGO</h4>
+       </div>
         <div class="container border">
             <div class="row">
                 <div class="col-md-4 ">
@@ -65,10 +68,10 @@
     </div>
     <div class="container border">
         <div class="card card-primary" style="width:100%">
-            <div class="card-header border" >
+            <div class="card-header border bg-primary text-white p-1 d-inline-block " >
                 <div class="row">
-                    <div class="col-md-10">
-                      <h4 class="card-title"style="text-align:center">Planes De Pago</h4>
+                    <div class="col-md-12 ">
+                      <h6 class="card-title"style="text-align:center">Detalle De Cuotas</h6>
                     </div>
                 </div>            
             </div>

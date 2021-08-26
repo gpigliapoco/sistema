@@ -2,8 +2,8 @@
 <script type="text/javascript" src="././empleados.js?rev=<?php echo time();?>"></script>
 <div class="col-md-12">
           <div class="card card-primary" >
-            <div class="card-header" style="text-align:center" >
-              <h3 class="card-title" ><b> EDITAR DATOS DE EMPLEADO</b></h3>
+            <div class="card-header bg-primary text-white p-1 d-inline-block" style="text-align:center" >
+              <h4 class="card-title" ><b> EDITAR DATOS DE EMPLEADO</b></h4>
 
               
               <!-- /.box-tools -->
