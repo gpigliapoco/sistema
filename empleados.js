@@ -168,7 +168,7 @@ function Registrar(){
 				Swal.fire('D.N.I Empleado','ya existe en base de datos');
 			}else{
 				
-				Swal.fire('Empleado registrado','success');
+				Swal.fire('Empleado registrado','','success');
 				cargar_contenido('contenido_principal','./vista/empleados/vista_empleados.php');
 			}
 		}

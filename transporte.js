@@ -173,12 +173,12 @@ function listar_transporte(){
 			//alert(respuesta);
 		
 			if(respuesta ==1){
-				Swal.fire('Registrado','Datos de vehiculo');
+				Swal.fire("Transporte Registrado","","success");
 				$("#registro_transporte").modal('hide');
 				limpiar();
 				table.ajax.reload();
 			}else{
-				Swal.fire('Patente ya existe','en base de datos');
+				Swal.fire('Patente ya existe','en base de datos','warning');
 			}
 			
 		}
@@ -291,8 +291,8 @@ function Editar(){
 		if(resp>0){
 			Swal.fire({
 				icon: 'success',
-				title: 'Editado',
-				text: 'Datos de Transporte Editados'
+				title: 'Datos de Transporte Editados',
+				text: 'con exito'
 				
 			  });
 			  $("#editar_transporte").modal('hide');

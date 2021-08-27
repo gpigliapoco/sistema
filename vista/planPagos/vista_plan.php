@@ -5,38 +5,38 @@
         <h4 class="card-title"style="text-align:center">PLANES DE PAGO</h4>
        </div>
         <div class="container border">
-            <div class="row">
+            <div class="row ">
                 <div class="col-md-4 ">
-                   <div class="col-sm-3 h-auto d-inline-block text-end ">
-                    <p class="fs-6 fw-bold text-right" ><label for="">Plan :</label></p>
+                   <div class="col-sm-3 h-auto d-inline-block text-end  ">
+                    <p class="fs-6 fw-bold text-right border-bottom" ><label for="">Plan :</label></p>
                   </div>
-                  <div class="col-sm-8 h-auto d-inline-block  ">
+                  <div class="col-sm-8 h-auto d-inline-block border-bottom  ">
                     <label for="" id="label_plan"></label>
                     </div> 
                     <div class="col-sm-3 h-auto d-inline-block text-end ">
-                    <p class="fs-6 fw-bold text-right" ><label for="">Total :</label></p>
+                    <p class="fs-6 fw-bold text-right border-bottom" ><label for="">Total :</label></p>
                   </div>
-                  <div class="col-sm-8 h-auto d-inline-block ">
+                  <div class="col-sm-8 h-auto d-inline-block border-bottom ">
                     <label for="" id="label_total"></label>
                     </div> 
                     <div class="col-sm-3 h-auto d-inline-block text-end ">
-                    <p class="fs-6 fw-bold text-right" ><label for="">Estado :</label></p>
+                    <p class="fs-6 fw-bold text-right border-bottom" ><label for="">Estado :</label></p>
                   </div>
-                  <div class="col-sm-8 h-auto d-inline-block ">
+                  <div class="col-sm-8 h-auto d-inline-block border-bottom">
                     <label for="" id="label_estado"></label>
                     </div> 
                 </div>
                 <div class="col-md-4  ">
                    <div class="col-sm-3 h-auto d-inline-block text-end ">
-                    <p class="fs-6 fw-bold text-right" ><label for="">C.U.I.T :</label></p>
+                    <p class="fs-6 fw-bold text-right border-bottom" ><label for="">C.U.I.T :</label></p>
                   </div>
-                  <div class="col-sm-8 h-auto d-inline-block ">
+                  <div class="col-sm-8 h-auto d-inline-block border-bottom">
                     <label for="" id="label_cuit"></label>
                     </div> 
                     <div class="col-sm-3 h-auto d-inline-block text-end ">
-                    <p class="fs-6 fw-bold text-right" ><label for="">Pagado :</label></p>
+                    <p class="fs-6 fw-bold text-right border-bottom" ><label for="">Pagado :</label></p>
                   </div>
-                  <div class="col-sm-8 h-auto d-inline-block  ">
+                  <div class="col-sm-8 h-auto d-inline-block border-bottom ">
                     <label for="" id="label_pagado"></label>
                     </div> 
                 </div>

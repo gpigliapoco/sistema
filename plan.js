@@ -196,7 +196,7 @@ function registrar_cuotas(id){
 	}).done(function(resp){
 		
 		if(resp>0){
-			Swal.fire("Mensaje De Confirmacion","Plan de Pagos registrado","success");
+			Swal.fire("Plan de Pagos registrado","","success");
 			$("#registro_plan").modal("hide");
 		}
 		else{
@@ -296,7 +296,7 @@ function editar(){
 		}
 	}).done(function(resp){
 		//alert(resp);
-		Swal.fire("Plan de Pagos Editado","success");
+		Swal.fire("Plan de Pagos Editado","","success");
 		$("#editar_plan").modal("hide");
 	})
 
