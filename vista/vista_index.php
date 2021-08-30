@@ -79,6 +79,41 @@
   </div>
  
 </div>
+<br>
+
+<div class="container">
+  
+  <div class="col-md-12">
+      <div class="col-md-12 bg-primary text-white p-1 d-inline-block border">
+        <h6 class="card-title"style="text-align:center">VENCIMIENTOS DE PLANES DE PAGO </h6>
+       </div>
+        
+<table id="tabla_vencimientos" class="display" style="width:100%">
+            <thead>
+                <tr>
+                            <th>Plan</th>
+                            <th>Cuit</th>
+                            <th>Cuota</th>
+                            <th>Total</th>
+                            <th>Vencimiento</th>
+                            <th>Estado</th>
+                           
+                </tr>
+            </thead>     
+            <tfoot>
+                <tr>
+                            <th>Plan</th>
+                            <th>Cuit</th>
+                            <th>Cuota</th>
+                            <th>Total</th>
+                            <th>Vencimiento</th>
+                            <th>Estado</th>
+                </tr>
+            </tfoot>
+        </table>
+  </div>
+ 
+</div>
 
 
 <script>
@@ -87,5 +122,6 @@
     indexTransporte();
     indexPlan();
     listar_plan();
+    listar_plan_vencimiento();
   });
 </script>
